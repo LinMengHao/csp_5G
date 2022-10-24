@@ -1,0 +1,35 @@
+server:
+  port: 9555
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 82.157.251.233:8848
+        namespace: fa299816-d6a4-4061-9ee2-7f67aa5f6594
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-sms
+          uri:
+            lb://service-sms
+          predicates:
+            - Path=/smsService/**
+
+        - id: service-access
+          uri:
+            lb://service-access
+          predicates:
+            - Path=/xiuzhi/bj_mobile/**
+              # ?????????????
+              #- After=2020-02-05T15:10:03.685+08:00[Asia/Shanghai]         # ?????????????
+              #- Before=2020-02-05T15:10:03.685+08:00[Asia/Shanghai]         # ?????????????
+              #- Cookie=username,zhsh #??Cookie?username=zhsh????
+              #- Header=X-Request-Id, \d+ #??????X-Request-Id??????????????
+              #- Host=**.zhsh.com
+              #- Method=GET
+              #- Query=username, \d+ #????????????????
+
+  application:
+    name: api-gateway

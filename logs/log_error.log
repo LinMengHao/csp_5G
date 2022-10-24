@@ -1,0 +1,895 @@
+2022-10-24 11:01:15.169 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2022-10-24 11:03:28.680 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2022-10-24 11:07:08.163 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2022-10-24 11:11:53.745 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2022-10-24 11:59:46.231 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - unknown delivery tag 1, class-id=60, method-id=90)
+2022-10-24 12:01:15.074 [http-nio-8888-exec-8] ERROR com.xzkj.base.handler.GlobalExceptionHandler - feign.RetryableException: Read timed out executing POST http://service-sms/base/smsService/t-student/findAll
+	at feign.FeignException.errorExecuting(FeignException.java:213)
+	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:115)
+	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:80)
+	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:103)
+	at com.sun.proxy.$Proxy109.test(Unknown Source)
+	at com.xzkj.accessService.client.TestController.test(TestController.java:17)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:96)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:41002)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(SocketInputStream.java)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345)
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:779)
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:714)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1607)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1512)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480)
+	at feign.Client$Default.convertResponse(Client.java:82)
+	at feign.Client$Default.execute(Client.java:78)
+	at org.springframework.cloud.openfeign.ribbon.RetryableFeignLoadBalancer$1.doWithRetry(RetryableFeignLoadBalancer.java:114)
+	at org.springframework.cloud.openfeign.ribbon.RetryableFeignLoadBalancer$1.doWithRetry(RetryableFeignLoadBalancer.java:94)
+	at org.springframework.retry.support.RetryTemplate.doExecute(RetryTemplate.java:287)
+	at org.springframework.retry.support.RetryTemplate.execute(RetryTemplate.java:180)
+	at org.springframework.cloud.openfeign.ribbon.RetryableFeignLoadBalancer.execute(RetryableFeignLoadBalancer.java:94)
+	at org.springframework.cloud.openfeign.ribbon.RetryableFeignLoadBalancer.execute(RetryableFeignLoadBalancer.java:54)
+	at com.netflix.client.AbstractLoadBalancerAwareClient$1.call(AbstractLoadBalancerAwareClient.java:104)
+	at com.netflix.loadbalancer.reactive.LoadBalancerCommand$3$1.call(LoadBalancerCommand.java:303)
+	at com.netflix.loadbalancer.reactive.LoadBalancerCommand$3$1.call(LoadBalancerCommand.java:287)
+	at rx.internal.util.ScalarSynchronousObservable$3.call(ScalarSynchronousObservable.java:231)
+	at rx.internal.util.ScalarSynchronousObservable$3.call(ScalarSynchronousObservable.java:228)
+	at rx.Observable.unsafeSubscribe(Observable.java:10327)
+	at rx.internal.operators.OnSubscribeConcatMap$ConcatMapSubscriber.drain(OnSubscribeConcatMap.java:286)
+	at rx.internal.operators.OnSubscribeConcatMap$ConcatMapSubscriber.onNext(OnSubscribeConcatMap.java:144)
+	at com.netflix.loadbalancer.reactive.LoadBalancerCommand$1.call(LoadBalancerCommand.java:185)
+	at com.netflix.loadbalancer.reactive.LoadBalancerCommand$1.call(LoadBalancerCommand.java:180)
+	at rx.Observable.unsafeSubscribe(Observable.java:10327)
+	at rx.internal.operators.OnSubscribeConcatMap.call(OnSubscribeConcatMap.java:94)
+	at rx.internal.operators.OnSubscribeConcatMap.call(OnSubscribeConcatMap.java:42)
+	at rx.Observable.unsafeSubscribe(Observable.java:10327)
+	at rx.internal.operators.OperatorRetryWithPredicate$SourceSubscriber$1.call(OperatorRetryWithPredicate.java:127)
+	at rx.internal.schedulers.TrampolineScheduler$InnerCurrentThreadScheduler.enqueue(TrampolineScheduler.java:73)
+	at rx.internal.schedulers.TrampolineScheduler$InnerCurrentThreadScheduler.schedule(TrampolineScheduler.java:52)
+	at rx.internal.operators.OperatorRetryWithPredicate$SourceSubscriber.onNext(OperatorRetryWithPredicate.java:79)
+	at rx.internal.operators.OperatorRetryWithPredicate$SourceSubscriber.onNext(OperatorRetryWithPredicate.java:45)
+	at rx.internal.util.ScalarSynchronousObservable$WeakSingleProducer.request(ScalarSynchronousObservable.java:276)
+	at rx.Subscriber.setProducer(Subscriber.java:209)
+	at rx.internal.util.ScalarSynchronousObservable$JustOnSubscribe.call(ScalarSynchronousObservable.java:138)
+	at rx.internal.util.ScalarSynchronousObservable$JustOnSubscribe.call(ScalarSynchronousObservable.java:129)
+	at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:48)
+	at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:30)
+	at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:48)
+	at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:30)
+	at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:48)
+	at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:30)
+	at rx.Observable.subscribe(Observable.java:10423)
+	at rx.Observable.subscribe(Observable.java:10390)
+	at rx.observables.BlockingObservable.blockForSingle(BlockingObservable.java:443)
+	at rx.observables.BlockingObservable.single(BlockingObservable.java:340)
+	at com.netflix.client.AbstractLoadBalancerAwareClient.executeWithLoadBalancer(AbstractLoadBalancerAwareClient.java:112)
+	at org.springframework.cloud.openfeign.ribbon.LoadBalancerFeignClient.execute(LoadBalancerFeignClient.java:83)
+	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:110)
+	... 55 more
+
+2022-10-24 12:28:23.314 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS SocketTimeoutException]
+2022-10-24 12:28:23.324 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - no available server
+2022-10-24 12:28:23.324 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] [check-update] get changed dataId exception
+java.net.ConnectException: no available server
+	at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:141)
+	at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:361)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:335)
+	at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:478)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:00:40.190 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - [NA] failed to request 
+java.net.ConnectException: Network is down (connect failed)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:499)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:594)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:278)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:375)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:393)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1240)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1167)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1061)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:995)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1354)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1329)
+	at com.alibaba.nacos.client.naming.net.HttpClient.request(HttpClient.java:85)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:326)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:00:40.235 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - request 82.157.251.233:8848 failed.
+com.alibaba.nacos.api.exception.NacosException: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/beat. code:500 msg: java.net.ConnectException: Network is down (connect failed)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:340)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:00:40.238 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - [CLIENT-BEAT] failed to send beat: {"cluster":"DEFAULT","ip":"172.16.11.16","metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":8888,"scheduled":true,"serviceName":"DEFAULT_GROUP@@service-access","weight":1.0}
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/instance/beat after all servers([82.157.251.233:8848]) tried: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/beat. code:500 msg: java.net.ConnectException: Network is down (connect failed)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:00:55.011 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS SocketTimeoutException]
+2022-10-24 13:00:55.017 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - no available server
+2022-10-24 13:00:55.070 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] [check-update] get changed dataId exception
+java.net.ConnectException: no available server
+	at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:141)
+	at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:361)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:335)
+	at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:478)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:00:59.818 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS SocketTimeoutException]
+2022-10-24 13:00:59.820 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - no available server
+2022-10-24 13:00:59.821 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] [check-update] get changed dataId exception
+java.net.ConnectException: no available server
+	at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:141)
+	at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:361)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:335)
+	at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:478)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:01:25.086 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS SocketTimeoutException]
+2022-10-24 13:01:25.092 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - no available server
+2022-10-24 13:01:25.093 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] [check-update] get changed dataId exception
+java.net.ConnectException: no available server
+	at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:141)
+	at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:361)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:335)
+	at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:478)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.029 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - [NA] failed to request 
+java.net.ConnectException: Network is down (connect failed)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:499)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:594)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:278)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:375)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:393)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1240)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1167)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1061)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:995)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1354)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1329)
+	at com.alibaba.nacos.client.naming.net.HttpClient.request(HttpClient.java:85)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:326)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.030 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - request 82.157.251.233:8848 failed.
+com.alibaba.nacos.api.exception.NacosException: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/beat. code:500 msg: java.net.ConnectException: Network is down (connect failed)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:340)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.031 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - [CLIENT-BEAT] failed to send beat: {"cluster":"DEFAULT","ip":"172.16.11.16","metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":8888,"scheduled":true,"serviceName":"DEFAULT_GROUP@@service-access","weight":1.0}
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/instance/beat after all servers([82.157.251.233:8848]) tried: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/beat. code:500 msg: java.net.ConnectException: Network is down (connect failed)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.120 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS SocketTimeoutException]
+2022-10-24 13:02:27.120 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - no available server
+2022-10-24 13:02:27.121 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] [check-update] get changed dataId exception
+java.net.ConnectException: no available server
+	at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:141)
+	at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:361)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:335)
+	at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:478)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.261 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.274 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.279 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.285 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.289 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.297 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.394 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:27.500 [com.alibaba.nacos.client.naming.updater] ERROR com.alibaba.nacos.client.naming - [NA] failed to request 
+java.net.ConnectException: Network is down (connect failed)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:499)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:594)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:278)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:375)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:393)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1240)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1167)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1061)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:995)
+	at com.alibaba.nacos.client.naming.net.HttpClient.request(HttpClient.java:89)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:326)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.queryList(NamingProxy.java:217)
+	at com.alibaba.nacos.client.naming.core.HostReactor.updateServiceNow(HostReactor.java:273)
+	at com.alibaba.nacos.client.naming.core.HostReactor$UpdateTask.run(HostReactor.java:318)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.522 [com.alibaba.nacos.client.naming.updater] ERROR com.alibaba.nacos.client.naming - request 82.157.251.233:8848 failed.
+com.alibaba.nacos.api.exception.NacosException: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/list. code:500 msg: java.net.ConnectException: Network is down (connect failed)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:340)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.queryList(NamingProxy.java:217)
+	at com.alibaba.nacos.client.naming.core.HostReactor.updateServiceNow(HostReactor.java:273)
+	at com.alibaba.nacos.client.naming.core.HostReactor$UpdateTask.run(HostReactor.java:318)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.524 [com.alibaba.nacos.client.naming.updater] ERROR com.alibaba.nacos.client.naming - [NA] failed to update serviceName: DEFAULT_GROUP@@service-access
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/instance/list after all servers([82.157.251.233:8848]) tried: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/list. code:500 msg: java.net.ConnectException: Network is down (connect failed)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.queryList(NamingProxy.java:217)
+	at com.alibaba.nacos.client.naming.core.HostReactor.updateServiceNow(HostReactor.java:273)
+	at com.alibaba.nacos.client.naming.core.HostReactor$UpdateTask.run(HostReactor.java:318)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:27.575 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS ConnectException] currentServerAddr: 82.157.251.233:8848
+2022-10-24 13:02:28.440 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - [NACOS SocketTimeoutException]
+2022-10-24 13:02:28.440 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR c.alibaba.nacos.client.config.http.ServerHttpAgent - no available server
+2022-10-24 13:02:28.441 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] ERROR com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] [check-update] get changed dataId exception
+java.net.ConnectException: no available server
+	at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:141)
+	at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:361)
+	at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:335)
+	at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:478)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:35.763 [AMQP Connection 82.157.251.233:5672] ERROR com.rabbitmq.client.impl.ForgivingExceptionHandler - An unexpected connection driver error occured
+java.net.SocketException: Network is down (Read failed)
+	at java.net.SocketInputStream.socketRead0(SocketInputStream.java)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at java.io.DataInputStream.readUnsignedByte(DataInputStream.java:288)
+	at com.rabbitmq.client.impl.Frame.readFrom(Frame.java:91)
+	at com.rabbitmq.client.impl.SocketFrameHandler.readFrame(SocketFrameHandler.java:184)
+	at com.rabbitmq.client.impl.AMQConnection$MainLoop.run(AMQConnection.java:598)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:02:35.816 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.819 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.825 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.826 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.828 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.834 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.885 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.886 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.887 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.888 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.898 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.900 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.908 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.909 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.909 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.910 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.913 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.928 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.938 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.939 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.947 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.948 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.948 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.949 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.949 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.950 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.951 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.951 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.952 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.953 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.954 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.955 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.955 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.957 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.958 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.959 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.960 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.960 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.964 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.965 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.966 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.967 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.967 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.968 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.969 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.970 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.971 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.972 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.973 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.974 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.977 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.977 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.978 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.980 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.981 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.997 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:35.998 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.013 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.023 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.024 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.025 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.027 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.028 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.029 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.030 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.030 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.032 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.033 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.033 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.034 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.035 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.036 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.037 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.039 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.040 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.041 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.043 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.044 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.045 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.051 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.052 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.054 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.055 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.071 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.072 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.072 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.073 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.074 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.074 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.075 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.076 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.076 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.077 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.082 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.083 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.084 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.086 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.087 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.088 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.089 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.089 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.090 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.091 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.092 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.095 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.095 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.096 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.097 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.098 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.099 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.100 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.101 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.103 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.104 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.105 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.106 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.108 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.109 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.109 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.110 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.111 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.112 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.115 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.118 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.119 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.122 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.123 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.124 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.124 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.125 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.126 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.126 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.127 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.127 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.128 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.128 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.129 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.129 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.130 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.130 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.131 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.132 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.133 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.136 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.137 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.138 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.138 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.139 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.139 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.140 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.140 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.141 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.141 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.142 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.142 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.143 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.143 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.144 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.144 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.145 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.145 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.146 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.155 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.156 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.157 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.163 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.167 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.168 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.168 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.169 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.169 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.170 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.170 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.171 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.171 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.172 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.173 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.173 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.174 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.176 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.177 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.178 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.179 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.180 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.181 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.182 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.183 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.183 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.184 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.185 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.187 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.188 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.192 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.193 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.194 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.194 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.195 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.196 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.197 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:02:36.198 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+2022-10-24 13:27:52.080 [http-nio-8888-exec-1] ERROR com.xzkj.base.handler.GlobalExceptionHandler - org.springframework.data.redis.RedisSystemException: Redis exception; nested exception is io.lettuce.core.RedisException: java.io.IOException: Operation timed out
+	at org.springframework.data.redis.connection.lettuce.LettuceExceptionConverter.convert(LettuceExceptionConverter.java:74)
+	at org.springframework.data.redis.connection.lettuce.LettuceExceptionConverter.convert(LettuceExceptionConverter.java:41)
+	at org.springframework.data.redis.PassThroughExceptionTranslationStrategy.translate(PassThroughExceptionTranslationStrategy.java:44)
+	at org.springframework.data.redis.FallbackExceptionTranslationStrategy.translate(FallbackExceptionTranslationStrategy.java:42)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnection.convertLettuceAccessException(LettuceConnection.java:269)
+	at org.springframework.data.redis.connection.lettuce.LettuceStringCommands.convertLettuceAccessException(LettuceStringCommands.java:799)
+	at org.springframework.data.redis.connection.lettuce.LettuceStringCommands.setEx(LettuceStringCommands.java:232)
+	at org.springframework.data.redis.connection.DefaultedRedisConnection.setEx(DefaultedRedisConnection.java:302)
+	at org.springframework.data.redis.core.DefaultValueOperations$4.potentiallyUsePsetEx(DefaultValueOperations.java:268)
+	at org.springframework.data.redis.core.DefaultValueOperations$4.doInRedis(DefaultValueOperations.java:261)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:228)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:188)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:96)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:256)
+	at org.springframework.data.redis.core.ValueOperations.set(ValueOperations.java:75)
+	at com.xzkj.accessService.utils.RedisUtils.setCacheObject(RedisUtils.java:66)
+	at com.xzkj.accessService.controller.gateway.SendMsgGateWayApi.sendMsg(SendMsgGateWayApi.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:96)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:41002)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: io.lettuce.core.RedisException: java.io.IOException: Operation timed out
+	at io.lettuce.core.LettuceFutures.awaitOrCancel(LettuceFutures.java:129)
+	at io.lettuce.core.FutureSyncInvocationHandler.handleInvocation(FutureSyncInvocationHandler.java:69)
+	at io.lettuce.core.internal.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:80)
+	at com.sun.proxy.$Proxy131.setex(Unknown Source)
+	at org.springframework.data.redis.connection.lettuce.LettuceStringCommands.setEx(LettuceStringCommands.java:230)
+	... 61 more
+Caused by: java.io.IOException: Operation timed out
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:378)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1050)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 more
+
+2022-10-24 13:28:24.683 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - unknown delivery tag 1, class-id=60, method-id=90)
+2022-10-24 13:28:42.064 [AMQP Connection 82.157.251.233:5672] ERROR o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - unknown delivery tag 1, class-id=60, method-id=90)
+2022-10-24 13:42:58.107 [ThreadPoolTaskScheduler-1] ERROR com.alibaba.nacos.client.naming - [NA] failed to request 
+java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:499)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:594)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:278)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:375)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:393)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1240)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1167)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1061)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:995)
+	at com.alibaba.nacos.client.naming.net.HttpClient.request(HttpClient.java:89)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:326)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:346)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:294)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:276)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:252)
+	at com.alibaba.nacos.client.naming.NacosNamingService.getServicesOfServer(NacosNamingService.java:525)
+	at org.springframework.cloud.alibaba.nacos.discovery.NacosWatch.nacosServicesWatch(NacosWatch.java:127)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:42:58.124 [ThreadPoolTaskScheduler-1] ERROR com.alibaba.nacos.client.naming - request 82.157.251.233:8848 failed.
+com.alibaba.nacos.api.exception.NacosException: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/service/list. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:340)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:346)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:294)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:276)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:252)
+	at com.alibaba.nacos.client.naming.NacosNamingService.getServicesOfServer(NacosNamingService.java:525)
+	at org.springframework.cloud.alibaba.nacos.discovery.NacosWatch.nacosServicesWatch(NacosWatch.java:127)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 13:42:58.127 [ThreadPoolTaskScheduler-1] ERROR o.s.cloud.alibaba.nacos.discovery.NacosWatch - Error watching Nacos Service change
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/service/list after all servers([82.157.251.233:8848]) tried: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/service/list. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:346)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:294)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:276)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:252)
+	at com.alibaba.nacos.client.naming.NacosNamingService.getServicesOfServer(NacosNamingService.java:525)
+	at org.springframework.cloud.alibaba.nacos.discovery.NacosWatch.nacosServicesWatch(NacosWatch.java:127)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 14:49:55.634 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - [NA] failed to request 
+java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:499)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:594)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:278)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:375)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:393)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1240)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1167)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1061)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:995)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1354)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1329)
+	at com.alibaba.nacos.client.naming.net.HttpClient.request(HttpClient.java:85)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:326)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 14:49:55.779 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - request 82.157.251.233:8848 failed.
+com.alibaba.nacos.api.exception.NacosException: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/beat. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.callServer(NamingProxy.java:340)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:367)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2022-10-24 14:49:55.782 [com.alibaba.nacos.naming.beat.sender] ERROR com.alibaba.nacos.client.naming - [CLIENT-BEAT] failed to send beat: {"cluster":"DEFAULT","ip":"172.16.11.16","metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":8082,"scheduled":true,"serviceName":"DEFAULT_GROUP@@service-sms","weight":1.0}
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/instance/beat after all servers([82.157.251.233:8848]) tried: failed to req API:http://82.157.251.233:8848/nacos/v1/ns/instance/beat. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.sendBeat(NamingProxy.java:227)
+	at com.alibaba.nacos.client.naming.beat.BeatReactor$BeatTask.run(BeatReactor.java:109)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)

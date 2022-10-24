@@ -1,0 +1,43 @@
+#server:
+#  port: 8888
+##  servlet:
+##    context-path: /xiuzhi/bj_mobile
+#spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: service-access
+#  redis:
+#    host: 82.157.251.233
+#    port: 6379
+#    password: xzkj1225
+#    jedis:
+#      pool:
+#        max-active: 20
+#        max-idle: 8
+#        max-wait: 20000
+#        min-idle: 0
+#  rabbitmq:
+#    host: 82.157.251.233
+#    port: 5672
+#    username: admin
+#    password: xzkj1225
+#    publisher-confirm-type: correlated
+#    publisher-returns: true
+##    排除数据源加载，避免启动报错
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 82.157.251.233:8848
+#logging:
+#  level:
+#    root: info
+#http:
+#  socket-timeout: 100000
+#  max-total: 300
+#  connection-request-timeout: 30000
+#  connection-timeout: 60000
+#  default-max-per-route: 50
+#  stale-connection-check-enable: true

@@ -1,0 +1,46 @@
+#server:
+#  port: 8082
+#  servlet:
+#    context-path: /base
+#spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: service-sms
+#  datasource:
+#    master:
+#      url: jdbc:mysql://82.157.251.233:3306/lmh_test?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+#      username: root
+#      password: Xzkj@1225
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    slave:
+#      url: jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+#      username: root
+#      password: Xzkj@1225
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#  redis:
+#    host: 82.157.251.233
+#    port: 6379
+#    password: xzkj1225
+#    jedis:
+#      pool:
+#        max-active: 20
+#        max-idle: 8
+#        max-wait: 20000
+#        min-idle: 0
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 82.157.251.233:8848
+##    日志输出级别
+#logging:
+#  level:
+#    root: info
+#mybatis-plus:
+#  type-aliases-package: com.xzkj.smsService.entity
+#  mapper-locations: classpath:com/xzkj/smsService/mapper/xml/*.xml
+#  global-config:
+#    db-config:
+#      id-type: id_worker_str
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
