@@ -1,13 +1,14 @@
-package com.xzkj.accessService.controller.operator;
+package com.xzkj.operatorService.controller.operator;
 
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.io.Files;
-import com.xzkj.accessService.conf.HttpsSkipRequestFactory;
-import com.xzkj.accessService.constants.Keys;
-import com.xzkj.accessService.entity.operatorModel.*;
-import com.xzkj.accessService.utils.HttpHeaderUtil;
-import com.xzkj.accessService.utils.RSAUtils;
+
+
+import com.xzkj.operatorService.constants.Keys;
+import com.xzkj.operatorService.entity.operatorModel.*;
+import com.xzkj.operatorService.utils.HttpHeaderUtil;
+import com.xzkj.operatorService.utils.RSAUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -32,9 +33,6 @@ import java.util.List;
 @RestController
 @RequestMapping("xiuzhi/bj_mobile/MsgSync/oc/v1")
 public class OperatorReceiveController {
-    private static RestTemplate httpsTemplate=new RestTemplate(new HttpsSkipRequestFactory());
-    //YD运营公钥
-    private static final String publicKey="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0bL+oIFm9AhGJmvOlL8jn5XBkpGucfe1o2+1kvw7Npwq0Amb5fHoGnurtF+pwLm4uEuTIe98dq/d7v4ykjS39ISesrhkNw+UB/UpqoL4D50O5gqTNxOrLFyIN4BxdrxLA9sWBfQF6aqLhXDN5Uzf8Ibc+H2MjkF7rycPl2Xxckzabr5201rH91Tz4jZXdqdVO//8mbmoaOfTY0UR/VJcNXOfFKOLnLXBAbcusDfsC+JjyYXbSD55lST32jUwxYS5SzLrTfuj0RFEGAbDqA2g4sN2NZP+NuomPc6K7X9eLr6FGnT7HdMNNRxbQK0kqt3WlGL+cw4xMyDt8YQsTc0YcQIDAQAB";
 
     @Autowired
     RestTemplate restTemplate;
@@ -55,7 +53,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("syncproduct")
+    @PostMapping("oc/v1/syncproduct")
     public OperatorResponse getOrderInfo(@RequestBody OrderModel orderModel, HttpServletRequest request){
         //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -100,7 +98,7 @@ public class OperatorReceiveController {
      * chatbot状态变更(运营平台->csp)
      * @return
      */
-    @PostMapping("status")
+    @PostMapping("oc/v1/status")
     public OperatorResponse statusChange(@RequestBody ChatbotModel chatbotModel, HttpServletRequest request){
 
         //使用过滤器鉴权，下面代码可以去掉
@@ -146,7 +144,7 @@ public class OperatorReceiveController {
     /**
      * 运营平台把注销的Chatbot同步给CSP平台(运营->csp)
      */
-    @PostMapping("cancel")
+    @PostMapping("oc/v1/cancel")
     public OperatorResponse cancel(@RequestBody ChatbotModel chatbotModel,HttpServletRequest request){
         //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -192,7 +190,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("authnotification")
+    @PostMapping("oc/v1/authnotification")
     public OperatorResponse authnotification(@RequestBody AuthModel authModel, HttpServletRequest request){
 //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -240,7 +238,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("audit")
+    @PostMapping("oc/v1/audit")
     public OperatorResponse audit(@RequestBody AuthModel authModel,HttpServletRequest request){
 //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -287,7 +285,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("syncconfigchatbot")
+    @PostMapping("oc/v1/syncconfigchatbot")
     public OperatorResponse syncconfigchatbot(@RequestBody ChatbotConfModel confModel, HttpServletRequest request){
 //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -347,7 +345,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("syncvideoconf")
+    @PostMapping("oc/v1/syncvideoconf")
     public OperatorResponse syncvideoconf(@RequestBody SmsConfModel confModel,HttpServletRequest request){
 //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -395,7 +393,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("client/new")
+    @PostMapping("oc/v1/client/new")
     public OperatorResponse clientNew(@RequestBody CustomerModel customerModel,HttpServletRequest request){
 
         //使用过滤器鉴权，下面代码可以去掉
@@ -443,7 +441,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("client/change")
+    @PostMapping("oc/v1/client/change")
     public OperatorResponse clientChange(@RequestBody CustomerModel customerModel,HttpServletRequest request){
 
         //使用过滤器鉴权，下面代码可以去掉
@@ -493,7 +491,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("client/audit")
+    @PostMapping("oc/v1/client/audit")
     public OperatorResponse clientAudit(@RequestBody AuthModel authModel,HttpServletRequest request){
 //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -540,7 +538,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("client/status")
+    @PostMapping("oc/v1/client/status")
     public OperatorResponse clientStatusChange(@RequestBody CustomerModel customerModel,HttpServletRequest request){
 
         //使用过滤器鉴权，下面代码可以去掉
@@ -589,7 +587,7 @@ public class OperatorReceiveController {
      * @param request
      * @return
      */
-    @PostMapping("client/allotServiceCode")
+    @PostMapping("oc/v1/client/allotServiceCode")
     public OperatorResponse allotServiceCode(@RequestBody CustomerServiceCodeModel serviceCodeModel,HttpServletRequest request){
 
         //使用过滤器鉴权，下面代码可以去掉
@@ -638,7 +636,7 @@ public class OperatorReceiveController {
      * @param response
      * @throws IOException
      */
-    @GetMapping("downloadFile")
+    @GetMapping("oc/v1/downloadFile")
     public void downloadFile(@RequestParam String url, HttpServletResponse response,HttpServletRequest request) throws IOException {
         boolean b = verify(request);
         if(!b){
@@ -666,7 +664,7 @@ public class OperatorReceiveController {
         String filePath="";
         HttpHeaders header = httpHeaderUtil.getHttpHeaderByRAS();
         HttpEntity<CustomerServiceCodeModel> entity=new HttpEntity<>(header);
-        ResponseEntity<byte[]> response = restTemplate.exchange("http://183.233.87.255:8092/iodd/v1/downloadImage?attachFileId="+url, HttpMethod.GET, entity, byte[].class);
+        ResponseEntity<byte[]> response = restTemplate.exchange("http://183.233.87.225:8092/iodd/v1/downloadImage?attachFileId="+url, HttpMethod.GET, entity, byte[].class);
         FileOutputStream out=null;
         try{
             byte[] body=response.getBody();

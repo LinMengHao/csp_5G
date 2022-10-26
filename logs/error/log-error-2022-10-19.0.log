@@ -191,7 +191,7 @@ java.lang.IllegalArgumentException: no server available
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at com.xzkj.smsService.SmsApplication.main(SmsApplication.java:12)
+	at com.xzkj.smsService.OperatorApplication.main(SmsApplication.java:12)
 2022-10-19 12:34:59.315 [ThreadPoolTaskScheduler-1] ERROR o.s.cloud.alibaba.nacos.discovery.NacosWatch - Error watching Nacos Service change
 java.lang.IllegalArgumentException: no server available
 	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:354)
@@ -471,7 +471,7 @@ com.alibaba.nacos.api.exception.NacosException: null
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at com.xzkj.smsService.SmsApplication.main(SmsApplication.java:14)
+	at com.xzkj.smsService.OperatorApplication.main(SmsApplication.java:14)
 2022-10-19 12:42:03.615 [main] ERROR o.s.cloud.alibaba.nacos.NacosConfigProperties - create config service error!properties=NacosConfigProperties{serverAddr='null', encode='null', group='DEFAULT_GROUP', prefix='null', fileExtension='properties', timeout=3000, endpoint='null', namespace='null', accessKey='null', secretKey='null', contextPath='null', clusterName='null', name='null', sharedDataids='null', refreshableDataids='null', extConfig=null},e=,
 com.alibaba.nacos.api.exception.NacosException: null
 	at com.alibaba.nacos.api.config.ConfigFactory.createConfigService(ConfigFactory.java:45)
@@ -509,7 +509,7 @@ com.alibaba.nacos.api.exception.NacosException: null
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at com.xzkj.smsService.SmsApplication.main(SmsApplication.java:14)
+	at com.xzkj.smsService.OperatorApplication.main(SmsApplication.java:14)
 2022-10-19 12:42:49.994 [main] ERROR o.s.cloud.alibaba.nacos.NacosConfigProperties - create config service error!properties=NacosConfigProperties{serverAddr='null', encode='null', group='DEFAULT_GROUP', prefix='null', fileExtension='properties', timeout=3000, endpoint='null', namespace='null', accessKey='null', secretKey='null', contextPath='null', clusterName='null', name='null', sharedDataids='null', refreshableDataids='null', extConfig=null},e=,
 com.alibaba.nacos.api.exception.NacosException: null
 	at com.alibaba.nacos.api.config.ConfigFactory.createConfigService(ConfigFactory.java:45)
@@ -522,7 +522,7 @@ com.alibaba.nacos.api.exception.NacosException: null
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at com.xzkj.smsService.SmsApplication.main(SmsApplication.java:14)
+	at com.xzkj.smsService.OperatorApplication.main(SmsApplication.java:14)
 2022-10-19 12:42:56.672 [main] ERROR o.s.cloud.alibaba.nacos.NacosConfigProperties - create config service error!properties=NacosConfigProperties{serverAddr='null', encode='null', group='DEFAULT_GROUP', prefix='null', fileExtension='properties', timeout=3000, endpoint='null', namespace='null', accessKey='null', secretKey='null', contextPath='null', clusterName='null', name='null', sharedDataids='null', refreshableDataids='null', extConfig=null},e=,
 com.alibaba.nacos.api.exception.NacosException: null
 	at com.alibaba.nacos.api.config.ConfigFactory.createConfigService(ConfigFactory.java:45)
@@ -560,7 +560,7 @@ com.alibaba.nacos.api.exception.NacosException: null
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at com.xzkj.smsService.SmsApplication.main(SmsApplication.java:14)
+	at com.xzkj.smsService.OperatorApplication.main(SmsApplication.java:14)
 2022-10-19 14:08:18.544 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
 org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'fileController': Unsatisfied dependency expressed through field 'messageModel'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'messageModel': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'project.version' in value "${project.version}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)

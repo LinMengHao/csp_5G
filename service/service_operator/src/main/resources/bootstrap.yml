@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: service-operator
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 82.157.251.233:8848
+        namespace: fa299816-d6a4-4061-9ee2-7f67aa5f6594
+      config:
+        server-addr: 82.157.251.233:8848
+        group: DEFAULT_GROUP
+        prefix: service-operator
+        namespace: fa299816-d6a4-4061-9ee2-7f67aa5f6594
+        file-extension: yaml

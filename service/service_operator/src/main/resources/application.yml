@@ -1,0 +1,56 @@
+#server:
+#  port: 8083
+#spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: service-operator
+#  datasource:
+#    master:
+#      url: jdbc:mysql://82.157.251.233:3306/xz_operator?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+#      username: root
+#      password: Xzkj@1225
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    slave:
+#      url: jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+#      username: root
+#      password: Xzkj@1225
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#  redis:
+#    host: 82.157.251.233
+#    port: 6379
+#    password: xzkj1225
+#    jedis:
+#      pool:
+#        max-active: 20
+#        max-idle: 8
+#        max-wait: 20000
+#        min-idle: 0
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 82.157.251.233:8848
+##    日志输出级别
+#logging:
+#  level:
+#    root: info
+#    com.alibaba.nacos.client.*: WARN
+#mybatis-plus:
+#  type-aliases-package: com.xzkj.operatorService/.entity
+#  mapper-locations: classpath:com/xzkj/operatorService/mapper/xml/*.xml
+#  global-config:
+#    db-config:
+#      id-type: id_worker_str
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+#YD:
+#  YY:
+#    PUBLICKEY: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCju+7vtN2PLN9P2nF4Ivdf0+liVyoCsVhMnMPYnRk4G1oPZErmGjyEHin4abuMJEsROLj2cj7Ytxnsqfi13HJl+wIY+4GCg2DUK1sa2ptQMovYw60sM+XT9OoLhMN1QFaegTd7B0p9HQDXtNwOqUfEpf8Cixp8ZEOVFiKDdrLc3dJEWMguM5LCWg7vhVGSFE29egNTw25JPZAXakLdl2+ENrTABT9GSla2EMEj+8ndsiLz/CeLaPy22VNGXzV2snsimkpBpOs/ouxggTo+MQRIWotjO00INEOqJUldkReEU0l9Yjzy1/oKOGg3KbN9EVu9F6PjDwR0W9DgE4u8NCK/AgMBAAECggEAIjW5BZJ3nFuWyPtuK9i6cOY45BgsKeXd+hvi+5ZPV563YXHmCE/BByW6RTHqQqyulomQc8WJBgSzwPP+iBjoOhCI7qlV9Ov4RjxMy76TJt14xLCVtR+ezHtmj0ONBymLL5D2A5mRYbS2oVsjg1ixKxA3yNNBlG3qhPLcATXCx0ynEy0DXX5vVRxcMJX3rhcS23YYgn7OZ0XE48Km/UhGFzVVXaAlaxe42V+cz9JC0f+9ErEwZL/2q4PFfHB9I2HM4A/ba2MMRfRRMD0Cyk/psPS+EWADi5ldghbJQtlheO8QjDaNdDFf9UjYfJLIGvJ4MFqlj77C92jYSt72+VYsCQKBgQDs8uMkSZnXZLlNg+jQiKpDpn7Gf8ihKju5xUvQjp9Rz2G80vovT2t0k+vxAQvc633X7IQ/1LokcdqlWByo0FVR9vLzb5t6SCLIRWNKCy3Q2GXxP7sXtmnaaSzcORsUkeHsj1QgBbzoqO1wedSSnVAqGzdOuW9k8JkY6SXJ6k2k1QKBgQCw5hHjfHgjlX8UOXw69tqgNMO2Q5/ZQM5Ffn4Kz3WwHzibELR7WQ7IYzvJXEtRGBI/NJhI0fQMYla8b0K5vwsZxJIXgyarQoizdDxMrkdYvNe8SyJWt5vpuNd1lLw5+zN4poE/Syq7Z6v3GJmPhSnP+CjywoeMZ41ncpPCTOWDQwKBgCm4HjweZWLiTioSxqQo2+mrX/jtONL/j6KG1XF0GyMZY3kOoJRB5IaTIOC/MWqFYBPrheGDP/74uOmR2QH0JIGY/G/WP8bI+q7OYMwBqeByqYhPk056hKq7B/YCa/00LlYrakF1ISzJyXybRs1Fu36eah+HUNCx+BLFwiyJ/3+9AoGAeqAhymYgCdq56tUmjuFMED5DZPdfuYQ4+OeEjA3f8STTYnqkAdVsb/CKIz19YEulancVEXWpDWSl553gzU3nbgdbljzt80394Rg0LJurDZJqojYbKa3BwLTHdtSR3keKGJqjgbKjfqGRDYrZ+ClBIM9P42iB+gxWc11zm/8eIm0CgYBjxRjW6bu+EfWeMWjg/mbrEkrXK8rsAGwEqy6Ww62LUjZsMu9m6OXTQeU6UTYwWnbGZL7QDDWlSdWGvihtTNt66RFlehgn85we0sKug1qWkYj6vQ6tGdgI69M7fL/ROeqCegYuBB85z92CXWhf7aDy4pbf8z4b3DnQOTuXJUZNxg==
+#XZ:
+#  CSP:
+#    PUBLICKEY: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo7vu77TdjyzfT9pxeCL3X9PpYlcqArFYTJzD2J0ZOBtaD2RK5ho8hB4p+Gm7jCRLETi49nI+2LcZ7Kn4tdxyZfsCGPuBgoNg1CtbGtqbUDKL2MOtLDPl0/TqC4TDdUBWnoE3ewdKfR0A17TcDqlHxKX/AosafGRDlRYig3ay3N3SRFjILjOSwloO74VRkhRNvXoDU8NuST2QF2pC3ZdvhDa0wAU/RkpWthDBI/vJ3bIi8/wni2j8ttlTRl81drJ7IppKQaTrP6LsYIE6PjEESFqLYztNCDRDqiVJXZEXhFNJfWI88tf6CjhoNymzfRFbvRej4w8EdFvQ4BOLvDQivwIDAQAB
+#    PRIVATEKEY: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCju+7vtN2PLN9P2nF4Ivdf0+liVyoCsVhMnMPYnRk4G1oPZErmGjyEHin4abuMJEsROLj2cj7Ytxnsqfi13HJl+wIY+4GCg2DUK1sa2ptQMovYw60sM+XT9OoLhMN1QFaegTd7B0p9HQDXtNwOqUfEpf8Cixp8ZEOVFiKDdrLc3dJEWMguM5LCWg7vhVGSFE29egNTw25JPZAXakLdl2+ENrTABT9GSla2EMEj+8ndsiLz/CeLaPy22VNGXzV2snsimkpBpOs/ouxggTo+MQRIWotjO00INEOqJUldkReEU0l9Yjzy1/oKOGg3KbN9EVu9F6PjDwR0W9DgE4u8NCK/AgMBAAECggEAIjW5BZJ3nFuWyPtuK9i6cOY45BgsKeXd+hvi+5ZPV563YXHmCE/BByW6RTHqQqyulomQc8WJBgSzwPP+iBjoOhCI7qlV9Ov4RjxMy76TJt14xLCVtR+ezHtmj0ONBymLL5D2A5mRYbS2oVsjg1ixKxA3yNNBlG3qhPLcATXCx0ynEy0DXX5vVRxcMJX3rhcS23YYgn7OZ0XE48Km/UhGFzVVXaAlaxe42V+cz9JC0f+9ErEwZL/2q4PFfHB9I2HM4A/ba2MMRfRRMD0Cyk/psPS+EWADi5ldghbJQtlheO8QjDaNdDFf9UjYfJLIGvJ4MFqlj77C92jYSt72+VYsCQKBgQDs8uMkSZnXZLlNg+jQiKpDpn7Gf8ihKju5xUvQjp9Rz2G80vovT2t0k+vxAQvc633X7IQ/1LokcdqlWByo0FVR9vLzb5t6SCLIRWNKCy3Q2GXxP7sXtmnaaSzcORsUkeHsj1QgBbzoqO1wedSSnVAqGzdOuW9k8JkY6SXJ6k2k1QKBgQCw5hHjfHgjlX8UOXw69tqgNMO2Q5/ZQM5Ffn4Kz3WwHzibELR7WQ7IYzvJXEtRGBI/NJhI0fQMYla8b0K5vwsZxJIXgyarQoizdDxMrkdYvNe8SyJWt5vpuNd1lLw5+zN4poE/Syq7Z6v3GJmPhSnP+CjywoeMZ41ncpPCTOWDQwKBgCm4HjweZWLiTioSxqQo2+mrX/jtONL/j6KG1XF0GyMZY3kOoJRB5IaTIOC/MWqFYBPrheGDP/74uOmR2QH0JIGY/G/WP8bI+q7OYMwBqeByqYhPk056hKq7B/YCa/00LlYrakF1ISzJyXybRs1Fu36eah+HUNCx+BLFwiyJ/3+9AoGAeqAhymYgCdq56tUmjuFMED5DZPdfuYQ4+OeEjA3f8STTYnqkAdVsb/CKIz19YEulancVEXWpDWSl553gzU3nbgdbljzt80394Rg0LJurDZJqojYbKa3BwLTHdtSR3keKGJqjgbKjfqGRDYrZ+ClBIM9P42iB+gxWc11zm/8eIm0CgYBjxRjW6bu+EfWeMWjg/mbrEkrXK8rsAGwEqy6Ww62LUjZsMu9m6OXTQeU6UTYwWnbGZL7QDDWlSdWGvihtTNt66RFlehgn85we0sKug1qWkYj6vQ6tGdgI69M7fL/ROeqCegYuBB85z92CXWhf7aDy4pbf8z4b3DnQOTuXJUZNxg==
+#    APPID: xiuzhi_bj
+#    PASSWORD: xzkj@12345
+#    ENCRYPT: 1

@@ -1,9 +1,9 @@
-package com.xzkj.accessService.controller.operator;
+package com.xzkj.operatorService.controller.operator;
 
-import com.xzkj.accessService.conf.HttpsSkipRequestFactory;
-import com.xzkj.accessService.constants.Keys;
-import com.xzkj.accessService.entity.operatorModel.*;
-import com.xzkj.accessService.utils.HttpHeaderUtil;
+
+import com.xzkj.operatorService.constants.Keys;
+import com.xzkj.operatorService.entity.operatorModel.*;
+import com.xzkj.operatorService.utils.HttpHeaderUtil;
 import com.xzkj.utils.Base64Utils;
 import com.xzkj.utils.R;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +29,6 @@ import java.util.List;
 @RestController
 @RequestMapping("xiuzhi/bj_mobile/operator")
 public class OperatorSendController {
-    private static RestTemplate httpsTemplate=new RestTemplate(new HttpsSkipRequestFactory());
-    //YD运营公钥
-    private static final String publicKey="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0bL+oIFm9AhGJmvOlL8jn5XBkpGucfe1o2+1kvw7Npwq0Amb5fHoGnurtF+pwLm4uEuTIe98dq/d7v4ykjS39ISesrhkNw+UB/UpqoL4D50O5gqTNxOrLFyIN4BxdrxLA9sWBfQF6aqLhXDN5Uzf8Ibc+H2MjkF7rycPl2Xxckzabr5201rH91Tz4jZXdqdVO//8mbmoaOfTY0UR/VJcNXOfFKOLnLXBAbcusDfsC+JjyYXbSD55lST32jUwxYS5SzLrTfuj0RFEGAbDqA2g4sN2NZP+NuomPc6K7X9eLr6FGnT7HdMNNRxbQK0kqt3WlGL+cw4xMyDt8YQsTc0YcQIDAQAB";
 
     @Autowired
     RestTemplate restTemplate;

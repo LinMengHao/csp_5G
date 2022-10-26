@@ -15,13 +15,29 @@ spring:
           uri:
             lb://service-sms
           predicates:
-            - Path=/smsService/**
+            - Path=/base/smsService/**
 
         - id: service-access
           uri:
             lb://service-access
           predicates:
-            - Path=/xiuzhi/bj_mobile/**
+            - Path=/xiuzhi/bj_mobile/ChatBot/**
+        - id: service-access
+          uri:
+            lb://service-access
+          predicates:
+            - Path=/xiuzhi/bj_mobile/Media/**
+
+        - id: service-operator
+          uri:
+            lb://service-operator
+          predicates:
+            - Path=/xiuzhi/bj_mobile/MsgSync/**
+        - id: service-operator
+          uri:
+            lb://service-operator
+          predicates:
+            - Path=/xiuzhi/bj_mobile/operator/**
               # ?????????????
               #- After=2020-02-05T15:10:03.685+08:00[Asia/Shanghai]         # ?????????????
               #- Before=2020-02-05T15:10:03.685+08:00[Asia/Shanghai]         # ?????????????

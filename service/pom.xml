@@ -15,6 +15,7 @@
         <module>service_sms</module>
         <module>service_access</module>
         <module>service_oss</module>
+        <module>service_operator</module>
     </modules>
 
     <properties>

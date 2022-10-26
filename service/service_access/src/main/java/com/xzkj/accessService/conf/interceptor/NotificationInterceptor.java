@@ -19,7 +19,7 @@ import java.io.BufferedReader;
 import java.time.Duration;
 
 /**
- *  视频审核
+ *  媒体文件审核
  */
 @Slf4j
 @Component
@@ -50,6 +50,9 @@ public class NotificationInterceptor implements HandlerInterceptor {
             StringBuilder str=new StringBuilder();
             String s1=null;
             while ((s1=reader.readLine())!=null){
+                if(s1.indexOf("xmlns:e")>-1){
+                    str.append(" ");
+                }
                 str.append(s1);
             }
             multimedia=xmlMapper.readValue(str.toString(), Multimedia.class);

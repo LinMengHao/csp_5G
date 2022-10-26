@@ -1,4 +1,4 @@
-package com.xzkj.accessService.entity.operatorModel;
+package com.xzkj.operatorService.entity.operatorModel;
 
 import java.io.Serializable;
 import java.util.HashMap;
