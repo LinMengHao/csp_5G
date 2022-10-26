@@ -58,7 +58,7 @@ public class CodeGenerate {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
         //填写表名，帮助生成实体类等mapper相应代码
-        strategy.setInclude("t_customer");
+        strategy.setInclude("t_chatbot_white");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 
