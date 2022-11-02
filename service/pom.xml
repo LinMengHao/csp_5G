@@ -16,6 +16,7 @@
         <module>service_access</module>
         <module>service_oss</module>
         <module>service_operator</module>
+        <module>service_acl</module>
     </modules>
 
     <properties>

@@ -1,208 +1,157 @@
-2022-10-26 10:09:49.683 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:09:50.556 [main] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-access-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 10:09:50.569 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-access-dev.yaml'}, NacosPropertySource {name='service-access.yaml'}]}
-2022-10-26 10:09:50.676 [main] INFO  com.xzkj.accessService.AccessApplication - The following profiles are active: dev
-2022-10-26 10:09:52.641 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2022-10-26 10:09:52.646 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-10-26 10:09:52.742 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30ms. Found 0 repository interfaces.
-2022-10-26 10:09:53.196 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=529eae4c-3f4a-368d-8a48-3032cbb10021
-2022-10-26 10:09:53.587 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.xzkj.base.conf.RedisConfig$$EnhancerBySpringCGLIB$$1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:09:54.069 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:09:54.879 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
-2022-10-26 10:09:54.932 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
-2022-10-26 10:09:54.933 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2022-10-26 10:09:54.934 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
-2022-10-26 10:09:55.261 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2022-10-26 10:09:55.262 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4541 ms
-2022-10-26 10:09:55.697 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 10:09:55.700 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'TaskExecutor'
-2022-10-26 10:09:57.396 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 10:09:57.397 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'asyncPoolTaskExecutor'
-2022-10-26 10:09:57.398 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 10:09:57.399 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'sendPoolTaskExecutor'
-2022-10-26 10:09:57.493 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 10:09:57.511 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 10:09:58.930 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
-2022-10-26 10:09:59.297 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [82.157.251.233:5672]
-2022-10-26 10:09:59.468 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#385d11f2:0/SimpleConnection@79d08fb0 [delegate=amqp://admin@82.157.251.233:5672/, localPort= 50467]
-2022-10-26 10:10:43.089 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
-2022-10-26 10:10:43.156 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
-2022-10-26 10:10:43.238 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-access 172.16.11.16:8888 register finished
-2022-10-26 10:10:43.249 [main] INFO  com.xzkj.accessService.AccessApplication - Started AccessApplication in 57.172 seconds (JVM running for 71.554)
-2022-10-26 10:10:43.396 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:10:45.549 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-access-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 10:10:45.561 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-access-dev.yaml'}, NacosPropertySource {name='service-access.yaml'}]}
-2022-10-26 10:10:45.630 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - The following profiles are active: dev
-2022-10-26 10:10:45.660 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - Started application in 2.342 seconds (JVM running for 73.965)
-2022-10-26 10:10:45.768 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.cloud.endpoint.event.RefreshEventListener - Refresh keys changed: []
-2022-10-26 10:11:27.260 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:11:28.065 [main] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-sms-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 10:11:28.076 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-sms-dev.yaml'}, NacosPropertySource {name='service-sms.yaml'}]}
-2022-10-26 10:11:28.177 [main] INFO  com.xzkj.smsService.OperatorApplication - The following profiles are active: dev
-2022-10-26 10:11:30.019 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2022-10-26 10:11:30.025 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-10-26 10:11:30.112 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27ms. Found 0 repository interfaces.
-2022-10-26 10:11:30.596 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=9f4a4371-43a9-3c08-adb2-c1644074522b
-2022-10-26 10:11:30.897 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:11:31.408 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:11:32.116 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
-2022-10-26 10:11:32.209 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2022-10-26 10:11:32.210 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2022-10-26 10:11:32.211 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
-2022-10-26 10:11:32.481 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/base] - Initializing Spring embedded WebApplicationContext
-2022-10-26 10:11:32.482 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4261 ms
-2022-10-26 10:11:33.350 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
-2022-10-26 10:11:36.380 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 10:11:36.393 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 10:11:36.886 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
-2022-10-26 10:11:38.183 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
-2022-10-26 10:11:38.793 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2022-10-26 10:11:38.914 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path '/base'
-2022-10-26 10:11:39.651 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-sms 172.16.11.16:8082 register finished
-2022-10-26 10:11:39.669 [main] INFO  com.xzkj.smsService.OperatorApplication - Started SmsApplication in 15.844 seconds (JVM running for 31.796)
-2022-10-26 10:11:40.019 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:11:40.111 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-sms-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 10:11:40.120 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-sms-dev.yaml'}, NacosPropertySource {name='service-sms.yaml'}]}
-2022-10-26 10:11:40.166 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - The following profiles are active: dev
-2022-10-26 10:11:40.183 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - Started application in 0.443 seconds (JVM running for 32.311)
-2022-10-26 10:11:40.360 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.cloud.endpoint.event.RefreshEventListener - Refresh keys changed: []
-2022-10-26 10:15:56.657 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:15:56.682 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:15:58.516 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:15:58.530 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:16:00.539 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:16:00.549 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:16:02.801 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:16:02.812 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:16:02.833 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
-2022-10-26 10:16:02.858 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
-2022-10-26 10:16:02.871 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'sendPoolTaskExecutor'
-2022-10-26 10:16:02.871 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'asyncPoolTaskExecutor'
-2022-10-26 10:16:02.876 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:16:02.876 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:16:02.877 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:16:02.877 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:16:03.007 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'TaskExecutor'
-2022-10-26 10:16:23.124 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:16:23.748 [main] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-access-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 10:16:23.757 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-access-dev.yaml'}, NacosPropertySource {name='service-access.yaml'}]}
-2022-10-26 10:16:23.853 [main] INFO  com.xzkj.accessService.AccessApplication - The following profiles are active: dev
-2022-10-26 10:16:25.968 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2022-10-26 10:16:25.975 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-10-26 10:16:26.069 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29ms. Found 0 repository interfaces.
-2022-10-26 10:16:26.527 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=529eae4c-3f4a-368d-8a48-3032cbb10021
-2022-10-26 10:16:26.933 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.xzkj.base.conf.RedisConfig$$EnhancerBySpringCGLIB$$1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:16:27.330 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:16:28.066 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
-2022-10-26 10:16:28.140 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
-2022-10-26 10:16:28.141 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2022-10-26 10:16:28.142 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
-2022-10-26 10:16:28.530 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2022-10-26 10:16:28.531 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4507 ms
-2022-10-26 10:16:28.938 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 10:16:28.941 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'TaskExecutor'
-2022-10-26 10:16:30.540 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 10:16:30.541 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'asyncPoolTaskExecutor'
-2022-10-26 10:16:30.543 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 10:16:30.544 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'sendPoolTaskExecutor'
-2022-10-26 10:16:30.635 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 10:16:30.647 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 10:16:31.950 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
-2022-10-26 10:16:32.327 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [82.157.251.233:5672]
-2022-10-26 10:16:32.587 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#f424f04:0/SimpleConnection@19ed0aa9 [delegate=amqp://admin@82.157.251.233:5672/, localPort= 51198]
-2022-10-26 10:16:47.330 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
-2022-10-26 10:16:47.752 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
-2022-10-26 10:16:47.827 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-access 172.16.11.16:8888 register finished
-2022-10-26 10:16:47.839 [main] INFO  com.xzkj.accessService.AccessApplication - Started AccessApplication in 28.005 seconds (JVM running for 43.245)
-2022-10-26 10:16:48.161 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 10:16:48.368 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-access-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 10:16:48.380 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-access-dev.yaml'}, NacosPropertySource {name='service-access.yaml'}]}
-2022-10-26 10:16:48.483 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - The following profiles are active: dev
-2022-10-26 10:16:48.561 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - Started application in 0.562 seconds (JVM running for 43.967)
-2022-10-26 10:16:48.968 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.cloud.endpoint.event.RefreshEventListener - Refresh keys changed: []
-2022-10-26 10:17:29.675 [http-nio-8082-exec-1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/base] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-10-26 10:17:29.678 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2022-10-26 10:17:29.730 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 52 ms
-2022-10-26 10:17:30.435 [http-nio-8082-exec-1] INFO  io.lettuce.core.EpollProvider - Starting without optional epoll library
-2022-10-26 10:17:30.443 [http-nio-8082-exec-1] INFO  io.lettuce.core.KqueueProvider - Starting without optional kqueue library
-2022-10-26 10:17:31.881 [http-nio-8082-exec-1] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
-2022-10-26 10:17:32.743 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TStudentController - [TStudent(id=1, name=xpy, age=18)]
-2022-10-26 10:17:32.764 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TStudentController - 缓存值：yy
-2022-10-26 10:18:30.781 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
-2022-10-26 10:18:31.254 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
-2022-10-26 10:18:31.265 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
-2022-10-26 10:18:31.431 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closing ...
-2022-10-26 10:18:31.454 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
-2022-10-26 10:18:31.455 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
-2022-10-26 10:18:31.460 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
-2022-10-26 10:18:34.415 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:18:34.448 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:18:37.348 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:18:37.374 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:18:40.107 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:18:40.115 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:18:43.929 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 10:18:43.937 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 10:18:43.955 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
-2022-10-26 10:18:44.073 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
-2022-10-26 10:18:44.083 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'sendPoolTaskExecutor'
-2022-10-26 10:18:44.084 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'asyncPoolTaskExecutor'
-2022-10-26 10:18:44.086 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:18:44.087 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:18:44.087 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:18:44.087 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 10:18:44.213 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'TaskExecutor'
-2022-10-26 17:46:29.412 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 17:46:30.040 [main] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-access-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 17:46:30.050 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-access-dev.yaml'}, NacosPropertySource {name='service-access.yaml'}]}
-2022-10-26 17:46:30.150 [main] INFO  com.xzkj.accessService.AccessApplication - The following profiles are active: dev
-2022-10-26 17:46:34.137 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2022-10-26 17:46:34.174 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-10-26 17:46:34.921 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 251ms. Found 0 repository interfaces.
-2022-10-26 17:46:36.688 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=f1658d12-ac99-3ec0-a9c9-36bd59c78fc2
-2022-10-26 17:46:37.855 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.xzkj.base.conf.RedisConfig$$EnhancerBySpringCGLIB$$1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 17:46:38.638 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 17:46:39.816 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
-2022-10-26 17:46:39.910 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
-2022-10-26 17:46:39.913 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2022-10-26 17:46:39.914 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
-2022-10-26 17:46:40.256 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2022-10-26 17:46:40.257 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10064 ms
-2022-10-26 17:46:40.762 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 17:46:40.766 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'TaskExecutor'
-2022-10-26 17:46:42.548 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 17:46:42.548 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'asyncPoolTaskExecutor'
-2022-10-26 17:46:42.550 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-2022-10-26 17:46:42.552 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'sendPoolTaskExecutor'
-2022-10-26 17:46:42.748 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 17:46:42.800 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-10-26 17:46:44.400 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
-2022-10-26 17:46:44.758 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [82.157.251.233:5672]
-2022-10-26 17:46:44.904 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#4ca1c341:0/SimpleConnection@1cec51d [delegate=amqp://admin@82.157.251.233:5672/, localPort= 56406]
-2022-10-26 17:46:51.242 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
-2022-10-26 17:46:51.308 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
-2022-10-26 17:46:51.341 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-access 172.16.11.16:8888 register finished
-2022-10-26 17:46:51.349 [main] INFO  com.xzkj.accessService.AccessApplication - Started AccessApplication in 25.861 seconds (JVM running for 42.496)
-2022-10-26 17:46:51.535 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-10-26 17:46:51.622 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-access-dev.yaml', group: 'DEFAULT_GROUP'
-2022-10-26 17:46:51.627 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-access-dev.yaml'}, NacosPropertySource {name='service-access.yaml'}]}
-2022-10-26 17:46:51.675 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - The following profiles are active: dev
-2022-10-26 17:46:51.690 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - Started application in 0.276 seconds (JVM running for 42.836)
-2022-10-26 17:46:51.953 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.cloud.endpoint.event.RefreshEventListener - Refresh keys changed: []
-2022-10-26 17:49:09.568 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 17:49:09.621 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 17:49:10.122 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 17:49:10.135 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 17:49:10.736 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 17:49:11.141 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 17:49:11.663 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
-2022-10-26 17:49:11.904 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
-2022-10-26 17:49:11.961 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
-2022-10-26 17:49:11.986 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
-2022-10-26 17:49:12.002 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'sendPoolTaskExecutor'
-2022-10-26 17:49:12.004 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'asyncPoolTaskExecutor'
-2022-10-26 17:49:12.009 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 17:49:12.010 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 17:49:12.010 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 17:49:12.011 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
-2022-10-26 17:49:12.368 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'TaskExecutor'
+2022-10-27 14:03:08.615 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 14:03:09.259 [main] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-sms-dev.yaml', group: 'DEFAULT_GROUP'
+2022-10-27 14:03:09.271 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-sms-dev.yaml'}, NacosPropertySource {name='service-sms.yaml'}]}
+2022-10-27 14:03:09.369 [main] INFO  com.xzkj.smsService.SmsApplication - The following profiles are active: dev
+2022-10-27 14:03:10.721 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-27 14:03:10.729 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 14:03:10.787 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24ms. Found 0 repository interfaces.
+2022-10-27 14:03:11.394 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=9f4a4371-43a9-3c08-adb2-c1644074522b
+2022-10-27 14:03:11.679 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 14:03:12.041 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 14:03:12.736 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2022-10-27 14:03:12.763 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2022-10-27 14:03:12.764 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-27 14:03:12.765 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-10-27 14:03:12.947 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/base] - Initializing Spring embedded WebApplicationContext
+2022-10-27 14:03:12.947 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3528 ms
+2022-10-27 14:03:13.696 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-10-27 14:03:15.420 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-27 14:03:15.431 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-27 14:03:15.865 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-27 14:03:17.073 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-10-27 14:03:17.423 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2022-10-27 14:03:17.484 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path '/base'
+2022-10-27 14:03:17.641 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-sms 172.16.11.16:8082 register finished
+2022-10-27 14:03:17.668 [main] INFO  com.xzkj.smsService.SmsApplication - Started SmsApplication in 11.42 seconds (JVM running for 23.585)
+2022-10-27 14:03:17.880 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 14:03:18.001 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-sms-dev.yaml', group: 'DEFAULT_GROUP'
+2022-10-27 14:03:18.008 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-sms-dev.yaml'}, NacosPropertySource {name='service-sms.yaml'}]}
+2022-10-27 14:03:18.055 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - The following profiles are active: dev
+2022-10-27 14:03:18.082 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - Started application in 0.365 seconds (JVM running for 23.999)
+2022-10-27 14:03:18.464 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.cloud.endpoint.event.RefreshEventListener - Refresh keys changed: []
+2022-10-27 14:04:32.433 [http-nio-8082-exec-1] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 14:04:32.449 [http-nio-8082-exec-1] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 repository interfaces.
+2022-10-27 14:04:32.507 [http-nio-8082-exec-1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/base] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-27 14:04:32.508 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-10-27 14:04:32.572 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 62 ms
+2022-10-27 14:04:33.406 [http-nio-8082-exec-1] INFO  io.lettuce.core.EpollProvider - Starting without optional epoll library
+2022-10-27 14:04:33.414 [http-nio-8082-exec-1] INFO  io.lettuce.core.KqueueProvider - Starting without optional kqueue library
+2022-10-27 14:04:34.188 [http-nio-8082-exec-1] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+2022-10-27 14:04:35.339 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TStudentController - [TStudent(id=1, name=xpy, age=18)]
+2022-10-27 14:04:35.369 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TStudentController - 缓存值：yy
+2022-10-27 14:05:06.486 [http-nio-8082-exec-3] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 14:05:06.503 [http-nio-8082-exec-3] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2022-10-27 14:05:06.754 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 14:05:06.755 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 14:05:06.758 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 14:05:06.759 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - phone
+2022-10-27 14:05:25.539 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 14:05:25.540 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 14:05:25.540 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 14:05:51.446 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - phone
+2022-10-27 14:05:58.753 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 14:05:58.754 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 14:05:58.755 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 14:05:58.755 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - phone
+2022-10-27 14:06:42.286 [http-nio-8082-exec-6] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 14:06:42.366 [http-nio-8082-exec-6] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58ms. Found 0 repository interfaces.
+2022-10-27 14:06:43.053 [http-nio-8082-exec-6] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 14:06:43.073 [http-nio-8082-exec-6] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 14:06:43.076 [http-nio-8082-exec-6] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 14:06:43.078 [http-nio-8082-exec-6] INFO  com.xzkj.smsService.controller.TUserController - phone
+2022-10-27 14:07:14.399 [http-nio-8082-exec-7] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 14:07:14.418 [http-nio-8082-exec-7] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17ms. Found 0 repository interfaces.
+2022-10-27 14:07:15.215 [http-nio-8082-exec-7] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 14:07:15.216 [http-nio-8082-exec-7] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 14:07:15.219 [http-nio-8082-exec-7] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 14:07:15.220 [http-nio-8082-exec-7] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:18:54.761 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-27 15:18:54.797 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-10-27 15:18:54.815 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-27 15:18:55.100 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closing ...
+2022-10-27 15:18:55.105 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+2022-10-27 15:18:55.109 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-10-27 15:18:55.112 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-10-27 15:19:09.825 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 15:19:10.285 [main] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-sms-dev.yaml', group: 'DEFAULT_GROUP'
+2022-10-27 15:19:10.308 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-sms-dev.yaml'}, NacosPropertySource {name='service-sms.yaml'}]}
+2022-10-27 15:19:10.440 [main] INFO  com.xzkj.smsService.SmsApplication - The following profiles are active: dev
+2022-10-27 15:19:11.497 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-27 15:19:11.502 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:19:11.756 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23ms. Found 0 repository interfaces.
+2022-10-27 15:19:12.080 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=3a46ce66-5dc7-3187-9ac5-ae92cf7f792f
+2022-10-27 15:19:12.335 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 15:19:12.586 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 15:19:13.200 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2022-10-27 15:19:13.219 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2022-10-27 15:19:13.221 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-27 15:19:13.221 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-10-27 15:19:13.367 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/base] - Initializing Spring embedded WebApplicationContext
+2022-10-27 15:19:13.367 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2884 ms
+2022-10-27 15:19:13.961 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-10-27 15:19:15.436 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-27 15:19:15.443 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-27 15:19:15.885 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-27 15:19:17.011 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-10-27 15:19:17.327 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2022-10-27 15:19:17.440 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path '/base'
+2022-10-27 15:19:17.577 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-sms 172.16.11.16:8082 register finished
+2022-10-27 15:19:17.587 [main] INFO  com.xzkj.smsService.SmsApplication - Started SmsApplication in 9.648 seconds (JVM running for 21.45)
+2022-10-27 15:19:17.694 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-27 15:19:17.769 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.a.nacos.client.NacosPropertySourceBuilder - Loading nacos data, dataId: 'service-sms-dev.yaml', group: 'DEFAULT_GROUP'
+2022-10-27 15:19:17.775 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-sms-dev.yaml'}, NacosPropertySource {name='service-sms.yaml'}]}
+2022-10-27 15:19:17.855 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - The following profiles are active: dev
+2022-10-27 15:19:17.897 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  org.springframework.boot.SpringApplication - Started application in 0.267 seconds (JVM running for 21.759)
+2022-10-27 15:19:17.994 [com.alibaba.nacos.client.Worker.longPollingfixed-82.157.251.233_8848-fa299816-d6a4-4061-9ee2-7f67aa5f6594] INFO  o.s.cloud.endpoint.event.RefreshEventListener - Refresh keys changed: []
+2022-10-27 15:20:36.854 [http-nio-8082-exec-1] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:20:36.879 [http-nio-8082-exec-1] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2022-10-27 15:20:36.959 [http-nio-8082-exec-1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/base] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-27 15:20:36.961 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-10-27 15:20:37.015 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 51 ms
+2022-10-27 15:20:37.799 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:20:37.800 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:20:37.808 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:20:37.809 [http-nio-8082-exec-1] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:20:45.850 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:20:45.853 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:20:45.860 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:20:45.863 [http-nio-8082-exec-3] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:21:21.419 [http-nio-8082-exec-4] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:21:21.439 [http-nio-8082-exec-4] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19ms. Found 0 repository interfaces.
+2022-10-27 15:21:22.135 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:21:22.135 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:21:22.136 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:21:22.137 [http-nio-8082-exec-4] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:22:18.148 [http-nio-8082-exec-5] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:22:18.189 [http-nio-8082-exec-5] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33ms. Found 0 repository interfaces.
+2022-10-27 15:22:18.701 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:22:18.704 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:22:18.706 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:22:18.707 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:23:24.989 [http-nio-8082-exec-8] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:23:25.015 [http-nio-8082-exec-8] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 repository interfaces.
+2022-10-27 15:23:25.826 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:23:25.827 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:23:25.840 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:23:25.842 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:25:52.297 [http-nio-8082-exec-2] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:25:52.321 [http-nio-8082-exec-2] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 repository interfaces.
+2022-10-27 15:27:05.508 [http-nio-8082-exec-5] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:27:05.540 [http-nio-8082-exec-5] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29ms. Found 0 repository interfaces.
+2022-10-27 15:27:05.814 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:27:05.815 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:27:05.818 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:27:05.818 [http-nio-8082-exec-5] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:28:21.301 [http-nio-8082-exec-8] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-10-27 15:28:21.364 [http-nio-8082-exec-8] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 60ms. Found 0 repository interfaces.
+2022-10-27 15:28:21.827 [http-nio-8082-exec-8] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static com.xzkj.smsService.entity.User com.xzkj.smsService.controller.TUserController.user
+2022-10-27 15:28:22.344 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - [TUser(id=1, name=lmh, age=18, createTime=Wed Oct 12 17:02:47 CST 2022, updateTime=null), TUser(id=2, name=yy, age=19, createTime=Wed Oct 12 17:03:07 CST 2022, updateTime=null)]
+2022-10-27 15:28:22.345 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - name: zhangsan
+2022-10-27 15:28:22.366 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - age: 88
+2022-10-27 15:28:22.366 [http-nio-8082-exec-8] INFO  com.xzkj.smsService.controller.TUserController - phone[187, 190, 121]
+2022-10-27 15:52:20.994 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-27 15:52:21.033 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-10-27 15:52:21.045 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-27 15:52:21.110 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+2022-10-27 15:52:21.110 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-10-27 15:52:21.162 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

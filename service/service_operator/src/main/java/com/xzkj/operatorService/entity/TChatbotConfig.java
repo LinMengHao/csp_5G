@@ -1,10 +1,10 @@
 package com.xzkj.operatorService.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -111,5 +111,7 @@ password规则：8-20位大小写字母、数字、特殊符号
     @TableField("gmtModified")
     private Date gmtModified;
 
-
+    @TableLogic
+    @TableField(fill = FieldFill.INSERT)
+    private Integer isDeleted;
 }

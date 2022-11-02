@@ -1,8 +1,15 @@
-2022-10-26 10:09:57.491 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 10:09:57.511 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 10:11:36.379 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 10:11:36.392 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 10:16:30.634 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 10:16:30.646 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 17:46:42.747 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
-2022-10-26 17:46:42.795 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-27 14:03:15.418 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-27 14:03:15.430 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-27 14:04:32.432 [http-nio-8082-exec-1] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 14:05:06.485 [http-nio-8082-exec-3] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 14:06:42.285 [http-nio-8082-exec-6] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 14:07:14.398 [http-nio-8082-exec-7] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:19:15.436 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-27 15:19:15.443 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-27 15:20:36.846 [http-nio-8082-exec-1] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:21:21.417 [http-nio-8082-exec-4] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:22:18.145 [http-nio-8082-exec-5] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:23:24.980 [http-nio-8082-exec-8] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:25:52.291 [http-nio-8082-exec-2] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:27:05.507 [http-nio-8082-exec-5] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.
+2022-10-27 15:28:21.298 [http-nio-8082-exec-8] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.smsService.mapper]' package. Please check your configuration.

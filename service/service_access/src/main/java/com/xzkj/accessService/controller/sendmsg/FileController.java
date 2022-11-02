@@ -7,7 +7,9 @@ import com.xzkj.accessService.entity.msgModel.TextMsgModel;
 import com.xzkj.accessService.utils.HttpHeaderUtil;
 import com.xzkj.accessService.utils.TokenUtils;
 import com.xzkj.utils.DateUtil;
+import com.xzkj.utils.MD5Utils;
 import com.xzkj.utils.R;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
@@ -26,6 +28,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -244,5 +247,11 @@ public class FileController {
         System.out.println(response.getHeaders().toString());
         System.out.println(response.toString());
         return R.ok();
+    }
+    @Test
+    public void test(){
+        long time = new Date().getTime();
+        System.out.println("time:"+time);
+        System.out.println("sign:"+ MD5Utils.MD5Encode("1" + "18756232770" + "0WoIOu2js$q89fzU" + time).toUpperCase());
     }
 }

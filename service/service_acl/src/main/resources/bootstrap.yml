@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: service-acl
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        prefix: service-acl
+        server-addr: 82.157.251.233:8848
+        group: DEFAULT_GROUP
+        namespace: fa299816-d6a4-4061-9ee2-7f67aa5f6594
+        file-extension: yaml
+      discovery:
+        server-addr: 82.157.251.233:8848
+        namespace: fa299816-d6a4-4061-9ee2-7f67aa5f6594
