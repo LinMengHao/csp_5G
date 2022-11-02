@@ -38,7 +38,7 @@ public class CodeGenerate {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8");//mysql8的写法要加时区
+        dsc.setUrl("jdbc:mysql://82.157.251.233:3306/xz_operator?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8");//mysql8的写法要加时区
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("Xzkj@1225");
@@ -47,7 +47,7 @@ public class CodeGenerate {
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("smsService"); //模块名
+        pc.setModuleName("aclService"); //模块名
         pc.setParent("com.xzkj");
         pc.setController("controller");
         pc.setEntity("entity");
@@ -58,9 +58,9 @@ public class CodeGenerate {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
         //填写表名，帮助生成实体类等mapper相应代码
-        strategy.setInclude("t_student");
+        strategy.setInclude("sys_user_role");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
-        strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
+        strategy.setTablePrefix(pc.getModuleName() + "sys_"); //生成实体时去掉表前缀
 
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体的命名策略
         strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true) setter链式操作
