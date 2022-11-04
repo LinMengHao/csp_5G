@@ -80,17 +80,17 @@ public class OperatorSendController {
 
     /**
      * Chatbot固定菜单信息（CSP平台—>运营平台)
-     * @param chatbotMenuModel
+     * @param chatbotModel
      * @return
      */
     @PostMapping("syncmenu")
-    public R syncmenu(@RequestBody ChatbotMenuModel chatbotMenuModel){
+    public R syncmenu(@RequestBody ChatbotModel chatbotModel){
         HttpHeaders header = httpHeaderUtil.getHttpHeaderByRAS();
         header.set("Content-Type",MediaType.APPLICATION_JSON_VALUE);
         //菜单，源json 需要base64加密
-        String encode = Base64Utils.encode(chatbotMenuModel.getMenu());
-        chatbotMenuModel.setMenu(encode);
-        HttpEntity<ChatbotMenuModel> entity=new HttpEntity<>(chatbotMenuModel,header);
+        String encode = Base64Utils.encode(chatbotModel.getMenu());
+        chatbotModel.setMenu(encode);
+        HttpEntity<ChatbotModel> entity=new HttpEntity<>(chatbotModel,header);
         ResponseEntity<OperatorResponse> response = restTemplate.postForEntity("http://183.233.87.225:8092/iodd/operation/v1/syncmenu", entity, OperatorResponse.class);
         log.info("获取响应码："+response.getStatusCode());
         log.info("响应内容："+response.getBody());
@@ -131,14 +131,14 @@ public class OperatorSendController {
 
     /**
      * Chatbot上架申请（CSP平台—>运营平台）
-     * @param putAwayModel
+     * @param chatbotModel
      * @return
      */
     @PostMapping("putAway")
-    public R putAway(@RequestBody PutAwayModel putAwayModel){
+    public R putAway(@RequestBody ChatbotModel chatbotModel){
         HttpHeaders header = httpHeaderUtil.getHttpHeaderByRAS();
         header.set("Content-Type",MediaType.APPLICATION_JSON_VALUE);
-        HttpEntity<PutAwayModel> entity=new HttpEntity<>(putAwayModel,header);
+        HttpEntity<ChatbotModel> entity=new HttpEntity<>(chatbotModel,header);
         ResponseEntity<OperatorResponse> response = restTemplate.postForEntity("http://183.233.87.225:8092/iodd/operation/v1/putAway", entity, OperatorResponse.class);
         log.info("获取响应码："+response.getStatusCode());
         log.info("响应内容："+response.getBody());
@@ -147,14 +147,14 @@ public class OperatorSendController {
 
     /**
      * 2.7.12Chatbot 重新提交白名单（CSP平台—>运营平台）
-     * @param chatbotFormModel
+     * @param chatbotModel
      * @return
      */
     @PostMapping("resubmitDebugWhite")
-    public R resubmitDebugWhite(@RequestBody ChatbotFormModel chatbotFormModel){
+    public R resubmitDebugWhite(@RequestBody ChatbotModel chatbotModel){
         HttpHeaders header = httpHeaderUtil.getHttpHeaderByRAS();
         header.set("Content-Type",MediaType.APPLICATION_JSON_VALUE);
-        HttpEntity<ChatbotFormModel> entity=new HttpEntity<>(chatbotFormModel,header);
+        HttpEntity<ChatbotModel> entity=new HttpEntity<>(chatbotModel,header);
         ResponseEntity<OperatorResponse> response = restTemplate.postForEntity("http://183.233.87.225:8092/iodd/operation/v1/resubmitDebugWhite", entity, OperatorResponse.class);
         log.info("获取响应码："+response.getStatusCode());
         log.info("响应内容："+response.getBody());

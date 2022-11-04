@@ -6,17 +6,46 @@ import java.io.Serializable;
  * 审核实体类
  */
 public class AuthModel implements Serializable {
+    /**
+     * 被审核信息的操作流水号
+     */
     private String authMessageId;
+    /**
+     * 审核结果：
+     * 1-通过
+     * 2-不通过
+     */
     private String authStatus;
+    /**
+     * 审核原因
+     */
     private String comment;
+    /**
+     * 审核人员账号信息
+     */
     private String authPerson;
+    /**
+     * 审核时间，2020-04-04T23:59:00Z
+     */
     private String authTime;
+    /**
+     * 操作流水号
+     */
     private String messageId;
-
+    /**
+     * 审核类型：
+     * 1-新增审核
+     * 2-变更审核
+     * 3-调试白名单审核
+     */
     private String authType;
-
+    /**
+     * Chatbot ID，包含域名部分
+     */
     private String chatbotId;
-
+    /**
+     * 被审核的非直签客户编码
+     */
     private String customerNum;
 
     public AuthModel() {

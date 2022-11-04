@@ -47,6 +47,46 @@ public class OperatorReceiveController {
 //===============================================Chatbot接口======================================================================
 
 
+    @PostMapping("oc/v1/syncchatbot")
+    public OperatorResponse syncChatBot(@RequestBody ChatbotModel chatbotModel, HttpServletRequest request){
+        //使用过滤器鉴权，下面代码可以去掉
+        //鉴权
+        boolean b = verify(request);
+        if(!b){
+            return OperatorResponse.error().resultDesc("鉴权失败");
+        }
+
+        if("0".equals(keys.getIsEncrypt())){
+            //TODO 请求体解密 如果不用解密则直接使用参数
+            BufferedReader reader = null;
+            try {
+                reader=request.getReader();
+                StringBuilder s=new StringBuilder();
+                String s1=null;
+                while ((s1=reader.readLine())!=null){
+                    s.append(s1);
+                }
+                String dencrypt = RSAUtils.dencrypt(s.toString(), keys.getXzcspPrivateKey());
+                System.out.println("解密报文："+dencrypt);
+                OrderModel order = JSONObject.parseObject(dencrypt, OrderModel.class);
+                System.out.println("解密后:"+order.toString());
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }else {
+            log.info("运营平台对Chatbot进行新增、修改操作时，将生效后信息同步至CSP平台："+chatbotModel.toString());
+        }
+
+        //TODO 存日志，存数据，同步数据
+        return OperatorResponse.ok();
+    }
     /**
      * 订购信息（运营->CSP）
      * @param orderModel
@@ -281,12 +321,12 @@ public class OperatorReceiveController {
 
     /**
      * Chatbot 新增/变更配置信息（运营平台—>CSP平台）
-     * @param confModel
+     * @param chatbotModel
      * @param request
      * @return
      */
     @PostMapping("oc/v1/syncconfigchatbot")
-    public OperatorResponse syncconfigchatbot(@RequestBody ChatbotConfModel confModel, HttpServletRequest request){
+    public OperatorResponse syncconfigchatbot(@RequestBody ChatbotModel chatbotModel, HttpServletRequest request){
 //使用过滤器鉴权，下面代码可以去掉
         //鉴权
         boolean b = verify(request);
@@ -319,7 +359,7 @@ public class OperatorReceiveController {
             }
         }else {
             //10进制转6位二进制
-            String state = binaryString(confModel.getState(), 6);
+            String state = binaryString(chatbotModel.getState(), 6);
             /*
             CSP平台自行转换为6位二进制，
                 从右往左，最右位为第一位：
@@ -331,7 +371,7 @@ public class OperatorReceiveController {
                 第六位：0允许回落UP1.0  1不允许回落UP1.0
                 （注：上行触发的消息下发，消息体会携带inReplyTo-Contribution-ID字段）
              */
-            log.info("将chatbot配置信息同步CSP平台 内容："+confModel.toString());
+            log.info("将chatbot配置信息同步CSP平台 内容："+chatbotModel.toString());
         }
 
 
@@ -340,6 +380,7 @@ public class OperatorReceiveController {
     }
 
     /**
+     * TODO 暂时不用
      * ChatBot视频短信平台配置信息（运营平台—>CSP平台）
      * @param confModel
      * @param request
@@ -588,7 +629,7 @@ public class OperatorReceiveController {
      * @return
      */
     @PostMapping("oc/v1/client/allotServiceCode")
-    public OperatorResponse allotServiceCode(@RequestBody CustomerServiceCodeModel serviceCodeModel,HttpServletRequest request){
+    public OperatorResponse allotServiceCode(@RequestBody CustomerModel customerModel,HttpServletRequest request){
 
         //使用过滤器鉴权，下面代码可以去掉
         //鉴权
@@ -622,7 +663,7 @@ public class OperatorReceiveController {
                 }
             }
         }else {
-            log.info("代理商在运营平台给非直签客户分配服务代码后，运营平台将信息同步给CSP平台 内容："+serviceCodeModel.toString());
+            log.info("代理商在运营平台给非直签客户分配服务代码后，运营平台将信息同步给CSP平台 内容："+customerModel.toString());
         }
 
 
