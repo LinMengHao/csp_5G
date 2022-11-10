@@ -1,0 +1,36 @@
+server:
+  port: 8085
+#  servlet:
+#    context-path: /xiuzhi/bj_mobile
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-oss
+  redis:
+    host: 82.157.251.233
+    port: 6379
+    password: xzkj1225
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 8
+        max-wait: 20000
+        min-idle: 0
+  rabbitmq:
+    host: 82.157.251.233
+    port: 5672
+    username: admin
+    password: xzkj1225
+    publisher-confirm-type: correlated
+    publisher-returns: true
+#    排除数据源加载，避免启动报错
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 82.157.251.233:8848
+logging:
+  level:
+    root: info

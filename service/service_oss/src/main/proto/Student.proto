@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// 只修改了java_package
+option java_package = "com.xzkj.ossService.entity";
+// package之后、option之前，添加import语句
+import "google/protobuf/duration.proto";
+option java_outer_classname = "TStudent";
+
+//java_outer_classname与message 名称不能相同
+message Student
+{
+
+  // message Person中新增字段
+  optional google.protobuf.Duration duration = 6;
+
+  optional int32 number = 1;
+  optional string name = 2;
+  optional int32 sex = 3;
+  optional string hobby = 4;
+  optional string skill = 5;
+}
