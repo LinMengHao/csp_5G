@@ -1,9 +1,12 @@
 package com.xzkj.ossService.controller;
 
+import com.google.protobuf.Duration;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.xzkj.ossService.entity.TStudent;
+import com.xzkj.ossService.rabbitMQ.RabbitSendUtils;
 import com.xzkj.utils.R;
 import org.junit.Test;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
@@ -12,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -59,6 +63,31 @@ public class TestController {
         HttpEntity<byte[]> entity=new HttpEntity<>(bytes,headers);
         ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8085/test1", entity, String.class);
         System.out.println("客户端接受响应："+response.getBody().toString());
+        return R.ok();
+    }
+    @PostMapping("/test3")
+    public R test3(MultipartFile data) throws IOException {
+        byte[] bytes = data.getBytes();
+        TStudent.Student student = TStudent.Student.parseFrom(bytes);
+        System.out.println("来自python的包体，解析："+student.toString());
+        System.out.println(student.getName());
+        System.out.println(student.getHobby());
+        return R.ok();
+    }
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+    @PostMapping("/test4")
+    public R test4(){
+        TStudent.Student.Builder builder = TStudent.Student.newBuilder();
+        builder.setNumber(18);
+        builder.setDuration(Duration.newBuilder().build());
+        builder.setName("阿三");
+        builder.setSex(1);
+        builder.setHobby("打篮球");
+        builder.setSkill("java");
+        TStudent.Student student = builder.build();
+        rabbitTemplate.convertAndSend("student","student",student.toByteArray());
         return R.ok();
     }
 

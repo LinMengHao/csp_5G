@@ -1,4 +1,4 @@
-2022-11-10 17:27:25.343 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+2022-11-14 16:35:11.235 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
 
 ***************************
 APPLICATION FAILED TO START
@@ -6,13 +6,10 @@ APPLICATION FAILED TO START
 
 Description:
 
-Field restTemplate in com.xzkj.ossService.controller.TestController required a bean of type 'org.springframework.web.client.RestTemplate' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+A component required a bean named 'student' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'org.springframework.web.client.RestTemplate' in your configuration.
+Consider defining a bean named 'student' in your configuration.
 

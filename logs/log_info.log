@@ -1,44 +1,97 @@
-2022-11-10 17:27:21.671 [main] INFO  com.xzkj.ossService.OssApplication - The following profiles are active: dev
-2022-11-10 17:27:22.908 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2022-11-10 17:27:22.915 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-11-10 17:27:22.985 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
-2022-11-10 17:27:23.475 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=30c1e348-7501-3281-aef9-7f4bc2fbf196
-2022-11-10 17:27:23.996 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-11-10 17:27:24.574 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
-2022-11-10 17:27:24.603 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
-2022-11-10 17:27:24.604 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2022-11-10 17:27:24.605 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
-2022-11-10 17:27:24.801 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2022-11-10 17:27:24.805 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3086 ms
-2022-11-10 17:27:24.939 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2022-11-10 17:27:24.983 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+2022-11-14 16:35:07.489 [main] INFO  com.xzkj.ossService.OssApplication - The following profiles are active: dev
+2022-11-14 16:35:08.720 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-11-14 16:35:08.727 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-11-14 16:35:08.813 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31ms. Found 0 repository interfaces.
+2022-11-14 16:35:09.342 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=0567b35b-8fa1-36c5-8305-eb5592385af2
+2022-11-14 16:35:09.808 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-11-14 16:35:10.430 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2022-11-14 16:35:10.455 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2022-11-14 16:35:10.457 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-11-14 16:35:10.457 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-11-14 16:35:10.636 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-11-14 16:35:10.637 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3106 ms
+2022-11-14 16:35:11.057 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-11-14 16:35:11.102 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-11-10 17:28:31.129 [main] INFO  com.xzkj.ossService.OssApplication - The following profiles are active: dev
-2022-11-10 17:28:32.259 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2022-11-10 17:28:32.265 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-11-10 17:28:32.336 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
-2022-11-10 17:28:32.926 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=30c1e348-7501-3281-aef9-7f4bc2fbf196
-2022-11-10 17:28:33.161 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-11-10 17:28:33.953 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
-2022-11-10 17:28:33.977 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
-2022-11-10 17:28:33.979 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2022-11-10 17:28:33.979 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
-2022-11-10 17:28:34.158 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2022-11-10 17:28:34.158 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2995 ms
-2022-11-10 17:28:34.300 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-11-10 17:28:34.309 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2022-11-10 17:28:34.763 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-10 17:28:36.171 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
-2022-11-10 17:28:36.464 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
-2022-11-10 17:28:36.522 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
-2022-11-10 17:28:36.806 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-oss 172.16.11.248:8085 register finished
-2022-11-10 17:28:36.812 [main] INFO  com.xzkj.ossService.OssApplication - Started OssApplication in 7.955 seconds (JVM running for 19.909)
-2022-11-10 17:30:04.091 [http-nio-8085-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-11-10 17:30:04.092 [http-nio-8085-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2022-11-10 17:30:04.114 [http-nio-8085-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 21 ms
-2022-11-10 17:38:12.969 [http-nio-8085-exec-6] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
-2022-11-10 17:38:13.013 [http-nio-8085-exec-6] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39ms. Found 0 repository interfaces.
-2022-11-10 18:03:16.232 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
-2022-11-10 18:03:16.263 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
-2022-11-10 18:03:16.732 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-14 16:38:14.420 [main] INFO  com.xzkj.ossService.OssApplication - The following profiles are active: dev
+2022-11-14 16:38:15.703 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-11-14 16:38:15.710 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-11-14 16:38:15.785 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
+2022-11-14 16:38:16.307 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=66d039a2-be75-3971-9283-65bd159d08ea
+2022-11-14 16:38:16.765 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-11-14 16:38:17.389 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2022-11-14 16:38:17.414 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2022-11-14 16:38:17.416 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-11-14 16:38:17.416 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-11-14 16:38:17.613 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-11-14 16:38:17.615 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3137 ms
+2022-11-14 16:38:18.039 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-11-14 16:38:18.048 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-11-14 16:38:18.438 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-14 16:38:19.801 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-11-14 16:38:20.165 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [82.157.251.233:5672]
+2022-11-14 16:38:20.281 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1669931a:0/SimpleConnection@25172993 [delegate=amqp://admin@82.157.251.233:5672/, localPort= 61226]
+2022-11-14 16:38:21.864 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2022-11-14 16:38:21.954 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2022-11-14 16:38:22.029 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-oss 172.16.11.248:8085 register finished
+2022-11-14 16:38:22.035 [main] INFO  com.xzkj.ossService.OssApplication - Started OssApplication in 9.971 seconds (JVM running for 21.062)
+2022-11-14 16:39:37.597 [http-nio-8085-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-14 16:39:37.598 [http-nio-8085-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-11-14 16:39:37.627 [http-nio-8085-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 27 ms
+2022-11-14 16:39:37.963 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - 确认消息到服务端时间：1668415177963
+2022-11-14 16:39:37.964 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - ConfirmCallback:     相关数据：null
+2022-11-14 16:39:37.965 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - ConfirmCallback:     确认情况：true
+2022-11-14 16:39:37.966 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - ConfirmCallback:     原因：null
+2022-11-14 16:39:37.980 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-13] INFO  c.x.ossService.rabbitMQ.listener.StudentListener - 消费队列：student,消费id：1
+2022-11-14 16:39:38.165 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-13] INFO  c.x.ossService.rabbitMQ.listener.StudentListener - 消息内容：number: 18
+name: "\351\230\277\344\270\211"
+sex: 1
+hobby: "\346\211\223\347\257\256\347\220\203"
+skill: "java"
+duration {
+}
+
+2022-11-14 16:44:42.680 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2022-11-14 16:44:43.079 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2022-11-14 16:44:43.097 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-11-14 16:44:43.121 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-11-14 16:44:43.238 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2022-11-14 16:44:43.241 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-14 16:45:02.435 [main] INFO  com.xzkj.ossService.OssApplication - The following profiles are active: dev
+2022-11-14 16:45:03.476 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-11-14 16:45:03.480 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-11-14 16:45:03.536 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26ms. Found 0 repository interfaces.
+2022-11-14 16:45:03.968 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=66d039a2-be75-3971-9283-65bd159d08ea
+2022-11-14 16:45:04.410 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-11-14 16:45:04.904 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2022-11-14 16:45:04.922 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2022-11-14 16:45:04.924 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-11-14 16:45:04.924 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-11-14 16:45:05.076 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-11-14 16:45:05.077 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2597 ms
+2022-11-14 16:45:05.472 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-11-14 16:45:05.480 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-11-14 16:45:05.814 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-14 16:45:06.874 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-11-14 16:45:07.184 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [82.157.251.233:5672]
+2022-11-14 16:45:07.287 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7c3c453b:0/SimpleConnection@2a30b0cb [delegate=amqp://admin@82.157.251.233:5672/, localPort= 61540]
+2022-11-14 16:45:09.217 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2022-11-14 16:45:09.265 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2022-11-14 16:45:09.340 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, service-oss 172.16.11.248:8085 register finished
+2022-11-14 16:45:09.346 [main] INFO  com.xzkj.ossService.OssApplication - Started OssApplication in 9.063 seconds (JVM running for 19.815)
+2022-11-14 16:45:47.425 [http-nio-8085-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-14 16:45:47.426 [http-nio-8085-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-11-14 16:45:47.442 [http-nio-8085-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 15 ms
+2022-11-14 16:45:47.643 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - 确认消息到服务端时间：1668415547643
+2022-11-14 16:45:47.644 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - ConfirmCallback:     相关数据：null
+2022-11-14 16:45:47.644 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - ConfirmCallback:     确认情况：true
+2022-11-14 16:45:47.645 [rabbitConnectionFactory1] INFO  com.xzkj.ossService.rabbitMQ.config.RabbitConfig - ConfirmCallback:     原因：null
+2022-11-14 16:45:47.652 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-29] INFO  c.x.ossService.rabbitMQ.listener.StudentListener - 消费队列：student,消费id：1
+2022-11-14 16:45:47.663 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-29] INFO  c.x.ossService.rabbitMQ.listener.StudentListener - 消息内容 number:18, name:阿三,sex:1,hobby:打篮球,skill:java,duration:
+2022-11-14 18:36:47.515 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2022-11-14 18:36:47.526 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2022-11-14 18:36:47.599 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-11-14 18:36:47.625 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-11-14 18:36:47.716 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2022-11-14 18:36:47.723 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
