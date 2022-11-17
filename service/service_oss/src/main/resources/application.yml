@@ -26,11 +26,13 @@ spring:
     publisher-returns: true
 #    排除数据源加载，避免启动报错
   autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
   cloud:
-    nacos:
-      discovery:
-        server-addr: 82.157.251.233:8848
+#    nacos:
+#      discovery:
+#        server-addr: 82.157.251.233:8848
+    zookeeper:
+      connect-string: 82.157.251.233:2181
 logging:
   level:
     root: info

@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>service</artifactId>
+        <artifactId>xzmms</artifactId>
         <groupId>com.xzkj</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service_oss</artifactId>
+    <artifactId>xzmms_proxy</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -42,6 +42,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
+        <!--        zookeeper配置中心-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-config</artifactId>
         </dependency>
         <!--Curator是支持zookeeper客户端-->
         <dependency>
@@ -76,9 +81,9 @@
                     <protoSourceRoot>${basedir}/src/main/proto</protoSourceRoot>
                     <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                     <!-- 生成文件的目录, 可以让其在源码目录生成 -->
-                     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                     <!-- 生成文件前是否把目标目录清空，这个最好设置为false，以免误删项目文件 -->
-                     <clearOutputDirectory>false</clearOutputDirectory>
+                    <clearOutputDirectory>false</clearOutputDirectory>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,0 +1,15 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: xzmms-base
+  profiles:
+    active: dev
+  cloud:
+    zookeeper:
+      connect-string: 82.157.251.233:2181
+      config:
+        enabled: true
+        root: CONFIG
+        profileSeparator: '-'

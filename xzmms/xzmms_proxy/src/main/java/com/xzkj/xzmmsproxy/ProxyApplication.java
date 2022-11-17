@@ -1,14 +1,15 @@
-package com.xzkj.ossService;
+package com.xzkj.xzmmsproxy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class OssApplication {
+@EnableFeignClients
+public class ProxyApplication {
     public static void main(String[] args) {
-        System.setProperty("zookeeper.sasl.client", "false");
-        SpringApplication.run(OssApplication.class);
+        SpringApplication.run(ProxyApplication.class);
     }
 }
