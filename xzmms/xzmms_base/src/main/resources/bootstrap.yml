@@ -1,12 +1,15 @@
 server:
   port: 9001
-
 spring:
   application:
     name: xzmms-base
   profiles:
     active: dev
   cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 127.0.0.1:8888
     zookeeper:
       connect-string: 82.157.251.233:2181
       config:

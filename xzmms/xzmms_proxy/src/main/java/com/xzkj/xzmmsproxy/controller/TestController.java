@@ -1,6 +1,5 @@
 package com.xzkj.xzmmsproxy.controller;
 
-import com.xzkj.utils.R;
 import com.xzkj.xzmmsproxy.client.TestClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,6 +6,10 @@ spring:
   profiles:
     active: dev
   cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 82.157.251.233:8888
     zookeeper:
       connect-string: 82.157.251.233:2181
       config:
