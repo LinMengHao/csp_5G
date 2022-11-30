@@ -2,6 +2,8 @@ package com.xzkj.xzmmsbase.controller;
 
 import com.google.protobuf.Duration;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.xzkj.base.handler.LmhException;
 import com.xzkj.utils.R;
 import com.xzkj.xzmmsbase.entity.TStudent;
 import org.junit.Test;
@@ -132,4 +134,24 @@ public class TestController {
         System.out.println("9001执行啦");
         return name+" "+age;
     }
+
+    @RequestMapping("test7")
+    @HystrixCommand(fallbackMethod = "getNameFallback")
+    public String test7(String name){
+        System.out.println("参数："+name);
+        if("lmh".equals(name)){
+            return "OK";
+        }else {
+            throw new LmhException("500","熔断一手");
+        }
+    }
+    /**
+     * 出错后会调用该降级方法，返回指定的信息
+     * @param name
+     * @return
+     */
+    public String getNameFallback(String name){
+        return " this username is not exist ";
+    }
+
 }

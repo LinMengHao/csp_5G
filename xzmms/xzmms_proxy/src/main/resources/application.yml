@@ -9,13 +9,13 @@ spring:
         max-idle: 8
         max-wait: 20000
         min-idle: 0
-  rabbitmq:
-    host: 82.157.251.233
-    port: 5672
-    username: admin
-    password: xzkj1225
-    publisher-confirm-type: correlated
-    publisher-returns: true
+#  rabbitmq:
+#    host: 82.157.251.233
+#    port: 5672
+#    username: admin
+#    password: xzkj1225
+#    publisher-confirm-type: correlated
+#    publisher-returns: true
 logging:
   level:
     root: info

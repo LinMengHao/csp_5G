@@ -1,5 +1,5 @@
-server:
-  port: 9002
+#server:
+#  port: 9002
 spring:
   application:
     name: xzmms-proxy
@@ -9,7 +9,7 @@ spring:
     sentinel:
       transport:
         port: 8719
-        dashboard: 82.157.251.233:8888
+        dashboard: 127.0.0.1:8888
     zookeeper:
       connect-string: 82.157.251.233:2181
       config:
