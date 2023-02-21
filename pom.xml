@@ -8,6 +8,7 @@
         <module>commons</module>
         <module>infrastructure</module>
         <module>xzmms</module>
+        <module>wxservice</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

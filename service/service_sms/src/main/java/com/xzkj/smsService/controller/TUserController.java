@@ -6,22 +6,30 @@ import com.alibaba.fastjson.JSONObject;
 import com.xzkj.smsService.entity.TUser;
 import com.xzkj.smsService.entity.User;
 import com.xzkj.smsService.service.TUserService;
+import com.xzkj.utils.Base64Util;
+import com.xzkj.utils.Base64Utils;
 import com.xzkj.utils.MD5Utils;
 import com.xzkj.utils.R;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -48,7 +56,13 @@ public class TUserController {
     @Value("${lmh.phone}")
     private List<Integer> phone=new ArrayList<>();
 
-
+    @PostMapping("/test")
+    public R test(@RequestBody String s){
+        System.out.println("s: "+s);
+        JSONObject jsonObject = JSONObject.parseObject(s);
+        System.out.println("test: "+jsonObject.toJSONString());
+        return R.ok();
+    }
     @PostMapping(value = "findAll",consumes = {MediaType.APPLICATION_JSON_VALUE},
     produces = {MediaType.APPLICATION_JSON_VALUE})
     public R test(){
@@ -59,19 +73,168 @@ public class TUserController {
         log.info("phone"+phone.toString());
         return R.ok();
     }
-    @Test
-    public void test1(){
-        long time = new Date().getTime();
-        System.out.println("ts:"+time);
-        String s = MD5Utils.MD5Encode("acc=xiuzhi&ts="+time+"&sign=1"+"|||pwd=xiuzhi66");
-        System.out.println("token:"+s);
-    }
+//    @Autowired
+//    RestTemplate restTemplate;
+//    @Test
+//    public void test1() throws UnsupportedEncodingException {
+//        long time = new Date().getTime();
+//        System.out.println("ts:"+time);
+//        String s = MD5Utils.MD5Encode("acc=xiuzhi&ts="+time+"&sign=1"+"|||pwd=xiuzhi66");
+//        System.out.println("token:"+s);
+//        JSONObject json=new JSONObject();
+//        json.put("acc","xiuzhi");
+//        json.put("ts",time);
+//        json.put("sign","1");
+//        String title= URLEncoder.encode("模版提交接口测试","UTF-8");
+//        json.put("title",title);
+//        json.put("var","1");
+//        json.put("token",s);
+//        JSONArray content=new JSONArray();
+//        JSONObject data1=new JSONObject();
+//        data1.put("type",1);
+//        data1.put("ext","txt");
+//        String body1=URLEncoder.encode("测试时间：$v1$ \r\n 测试人：$v2$","UTF-8");
+//        data1.put("body",body1);
+//        JSONObject data2=new JSONObject();
+//        data1.put("type",2);
+//        data1.put("ext","jpg");
+//        String body2 = fileBase();
+//        data1.put("body",body2);
+//        content.add(data1);
+//        content.add(data2);
+//        json.put("content",content.toJSONString());
+//        HttpHeaders headers=new HttpHeaders();
+//        headers.set("Content-Type","application/json");
+//        HttpEntity entity=new HttpEntity(json,headers);
+//        ResponseEntity<String> response = restTemplate.postForEntity("http://103.29.16.3:9130/mms/model/submit", entity, String.class);
+//        System.out.println("response: "+response.getBody());
+//        JSONObject jsonObject2 = JSONObject.parseObject(response.getBody());
+//        System.out.println("response: "+jsonObject2.toJSONString());
+//    }
     @Test
     public void tes(){
         long time = new Date().getTime();
         System.out.println("ts:"+time);
         String s = MD5Utils.MD5Encode("acc=xiuzhi&ts="+time+"|||pwd=xiuzhi66");
         System.out.println("token:"+s);
+    }
+    @Test
+    public void ts(){
+        long time = new Date().getTime();
+        System.out.println("ts:"+time);
+        String s = MD5Utils.MD5Encode("acc=SzAdyV&ts="+time+"|||pwd=Ady@2022");
+        System.out.println("token:"+s);
+    }
+    @Test
+    public void ts1(){
+        String apiKey="XIUZHIBJ01";
+        String apiSecrect="x1&@9%&6";
+        long reqTime=System.currentTimeMillis();
+        System.out.println(reqTime);
+
+        String s="mmsId="+"M02171223"+"&reqTime="+reqTime;
+        String sign1= Base64Util.encodeBASE64(Base64Util.getSHA256(s));
+        System.out.println(sign1);
+
+        String signStr="apiKey="+apiKey+"&apiSecrect="+apiSecrect+"&reqTime="+reqTime;
+        String sign= Base64Util.encodeBASE64(Base64Util.getSHA256(signStr));
+        System.out.println(sign);
+    }
+    @Test
+    public void ts2(){
+        long reqTime=System.currentTimeMillis();
+        System.out.println(reqTime);
+
+    }
+    @Test
+    public void tes45(){
+        long time = new Date().getTime();
+        System.out.println("ts:"+time);
+        String s = MD5Utils.MD5Encode("acc=SzAdyV&ts="+time+"|||pwd=Ady@2022");
+        System.out.println("token:"+s);
+    }
+    @Test
+    public void urlDecoder() throws UnsupportedEncodingException {
+        String decode = URLDecoder.decode("%E6%B5%8B%E8%AF%95%E6%97%B6%E9%97%B4%EF%BC%9A%24v1%24+%0D%0A+%E6%B5%8B%E8%AF%95%E4%BA%BA%EF%BC%9A%24v2%24", "UTF-8");
+        String decode1 = URLDecoder.decode("测试时间：$v1$ \n" +
+                " 测试人：$v2$", "UTF-8");
+        System.out.println(decode);
+        System.out.println(decode1);
+    }
+    public String fileBase(){
+        File file=new File("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/filesmodelFile/20230104/g1_20230104124720A001.gif");
+        byte[] bytes=null;
+        FileInputStream in = null;
+        try{
+            in=new FileInputStream(file);
+            bytes=new byte[in.available()];
+            in.read(bytes);
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        byte[] encode = Base64.getEncoder().encode(bytes);
+        System.out.println(new String(encode));
+        return new String(encode);
+    }
+    @Test
+    public void fileBaseTest() throws IOException {
+        File file=new File("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/filesmodelFile/20230104/g1_20230104124720A001.gif");
+        byte[] bytes=null;
+        FileInputStream in = null;
+        try{
+            in=new FileInputStream(file);
+            bytes=new byte[in.available()];
+            in.read(bytes);
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        byte[] encode = Base64.getEncoder().encode(bytes);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("fff","xxx");
+        jsonObject.put("file",new String(encode));
+        String decode = URLDecoder.decode(jsonObject.toJSONString(), "UTF-8");
+        JSONObject jsonObject1 = JSONObject.parseObject(decode);
+        String file2 = jsonObject1.getString("file");
+        byte[] buffer = org.apache.commons.codec.binary.Base64.decodeBase64(file2.getBytes());
+        int size = buffer.length/1024;
+        File file1 = new File("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/filesmodelFile/20230104/g1_20230104124720A002.gif");
+        if(!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+            file1.createNewFile();
+        }
+
+        FileOutputStream out = new FileOutputStream("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/filesmodelFile/20230104/g1_20230104124720A002.gif");//覆盖已存在文件，FileOutputStream(targetPath,true)在已存在文件后面追加内容
+        out.write(buffer);
+    }
+
+    @Test
+    public void shanghai(){
+        JSONObject jsonObject=new JSONObject();
+        String siId="SH20230104";
+        String key="HZt7pD1wRo";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = format.format(new Date());
+        String authenticator = MD5Utils.MD5Encode(siId+date+key).toUpperCase();
+        jsonObject.put("SiID",siId);
+        jsonObject.put("Authenticator",authenticator);
+        jsonObject.put("Date",date);
+        jsonObject.put("Method","whitelist");
+        jsonObject.put("Type",1);
+        String[] phones={"18908002166"};
+        jsonObject.put("Phones",phones);
+        System.out.println(jsonObject.toString());
     }
 
 
@@ -180,5 +343,201 @@ public class TUserController {
         }
         System.out.println(stringBuilder.toString());
     }
+    @Test
+    public void test9() {
+        JSONObject json=new JSONObject();
+        List<String> list=new ArrayList<>();
+        JSONObject jsonObject = new JSONObject();
+        JSONObject param=new JSONObject();
+        param.put("v1","hhh");
+        param.put("v2","xxx");
+        jsonObject.put("Frame","1-2");
+        jsonObject.put("Param",param);
+        System.out.println(jsonObject.toJSONString());
+        System.out.println(jsonObject.toString());
+        list.add(jsonObject.toString());
+        System.out.println(list);
+        json.put("appName","xiuzhi");
+        json.put("content",list);
+        JSONObject jsonObject1 = JSONObject.parseObject(json.toString());
+        List content = (List)jsonObject1.get("content");
+        System.out.println(content.get(0));
+    }
+    @Test
+    public void test10() throws UnsupportedEncodingException {
+        String s="44CQ6b6Z5Z+O5Yaz44CR6K+35Li75pKt5b2T5YaF6ay877yM6KaB5Lu35aSq6auY77yM5bmz5Y+w5Yaz5a6a5pS+5Y+357uZ5pmu6YCa546p5a62DQrnm7TmjqXov5vmnI3vvJogaHR0cHM6Ly9iaXo5LmNuLyR1cmwxJCANCui0ouWKoemDqOmZiOaCpue7meaCqOWQjeS4i+i0puWPt+i9rOWFpeS6hjYwMOW8oDc5OTjvvIzor7fmgqjluKbmnI3vvIzmnInmhI/lkJHnmoTor53nm7TmjqXov5vmnI0NCg0K6LSm5Y+36K+m5oOFDQrnrYnnuqfvvJpWMzDkvJrlkZjvvIjmu6HvvIkNCuaXpeiWqu+8mjY25bygMzI477yMNjblvKA2NDgNCuemj+WIqe+8muWMuuacjTY2MOS6v+mSu+efs++8jDQyMOS4h+S8muWRmOenr+WIhg0K5pe25pWI77ya5rC45LmFDQoNCjY2Nu+8mjY0OCoxMCvlnKPngavku6QqMyvliJ3nuqfnm77niYznoo7niYcqMTAr5Yid57qn5pe26KOF56KO54mHKjEwDQo4ODjvvJo2NDgqMTAr5Zyj54Gr5LukKjIr6b6Z6aqoKjEwK+WHpOihgCoxMA0KOTk577yaNjQ4KjEwK+Wco+eBq+S7pCozK+aWl+esoOeijueJhyoxMCvlpKnompXkuJ0qMjANClZJUDY2Nu+8mjY0OCoxMCvml6Dph4/mmbYqMTAr5paX56yg56KO54mHKjIwK+WkqeialeS4nSoyMA0KVklQODg477yaNjQ4KjEwK+aKgOiDveaui+mhtSoyMCvpvpnpqqgqMzAr5Yek6KGAKjMwDQpWSVA5OTnvvJo2NDgqMTAr5ZG96L+Q55+zKjMr5oqA6IO95q6L6aG1KjEwK+aXoOmHj+aZtioyMA0KU1ZJUDY2Nu+8mjY0OCoxMCvmioDog73mrovpobUqMjAr5ZG96L+Q55+zKjEwK+eJueaIkueBteeyuSoyMA0KU1ZJUDg4OO+8mjY0OCoxMCvlkb3ov5Dnn7MqMTAr6b6Z6aqoKjUwK+WHpOihgCo1MA0KU1ZJUDk5Oe+8mjY0OCoxMCvml6Dph4/mmbYqMzAr5Zyj54Gr5LukKjEwK+WInee6p+aXtuijheeijueJhyo1MA0KDQrlhZHmjaLpgJrpgZPvvJogaHR0cHM6Ly9iaXo5LmNuLyR1cmwyJCANCuaLv+WIsOi1hOa6kOS5n+S4jeeUqOWkque0p+W8oOOAgui3n+W5s+aXtueOqea4uOaIj+S4gOagt++8jOeIveWwseWujOS6hu+8jOiusOW+l+S4jeimgei3n+WFtuWug+eOqeWutuiusg0K6YCA6K6i5ZueVA==";
+        String decode = Base64Utils.decode(s);
+        System.out.println(decode);
+    }
+    @Test
+    public void test11() {
+        File file=new File("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/files/modelFile/20230109/3sucai_20230109111101A001.jpg");
+        String name1 = file.getName();
+        System.out.println(name1);
+    }
+    @Test
+    public void test12() {
+        String uploadFile="http://localhost:9100/profile/signFile/20230202/1sucai_20230202113155A001.jpg";
+        String[] profiles = uploadFile.trim().split("/profile/");
+        System.out.println("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/files/"+profiles[profiles.length-1]);
+    }
+    @Test
+    public void test13(){
+        String apiKey="TBjhxM4";
+        String apiSecrect="9zpYPCFy";
+        Date date1 = new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+        String date2 = sdf.format(date1);
+        String token= MD5Utils.MD5Encode(apiKey+date2+apiSecrect).toLowerCase();
+        String authorization=Base64Util.encodeBASE64(apiKey+":"+date2);
+        System.out.println("token: "+token);
+        System.out.println("authorization: "+authorization);
+    }
+    @Test
+    public void test14() throws UnsupportedEncodingException {
+
+        String s="ChnlNo=C0190&IPass=123456&IUser=test12&Mobile=18756232770&MsgId=20230210497027431001&RptTime=20230210121135165&Stat=SF%3A0115";
+        String[] split = s.split("&");
+        JSONObject jsonObject=new JSONObject();
+        for (int i = 0; i < split.length; i++) {
+            String[] split1 = split[i].split("=");
+            jsonObject.put(split1[0],split1[1]);
+        }
+        System.out.println(jsonObject.toJSONString());
+        System.out.println(jsonObject.getString("MsgId"));
+
+        String decode = URLDecoder.decode("SF%3A0115");
+        System.out.println(decode);
+        String decode1 = URLDecoder.decode(s,"utf-8");
+        System.out.println(decode1);
+    }
+    @Test
+    public void test15() throws UnsupportedEncodingException {
+        String ecProvince="北京";
+        String ecCity="北京";
+        String serviceCode="106572050030398";
+        String ecName="测试虚拟网关";
+        String rcsIndustry="1,2,3";
+        String customerType="0";
+        String operatorType="3";
+        String reportSignContent="API接口自动新增签名1666855672738";
+        String industry="2";
+
+        StringBuilder s=new StringBuilder();
+        s.append("customerType=").append(customerType).append("&")
+                .append("ecCity=").append(ecCity).append("&")
+                .append("ecName=").append(ecName).append("&")
+                .append("ecProvince=").append(ecProvince).append("&")
+                .append("industry=").append(industry).append("&")
+                .append("operatorType=").append(operatorType).append("&")
+                .append("rcsIndustry=").append(rcsIndustry).append("&")
+                .append("reportSignContent").append(reportSignContent).append("&")
+                .append("serviceCode=").append(serviceCode);
+
+        String sign= Base64Util.encodeBASE64(DigestUtils.sha256Hex(URLDecoder.decode(s.toString(),"UTF-8").getBytes(StandardCharsets.UTF_8)));
+        System.out.println(sign);
+        String sign1 = getSign(s.toString());
+        System.out.println(sign1);
+        String s1="apiKey=15-23930392033092&apiSecrect=#239*3&reqTime=1642670601273";
+        String sign2 = getSign(s1);
+        System.out.println(sign2);
+    }
+    private String getSign(String s){
+        //格式：ecProvince=${ecProvince}&ecCity=${ecCity}&serviceCode=${serviceCode}&reportSignContent=${reportSignContent}&ecName=${ecName}&rcsIndustry=${rcsIndustry}&industry=${industry}&customerType=${customerType}&operatorType=${operatorType}
+        String[] split = s.split("&");
+        TreeMap strMap=new TreeMap();
+        for (int i = 0; i < split.length; i++) {
+            String[] pandvalue = split[i].split("=");
+            if (pandvalue.length>1){
+                String[] values = Arrays.copyOfRange(pandvalue, 1, pandvalue.length);
+                if(!"".equals(values[0])){
+                    strMap.put(pandvalue[0],values[0]);
+                }
+            }else {
+//				strMap.put(pandvalue[0],null);
+            }
+
+        }
+        String sign="";
+        Set set=strMap.entrySet();
+        Iterator iterator= set.iterator();
+        int iterationCount=0;
+        while(iterator.hasNext()){
+            Map.Entry mentry=(Map.Entry)iterator.next();
+            if (iterationCount==0){
+                sign+=mentry.getKey()+"="+mentry.getValue();
+            }else {
+                sign+="&"+mentry.getKey()+"="+mentry.getValue();
+            }
+            iterationCount++;
+        }
+        try {
+            sign= URLDecoder.decode(sign,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(sign);
+
+        String s1 = DigestUtils.sha256Hex(sign);
+        String s2 = Base64Util.encodeBASE64(s1.getBytes(StandardCharsets.UTF_8));
+        String s3 = Base64Util.encodeBASE64(Base64Util.getSHA256(sign));
+        System.out.println(s3);
+        return s2;
+    }
+
+    @Test
+    public void test16() throws ParseException {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date parse = sdf.parse("2023-01-10 18:25:34");
+        Date date = new Date();
+        int i = differentDays(parse, date);
+        System.out.println(i);
+        Long days=null;
+        Long day=days!=null?days:90L;
+        System.out.println(day);
+    }
+
+    /**
+     * date2比date1多的天数
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public static int differentDays(Date date1,Date date2)
+    {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date1);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(date2);
+        int day1= cal1.get(Calendar.DAY_OF_YEAR);
+        int day2 = cal2.get(Calendar.DAY_OF_YEAR);
+
+        int year1 = cal1.get(Calendar.YEAR);
+        int year2 = cal2.get(Calendar.YEAR);
+        if(year1 != year2)   //不同一年
+        {
+            int timeDistance = 0 ;
+            for(int i = year1 ; i < year2 ; i ++)
+            {
+                if(i%4==0 && i%100!=0 || i%400==0)    //闰年
+                {
+                    timeDistance += 366;
+                }
+                else    //不是闰年
+                {
+                    timeDistance += 365;
+                }
+            }
+
+            return timeDistance + (day2-day1) ;
+        }
+        else    //同一年
+        {
+            System.out.println("判断day2 - day1 : " + (day2-day1));
+            return day2-day1;
+        }
+    }
 }
+
 

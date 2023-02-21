@@ -1,6 +1,8 @@
 package com.xzkj.accessService.controller.sendmsg;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.xzkj.accessService.conf.HttpsSkipRequestFactory;
 import com.xzkj.accessService.entity.msgModel.MessageModel;
 import com.xzkj.accessService.entity.msgModel.TextMsgModel;
@@ -24,10 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -253,5 +254,96 @@ public class FileController {
         long time = new Date().getTime();
         System.out.println("time:"+time);
         System.out.println("sign:"+ MD5Utils.MD5Encode("1" + "18756232770" + "0WoIOu2js$q89fzU" + time).toUpperCase());
+    }
+    //TODO 测试修治模版提交接口 对本项目无效
+    @RequestMapping("submit")
+    public void contextLoads() throws UnsupportedEncodingException {
+        long time = new Date().getTime();
+        System.out.println("ts:"+time);
+        String s = MD5Utils.MD5Encode("acc=xiuzhi&ts="+time+"&sign=S02161012"+"|||pwd=xiuzhi66");
+        System.out.println("token:"+s);
+        JSONObject json=new JSONObject();
+        json.put("acc","xiuzhi");
+        json.put("ts",time);
+        json.put("sign","S02161012");
+        String title= URLEncoder.encode("模版提交接口测试","UTF-8");
+        json.put("title",title);
+        json.put("var","1");
+        json.put("token",s);
+        JSONArray content=new JSONArray();
+        JSONObject data1=new JSONObject();
+        data1.put("type",1);
+        data1.put("ext","txt");
+        String body1=URLEncoder.encode("测试时间：$v1$ \r\n 测试人：$v2$","UTF-8");
+        System.out.println("body1="+body1);
+        data1.put("body",body1);
+        JSONObject data2=new JSONObject();
+        data2.put("type",2);
+        data2.put("ext","jpg");
+        String body2 = fileBase();
+        data2.put("body",body2);
+        content.add(data2);
+        content.add(data1);
+        json.put("content",content.toJSONString());
+        HttpHeaders headers=new HttpHeaders();
+        headers.set("Content-Type","application/json");
+        HttpEntity entity=new HttpEntity(json,headers);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://103.29.16.3:9130/mms/model/submit", entity, String.class);
+        System.out.println("response: "+response.getBody());
+        JSONObject jsonObject2 = JSONObject.parseObject(response.getBody());
+        System.out.println("response: "+jsonObject2.toJSONString());
+    }
+    @RequestMapping("sign")
+    public void sign() throws UnsupportedEncodingException {
+        long time = new Date().getTime();
+        System.out.println("ts:"+time);
+        JSONObject json=new JSONObject();
+        json.put("acc","xiuzhi");
+        json.put("ts",time);
+        json.put("reportSignContent","霸世群雄");
+        String s = MD5Utils.MD5Encode("acc=xiuzhi&ts="+time+"&reportSignContent=霸世群雄"+"|||pwd=xiuzhi66");
+        System.out.println("token:"+s);
+        json.put("ecProvince","北京");
+        json.put("ecCity","北京");
+        json.put("ecName","北京修治科技有限公司");
+        json.put("rcsIndustry","13");
+        json.put("industry","8");
+        json.put("token",s);
+        JSONArray content=new JSONArray();
+        JSONObject data1=new JSONObject();
+        data1.put("type",1);
+        data1.put("ext","png");
+        String body1 = fileBase();
+        data1.put("body",body1);
+        content.add(data1);
+        json.put("content",content.toJSONString());
+        HttpHeaders headers=new HttpHeaders();
+        headers.set("Content-Type","application/json");
+        HttpEntity entity=new HttpEntity(json,headers);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://103.29.16.3:9130/mms/sign/submit", entity, String.class);
+        System.out.println("response: "+response.getBody());
+        JSONObject jsonObject2 = JSONObject.parseObject(response.getBody());
+        System.out.println("response: "+jsonObject2.toJSONString());
+    }
+    public String fileBase(){
+//        File file=new File("/Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/filesmodelFile/20230104/g1_20230104124720A001.gif");
+        File file=new File("/Users/yoca-391/Desktop/ADY.png");
+        byte[] bytes=null;
+        FileInputStream in = null;
+        try{
+            in=new FileInputStream(file);
+            bytes=new byte[in.available()];
+            in.read(bytes);
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        byte[] encode = Base64.getEncoder().encode(bytes);
+        return new String(encode);
     }
 }

@@ -1,9 +1,12 @@
 package com.xzkj.xzmmsbase.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.Duration;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.xzkj.base.handler.LmhException;
+import com.xzkj.utils.MD5Utils;
 import com.xzkj.utils.R;
 import com.xzkj.xzmmsbase.entity.TStudent;
 import org.junit.Test;
@@ -21,9 +24,12 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Base64;
+import java.util.Date;
+
 @RefreshScope
 @RestController
 public class TestController {
@@ -153,5 +159,7 @@ public class TestController {
     public String getNameFallback(String name){
         return " this username is not exist ";
     }
+
+
 
 }
