@@ -1,0 +1,13 @@
+server:
+  port: 9060
+
+spring:
+  application:
+    name: demo-eureka
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://10.0.0.30:9060/eureka
+      defaultZone: http://127.0.0.1:9060/eureka
+    register-with-eureka: false
+    fetch-registry: false

@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: demo-config
+      name: demo-service
+      profile: dev
+  profiles:
+    active: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9060/eureka

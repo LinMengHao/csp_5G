@@ -1,0 +1,16 @@
+server:
+  port: 9132
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9060/eureka
+spring:
+  application:
+    name: demo-config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config

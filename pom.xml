@@ -9,6 +9,7 @@
         <module>infrastructure</module>
         <module>xzmms</module>
         <module>wxservice</module>
+        <module>sms</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

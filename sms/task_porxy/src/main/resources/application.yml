@@ -1,0 +1,51 @@
+server:
+  port: 9135
+  max-http-header-size: 102400
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    max-connections: 30000
+spring:
+  application:
+    name: sms-proxy
+  profiles:
+    active: native
+  datasource:
+    username: root
+    password: xzkjQaz123wsx
+    url: jdbc:mysql://10.0.0.10:3306/mms?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+    #username: root
+    #password: 123456
+    #url: jdbc:mysql://127.0.0.1:3306/jiujia_mms?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    #username: test1
+    #password: 123456
+    #url: jdbc:mysql://192.168.2.40:3306/mms?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialSize: 10
+    minIdle: 10
+    maxActive: 50
+
+    maxWait: 60000
+
+    timeBetweenEvictionRunsMillis: 60000
+
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    useGlobalDataSourceStat: true
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.xiuzhi.pojo
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9060/eureka

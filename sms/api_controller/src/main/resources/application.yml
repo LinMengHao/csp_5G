@@ -1,0 +1,11 @@
+server:
+  port: 19131
+spring:
+  application:
+    name: demo-web
+  profiles:
+    active: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9060/eureka

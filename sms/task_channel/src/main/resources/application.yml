@@ -1,0 +1,11 @@
+server:
+  port: 9133
+spring:
+  application:
+    name: demo-channel
+  profiles:
+    active: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9060/eureka

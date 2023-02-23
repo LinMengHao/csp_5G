@@ -1,0 +1,31 @@
+server:
+  port: 9130
+spring:
+  application:
+    name: demo-dateway1
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: demo-web
+          uri: lb://demo-web
+          predicates:
+            - Path=/web/**
+        - id: web-api
+          uri: lb://demo-web
+          predicates:
+            - Path=/mms/**
+        - id: web-back
+          uri: lb://demo-web
+          predicates:
+            - Path=/back/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9060/eureka

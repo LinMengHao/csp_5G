@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.apiService.mapper.ServiceMapper">
+
+
+    <select id="selectOrderList" parameterType="map" resultType="java.util.Map">
+        select batch_id,status,report_time,status,info,update_time from ${map.tableName}
+        <where>
+            <if test="map.companyId != null and map.companyId!=0"> and company_id = #{map.companyId}</if>
+            <if test="map.appId != null and map.appId!=0"> and app_id = #{map.appId}</if>
+            <if test="map.batchId != null and map.batchId!=''"> and message_id = #{map.batchId}</if>
+            <if test="map.destNumber != null and map.destNumber!=''"> and dest_number = #{map.destNumber}</if>
+        </where>
+    </select>
+
+    <select id="selectModelList" parameterType="map" resultType="java.util.Map">
+        select sign_id,title,variate,status,info,update_time from e_model_info
+        <where>
+            <if test="map.companyId != null and map.companyId!=0"> and company_id = #{map.companyId}</if>
+            <if test="map.appId != null and map.appId!=0"> and app_id = #{map.appId}</if>
+            <if test="map.modelId != null and map.modelId!=''"> and model_id = #{map.modelId}</if>
+        </where>
+    </select>
+
+    <select id="selectModelNewList" parameterType="map" resultType="java.util.Map">
+        select to_cmcc,to_unicom,to_telecom,sign_id,title,variate,status,info,update_time from e_model_info_new
+        <where>
+            <if test="map.companyId != null and map.companyId!=0"> and company_id = #{map.companyId}</if>
+            <if test="map.appId != null and map.appId!=0"> and app_id = #{map.appId}</if>
+            <if test="map.modelId != null and map.modelId!=''"> and model_id = #{map.modelId}</if>
+        </where>
+    </select>
+
+    <select id="selectSignList" parameterType="map" resultType="java.util.Map">
+        select to_cmcc,to_unicom,to_telecom,report_sign_content,status,info,update_time from e_model_sign
+        <where>
+            <if test="map.companyId != null and map.companyId!=0"> and company_id = #{map.companyId}</if>
+            <if test="map.appId != null and map.appId!=0"> and app_id = #{map.appId}</if>
+            <if test="map.signId != null and map.signId != ''"> and sign_id = #{map.signId}</if>
+        </where>
+    </select>
+    
+    <select id="selectMaxId" parameterType="String" resultType="java.lang.Integer">
+        select max(${field}) from ${tableName}
+    </select>
+</mapper>
