@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('模板详情')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<style>
+    .form-group{display: flex;align-items: center; margin-bottom: 25px;}
+    .control-label{padding-top: 0 !important;margin-left: 10px}
+    .phone-content{display: flex;min-height: 750px}
+    .left{
+        width: 260px;
+        height: 531px;
+        margin-left: 50px;
+        background:url('/img/phone_mms.png') no-repeat center center;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        -o-background-size:cover;
+        background-size:cover
+    }
+    .left-content{
+        width: 248px;
+        height: 394px;
+        padding-left: 18px;
+        padding-right: 7px;
+        margin-top: 90px;
+        overflow-y: auto;
+       /* background-color: #e1e1e1;*/
+        border-radius: 4px;
+    }
+    .form-horizontal{width: 300px}
+    .review-item{display: flex;flex-flow: column;  }
+    .span-txt{background-color: #efefef;padding: 10px;width: 100%; box-sizing: border-box; border-radius: 10px; margin-bottom: 10px;}
+    .review-item>img,video{width:100%; border-radius: 10px;margin-bottom: 10px;border: 1px solid #f8f8f8;}
+    ::-webkit-scrollbar {
+        width: 10px!important;
+        height: 10px!important;
+        -webkit-appearance: none;
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        height: 5px;
+        border: 1px solid transparent;
+        border-top: 0;
+        border-bottom: 0;
+        border-radius: 6px;
+        background-color: #ccc;
+        background-clip: padding-box;
+    }
+</style>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content phone-content">
+        <div class="left">
+            <div class="left-content">
+
+                <div class="review-item" th:if="${data != null && #maps.size(data) > 0}" th:each=" item : ${data}">
+                    <th:block th:each=" itemValue : ${item.value}">
+                        <th:block th:if="${itemValue.type == '1'}">
+                            <span class="span-txt" th:text="${itemValue.content}"></span>
+                        </th:block>
+                        <th:block th:if="${itemValue.type == '2'}">
+                            <img th:src="${itemValue.content}" />
+                        </th:block>
+                        <th:block th:if="${itemValue.type == '3'}">
+                            <video controls><source th:src="${itemValue.content}" id="video_source">您的浏览器不支持 video 标签。</video>
+                        </th:block>
+                    </th:block>
+
+                </div>
+
+            </div>
+        </div>
+        <form class="form-horizontal m" id="form-model-edit" th:object="${tModel}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-5 control-label">模板id：</label>
+                <div class="col-sm-7" th:text="*{modelId}"></div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-5 control-label">模板标题：</label>
+                <div class="col-sm-7" th:text="*{title}">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-5 control-label">状态：</label>
+                <div class="col-sm-7">
+                        <th:block th:if="*{status == 'review'}">审核中</th:block>
+<!--                        <th:block th:if="*{status} == null}">草稿</th:block>-->
+                        <th:block th:if="*{status == 'audit'}">审核</th:block>
+                        <th:block th:if="*{status == 'success'}">审核通过</th:block>
+                        <th:block th:if="*{status == 'faild'}">审核失败</th:block>
+
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-5 control-label">添加时间：</label>
+                <div class="col-sm-7"  th:text="*{#dates.format(addTime,'yyyy-MM-dd')}">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-5 control-label">账号：</label>
+                <div class="col-sm-7" th:text="*{application.appName}">
+                </div>
+            </div>
+<!--            <div class="form-group">    -->
+<!--                <label class="col-sm-5 control-label">产品id：</label>-->
+<!--                <div class="col-sm-7" th:text="*{productId}">-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="form-group">    
+                <label class="col-sm-5 control-label">是否有变量：</label>
+                <div class="col-sm-7">
+                    <th:block th:if="*{variate == 'variate'}">有变量</th:block>
+                    <th:block th:if="*{variate == 'novariate'}">无变量</th:block>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "mmskhd/model";
+        $("#form-model-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-model-edit').serialize());
+            }
+        }
+
+        $("input[name='addTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

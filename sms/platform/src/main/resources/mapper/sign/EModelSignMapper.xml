@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.sign.mapper.EModelSignMapper">
+    
+    <resultMap type="EModelSign" id="EModelSignResult">
+        <result property="id"    column="id"    />
+        <result property="signId"    column="sign_id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="appName"    column="app_name"    />
+        <result property="userId"    column="user_id"    />
+        <result property="ecProvince"    column="ec_province"    />
+        <result property="ecCity"    column="ec_city"    />
+        <result property="serviceCode"    column="service_code"    />
+        <result property="reportSignContent"    column="report_sign_content"    />
+        <result property="ecName"    column="ec_name"    />
+        <result property="rcsIndustry"    column="rcsIndustry"    />
+        <result property="industry"    column="industry"    />
+        <result property="customerType"    column="customer_type"    />
+        <result property="operatorType"    column="operator_type"    />
+        <result property="uploadFile"    column="upLoad_file"    />
+        <result property="info"    column="info"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="backUrl"    column="back_url"    />
+        <result property="status"    column="status"    />
+        <result property="pid"    column="pid"    />
+        <result property="source"    column="source"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="filepath"    column="filepath"    />
+        <result property="pSignId"    column="p_sign_id"    />
+        <result property="idea"    column="idea"    />
+        <result property="channelSignId"    column="channel_sign_id"    />
+        <result property="toCmcc"    column="to_cmcc"    />
+        <result property="toUnicom"    column="to_unicom"    />
+        <result property="toTelecom"    column="to_telecom"    />
+        <result property="toInternational"    column="to_international"    />
+        <result property="parentName" column="parent_name" />
+    </resultMap>
+
+    <sql id="selectEModelSignVo">
+        select id, sign_id, company_id, app_id, app_name, user_id, ec_province, ec_city, service_code, report_sign_content, ec_name, rcsIndustry, industry, customer_type, operator_type, upLoad_file, info, create_time, update_time, back_url, status, pid ,source,channel_id,filepath,p_sign_id,idea,channel_sign_id,to_cmcc,to_unicom,to_telecom,to_international from e_model_sign
+    </sql>
+
+    <select id="selectEModelSignList" parameterType="EModelSign" resultMap="EModelSignResult">
+        <include refid="selectEModelSignVo"/>
+        <where>  
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="companyId != null and companyId != 0"> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="appName != null  and appName != ''"> and app_name like concat('%', #{appName}, '%')</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="ecProvince != null  and ecProvince != ''"> and ec_province = #{ecProvince}</if>
+            <if test="ecCity != null  and ecCity != ''"> and ec_city = #{ecCity}</if>
+            <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+            <if test="reportSignContent != null  and reportSignContent != ''"> and report_sign_content = #{reportSignContent}</if>
+            <if test="ecName != null  and ecName != ''"> and ec_name like concat('%', #{ecName}, '%')</if>
+            <if test="rcsIndustry != null  and rcsIndustry != ''"> and rcsIndustry = #{rcsIndustry}</if>
+            <if test="industry != null  and industry != ''"> and industry = #{industry}</if>
+            <if test="customerType != null "> and customer_type = #{customerType}</if>
+            <if test="operatorType != null "> and operator_type = #{operatorType}</if>
+            <if test="uploadFile != null  and uploadFile != ''"> and upLoad_file = #{uploadFile}</if>
+            <if test="info != null  and info != ''"> and info = #{info}</if>
+            <if test="createTime != null "> and create_time &gt;= #{createTime}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="pid != null "> and pid = #{pid}</if>
+            <if test="source != null and source !=0"> and source = #{source}</if>
+            <if test="channelId != null and channelId !=0">and channel_id = #{channelId}</if>
+            <if test="filepath != null and filepath !=''"> and filepath = #{filepath}</if>
+            <if test="pSignId != null and pSignId !=''"> and p_sign_id = #{pSignId}</if>
+            <if test="idea != null and idea !=''"> and idea = #{idea}</if>
+            <if test="channelSignId != null and channelSignId !=''"> and channel_sign_id = #{channelSignId}</if>
+            <if test="toCmcc != null  and toCmcc != 0"> and to_cmcc = #{toCmcc}</if>
+            <if test="toUnicom != null  and toUnicom != 0"> and to_unicom = #{toUnicom}</if>
+            <if test="toTelecom != null  and toTelecom != 0"> and to_telecom = #{toTelecom}</if>
+            <if test="toInternational != null  and toInternational != 0"> and to_international = #{toInternational}</if>
+        </where>
+        ORDER BY update_time  DESC
+    </select>
+    
+    <select id="selectEModelSignById" parameterType="Long" resultMap="EModelSignResult">
+        select t.id, t.sign_id, t.company_id, t.app_id, t.app_name, t.user_id, t.ec_province, t.ec_city, t.service_code, t.report_sign_content, t.ec_name, t.rcsIndustry, t.industry, t.customer_type, t.operator_type, t.upLoad_file, t.info, t.create_time, t.update_time, t.back_url, t.status, t.pid,t.source,t.channel_id, t.filepath,t.p_sign_id,t.idea,t.channel_sign_id,t.to_cmcc,t.to_unicom,t.to_telecom,t.to_international,p.sign_id as parent_name
+        from e_model_sign t
+        left join e_model_sign p on p.id = t.pid
+        where t.id = #{id}
+    </select>
+        
+    <insert id="insertEModelSign" parameterType="EModelSign">
+        insert into e_model_sign
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="signId != null">sign_id,</if>
+            <if test="companyId != null">company_id,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="appName != null">app_name,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="ecProvince != null">ec_province,</if>
+            <if test="ecCity != null">ec_city,</if>
+            <if test="serviceCode != null">service_code,</if>
+            <if test="reportSignContent != null">report_sign_content,</if>
+            <if test="ecName != null">ec_name,</if>
+            <if test="rcsIndustry != null">rcsIndustry,</if>
+            <if test="industry != null">industry,</if>
+            <if test="customerType != null">customer_type,</if>
+            <if test="operatorType != null">operator_type,</if>
+            <if test="uploadFile != null">upLoad_file,</if>
+            <if test="info != null">info,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="backUrl != null">back_url,</if>
+            <if test="status != null">status,</if>
+            <if test="pid != null">pid,</if>
+            <if test="source != null">source,</if>
+            <if test="channelId != null and channelId !=0">channel_id,</if>
+            <if test="filepath != null and filepath != ''">filepath,</if>
+            <if test="pSignId != null and pSignId != ''">p_sign_id,</if>
+            <if test="idea != null and idea != ''">idea,</if>
+            <if test="channelSignId != null and channelSignId != ''">channel_sign_id,</if>
+            <if test="toCmcc != null  and toCmcc != 0">to_cmcc, </if>
+            <if test="toUnicom != null  and toUnicom != 0"> to_unicom ,</if>
+            <if test="toTelecom != null  and toTelecom != 0"> to_telecom ,</if>
+            <if test="toInternational != null  and toInternational != 0">  to_international ,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="signId != null">#{signId},</if>
+            <if test="companyId != null">#{companyId},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="appName != null">#{appName},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="ecProvince != null">#{ecProvince},</if>
+            <if test="ecCity != null">#{ecCity},</if>
+            <if test="serviceCode != null">#{serviceCode},</if>
+            <if test="reportSignContent != null">#{reportSignContent},</if>
+            <if test="ecName != null">#{ecName},</if>
+            <if test="rcsIndustry != null">#{rcsIndustry},</if>
+            <if test="industry != null">#{industry},</if>
+            <if test="customerType != null">#{customerType},</if>
+            <if test="operatorType != null">#{operatorType},</if>
+            <if test="uploadFile != null">#{uploadFile},</if>
+            <if test="info != null">#{info},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="backUrl != null">#{backUrl},</if>
+            <if test="status != null">#{status},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="source != null">#{source},</if>
+            <if test="channelId != null and channelId !=0">#{channelId},</if>
+            <if test="filepath != null and filepath !='' ">#{filepath},</if>
+            <if test="pSignId != null and pSignId !='' ">#{pSignId},</if>
+            <if test="idea != null and idea != ''">#{idea},</if>
+            <if test="channelSignId != null and channelSignId != ''">#{channelSignId},</if>
+            <if test="toCmcc != null  and toCmcc != 0"> #{toCmcc},</if>
+            <if test="toUnicom != null  and toUnicom != 0"> #{toUnicom},</if>
+            <if test="toTelecom != null  and toTelecom != 0"> #{toTelecom},</if>
+            <if test="toInternational != null  and toInternational != 0"> #{toInternational},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEModelSign" parameterType="EModelSign">
+        update e_model_sign
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="signId != null">sign_id = #{signId},</if>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="appId != null">app_id = #{appId},</if>
+            <if test="appName != null">app_name = #{appName},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="ecProvince != null">ec_province = #{ecProvince},</if>
+            <if test="ecCity != null">ec_city = #{ecCity},</if>
+            <if test="serviceCode != null">service_code = #{serviceCode},</if>
+            <if test="reportSignContent != null">report_sign_content = #{reportSignContent},</if>
+            <if test="ecName != null">ec_name = #{ecName},</if>
+            <if test="rcsIndustry != null">rcsIndustry = #{rcsIndustry},</if>
+            <if test="industry != null">industry = #{industry},</if>
+            <if test="customerType != null">customer_type = #{customerType},</if>
+            <if test="operatorType != null">operator_type = #{operatorType},</if>
+            <if test="uploadFile != null">upLoad_file = #{uploadFile},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="backUrl != null">back_url = #{backUrl},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="source != null and source !=0">source = #{source},</if>
+            <if test="channelId != null and channelId !=0">channel_id = #{channelId},</if>
+            <if test="filepath != null and filepath != ''">filepath = #{filepath},</if>
+            <if test="idea != null ">idea = #{idea},</if>
+            <if test="channelSignId != null and channelSignId != ''">channel_sign_id = #{channelSignId},</if>
+            <if test="toCmcc != null  and toCmcc != 0">  to_cmcc = #{toCmcc},</if>
+            <if test="toUnicom != null  and toUnicom != 0">  to_unicom = #{toUnicom},</if>
+            <if test="toTelecom != null  and toTelecom != 0">  to_telecom = #{toTelecom},</if>
+            <if test="toInternational != null  and toInternational != 0">  to_international = #{toInternational},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEModelSignById" parameterType="Long">
+        delete from e_model_sign where id = #{id}
+    </delete>
+
+    <delete id="deleteEModelSignByIds" parameterType="String">
+        delete from e_model_sign where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectMaxId" parameterType="String" resultType="java.lang.Integer">
+        select max(${field}) from ${tableName}
+    </select>
+
+    <select id="selectPEModelSignList" parameterType="EModelSign" resultMap="EModelSignResult">
+        <include refid="selectEModelSignVo"/>
+        <where>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="companyId != null and companyId != 0"> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="appName != null  and appName != ''"> and app_name like concat('%', #{appName}, '%')</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="ecProvince != null  and ecProvince != ''"> and ec_province = #{ecProvince}</if>
+            <if test="ecCity != null  and ecCity != ''"> and ec_city = #{ecCity}</if>
+            <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+            <if test="reportSignContent != null  and reportSignContent != ''"> and report_sign_content = #{reportSignContent}</if>
+            <if test="ecName != null  and ecName != ''"> and ec_name like concat('%', #{ecName}, '%')</if>
+            <if test="rcsIndustry != null  and rcsIndustry != ''"> and rcsIndustry = #{rcsIndustry}</if>
+            <if test="industry != null  and industry != ''"> and industry = #{industry}</if>
+            <if test="customerType != null "> and customer_type = #{customerType}</if>
+            <if test="operatorType != null "> and operator_type = #{operatorType}</if>
+            <if test="uploadFile != null  and uploadFile != ''"> and upLoad_file = #{uploadFile}</if>
+            <if test="info != null  and info != ''"> and info = #{info}</if>
+            <if test="createTime != null "> and create_time &gt;= #{createTime}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="source != null and source !=0"> and source = #{source}</if>
+            <if test="channelId != null and channelId !=0">and channel_id = #{channelId}</if>
+            <if test="filepath != null and filepath !=''"> and filepath = #{filepath}</if>
+            <if test="channelSignId != null and channelSignId !=''"> and channel_sign_id = #{channelSignId}</if>
+             and pid IS NULL or pid = ''
+        </where>
+        order by pid asc
+    </select>
+
+    <select id="selectEModelSignBySignId" parameterType="String" resultMap="EModelSignResult">
+        select t.id, t.sign_id, t.company_id, t.app_id, t.app_name, t.user_id, t.ec_province, t.ec_city, t.service_code, t.report_sign_content, t.ec_name, t.rcsIndustry, t.industry, t.customer_type, t.operator_type, t.upLoad_file, t.info, t.create_time, t.update_time, t.back_url, t.status, t.pid,t.source,t.channel_id, t.filepath,t.p_sign_id,t.idea,t.channel_sign_id,t.to_cmcc,t.to_unicom,t.to_telecom,t.to_international,p.sign_id as parent_name
+        from e_model_sign t
+                 left join e_model_sign p on p.id = t.pid
+        where t.sign_id = #{signId}
+    </select>
+
+    <select id="selectSignByAppId" parameterType="EModelSign" resultMap="EModelSignResult">
+        <include refid="selectEModelSignVo"/>
+        <where>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="companyId != null and companyId != 0"> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="appName != null  and appName != ''"> and app_name like concat('%', #{appName}, '%')</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="ecProvince != null  and ecProvince != ''"> and ec_province = #{ecProvince}</if>
+            <if test="ecCity != null  and ecCity != ''"> and ec_city = #{ecCity}</if>
+            <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+            <if test="reportSignContent != null  and reportSignContent != ''"> and report_sign_content = #{reportSignContent}</if>
+            <if test="ecName != null  and ecName != ''"> and ec_name like concat('%', #{ecName}, '%')</if>
+            <if test="rcsIndustry != null  and rcsIndustry != ''"> and rcsIndustry = #{rcsIndustry}</if>
+            <if test="industry != null  and industry != ''"> and industry = #{industry}</if>
+            <if test="customerType != null "> and customer_type = #{customerType}</if>
+            <if test="operatorType != null "> and operator_type = #{operatorType}</if>
+            <if test="uploadFile != null  and uploadFile != ''"> and upLoad_file = #{uploadFile}</if>
+            <if test="info != null  and info != ''"> and info = #{info}</if>
+            <if test="createTime != null "> and create_time &gt;= #{createTime}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="source != null and source !=0"> and source = #{source}</if>
+            <if test="channelId != null and channelId !=0">and channel_id = #{channelId}</if>
+            <if test="filepath != null and filepath !=''"> and filepath = #{filepath}</if>
+            <if test="pSignId != null and pSignId !=''"> and p_sign_id = #{pSignId}</if>
+            <if test="idea != null and idea !=''"> and idea = #{idea}</if>
+            <if test="channelSignId != null and channelSignId !=''"> and channel_sign_id = #{channelSignId}</if>
+        </where>
+        and pid IS  NULL
+        ORDER BY update_time  DESC
+    </select>
+</mapper>

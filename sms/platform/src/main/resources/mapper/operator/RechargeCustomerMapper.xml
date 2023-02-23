@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.RechargeCustomerMapper">
+    
+    <resultMap type="RechargeCustomer" id="RechargeCustomerResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="salesId"    column="sales_id"    />
+        <result property="changeType"    column="change_type"    />
+        <result property="price"    column="price"    />
+        <result property="changeNum"    column="change_num"    />
+        <result property="balance"    column="balance"    />
+        <result property="changeWay"    column="change_way"    />
+        <result property="userId"    column="user_id"    />
+        <result property="remark"    column="remark"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectRechargeCustomerVo">
+        select id, company_id, app_id, sales_id, change_type, price, change_num,balance,change_way, user_id, remark, create_time from e_recharge_customer
+    </sql>
+
+    <select id="selectRechargeCustomerList" parameterType="RechargeCustomer" resultMap="RechargeCustomerResult">
+        <include refid="selectRechargeCustomerVo"/>
+        <where>  
+            <if test="companyId != null and companyId !=0 "> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="salesId != null "> and sales_id = #{salesId}</if>
+            <if test="changeType != null  and changeType != ''"> and change_type = #{changeType}</if>
+            <if test="changeWay != null  and changeWay != ''"> and change_way = #{changeWay}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="changeNum != null "> and change_num = #{changeNum}</if>
+            <if test="balance != null "> and balance = #{balance}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+        </where>
+    </select>
+    
+    <select id="selectRechargeCustomerById" parameterType="Long" resultMap="RechargeCustomerResult">
+        <include refid="selectRechargeCustomerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertRechargeCustomer" parameterType="RechargeCustomer" useGeneratedKeys="true" keyProperty="id">
+        insert into e_recharge_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">company_id,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="salesId != null">sales_id,</if>
+            <if test="changeType != null">change_type,</if>
+            <if test="changeWay != null">change_way,</if>
+            <if test="price != null">price,</if>
+            <if test="changeNum != null">change_num,</if>
+            <if test="balance != null">balance,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">#{companyId},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="salesId != null">#{salesId},</if>
+            <if test="changeType != null">#{changeType},</if>
+            <if test="changeWay != null">#{changeWay},</if>
+            <if test="price != null">#{price},</if>
+            <if test="changeNum != null">#{changeNum},</if>
+            <if test="balance != null">#{balance},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRechargeCustomer" parameterType="RechargeCustomer">
+        update e_recharge_customer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="appId != null">app_id = #{appId},</if>
+            <if test="salesId != null">sales_id = #{salesId},</if>
+            <if test="changeType != null">change_type = #{changeType},</if>
+            <if test="changeWay != null">change_way = #{changeWay},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="changeNum != null">change_num = #{changeNum},</if>
+            <if test="balance != null">balance = #{balance},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRechargeCustomerById" parameterType="Long">
+        delete from e_recharge_customer where id = #{id}
+    </delete>
+
+    <delete id="deleteRechargeCustomerByIds" parameterType="String">
+        delete from e_recharge_customer where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

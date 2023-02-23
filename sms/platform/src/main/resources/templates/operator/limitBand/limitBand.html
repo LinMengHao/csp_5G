@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('频次限制列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <input type="text" id="companyId" name="companyId" style="display: none;" value="0"/>
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <input name="companyName" onclick="selectDeptTree()" id="treeName" type="text" placeholder="请选择客户"/>
+                            </li>
+                            <li>
+                                <select name="appId" id="appId" >
+                                    <option value="">请选择账户</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select  id="channelId" name="channelId" style="width: 100%; height: 31px;">
+                                    <option value="">请选择通道</option>
+                                    <option th:each="channel : ${channellist}"
+                                            th:value="${channel.id}"
+                                            th:text="${channel.id}+':'+${channel.channelName}">
+                                    </option>
+                                </select>
+                            </li>
+                            <li>
+                                <select  id="limitType" name="limitType" style="width: 100%; height: 31px;">
+                                    <option value="0">-限制类型-</option>
+                                    <option value="1" >客户全局</option>
+                                    <option value="2" >通道全局</option>
+                                    <option value="3" >客户账号</option>
+                                    <option value="4" >通道账号</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="operator:limitBand:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="operator:limitBand:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="operator:limitBand:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="operator:limitBand:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('operator:limitBand:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('operator:limitBand:remove')}]];
+        var prefix = ctx + "operator/limitBand";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "频次限制",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'limitType',
+                    title: '限频类型',
+		        	formatter: function(value, row, index) {
+		        	    return typeName(row.limitType);
+		            }
+                },
+                {
+                    field: 'companyId',
+                    title: '公司',
+                    formatter: function(value, row, index) {
+		            	if(row.companyName.length>8){
+                          return '<div title="'+row.companyName+'">'+row.companyName.substring(0,9)+'...</div>';
+                        }else{
+                          return row.companyName;
+                        }
+		            }
+                },
+                {
+                    field: 'appId',
+                    title: '账号',
+                    formatter: function(value, row, index) {
+		            	if(row.accountName.length>8){
+                          return '<div title="'+row.accountName+'">'+row.accountName.substring(0,9)+'...</div>';
+                        }else{
+                          return row.accountName;
+                        }
+		            }
+                },
+                {
+                    field: 'days',
+                    title: '限频天数'
+                },
+                {
+                    field: 'times',
+                    title: '限频次数'
+                },
+                {
+                    field: 'remark',
+                    title: '备注'
+                },
+                {
+                    field: 'userId',
+                    title: '操作员',
+                    formatter: function(value, row, index) {
+		            	return row.userName;
+		            }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+            spChange(0);
+        });
+
+        function typeName(limitType){
+            var result='客户全局';//1-客户全局 2-通道全局 3-客户账号 4-通道账号
+            switch(limitType){
+                case 2:
+                    result = '通道全局';
+                    break;
+                case 3:
+                    result = '客户账号';
+                    break;
+                case 4:
+                    result = '通道账号';
+                    break;
+            }
+            return result;
+        }
+
+        /* 新增-选择公司树 */
+        function selectDeptTree() {
+        	var treeId = $("#treeId").val();
+        	var companyId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+        	var url = ctx + "system/dept/selectDeptTree/" + companyId;
+			var options = {
+				title: '选择商户',
+				width: "380",
+				url: url,
+				callBack: doSubmit
+			};
+			$.modal.openOptions(options);
+		}
+
+		function doSubmit(index, layero){
+			//var tree = layero.find("iframe")[0].contentWindow.$._tree;
+			var body = $.modal.getChildFrame(index);
+   			$("#treeId").val(body.find('#treeId').val());
+   			$("#companyId").val(body.find('#treeId').val());
+   			$("#treeName").val(body.find('#treeName').val());
+   			spChange(body.find('#treeId').val());
+   			$.modal.close(index);
+		}
+
+		function spChange(companyId){
+            $.get(ctx + "operator/routeBase/selectByCompanyID",{companyId: companyId},function(result){
+                if (result.code == 0 && result.data != null){
+                    var html = '<option value="">请选择账户</option>';
+
+                    $.each(result.data,function (key,value) {
+                        html += '<option value="'+value.id+'">'+value.id+':'+value.appName+'</option>';
+                    })
+
+                    $("#appId").empty();
+                    $("#appId").append(html);
+                }else {
+                    $.modal.msgError('获取数据失败！');
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.sign.mapper.ESignRelatedMapper">
+    
+    <resultMap type="ESignRelated" id="ESignRelatedResult">
+        <result property="id"    column="id"    />
+        <result property="signId"    column="sign_id"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="channelSignId"    column="channel_sign_id"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="info"    column="info"    />
+    </resultMap>
+
+    <sql id="selectESignRelatedVo">
+        select id, sign_id, channel_id, channel_sign_id, status, create_time, update_time, info from e_sign_related
+    </sql>
+
+    <select id="selectESignRelatedList" parameterType="ESignRelated" resultMap="ESignRelatedResult">
+        <include refid="selectESignRelatedVo"/>
+        <where>  
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="channelSignId != null  and channelSignId != ''"> and channel_sign_id = #{channelSignId}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="info != null  and info != ''"> and info = #{info}</if>
+        </where>
+    </select>
+    
+    <select id="selectESignRelatedById" parameterType="Long" resultMap="ESignRelatedResult">
+        <include refid="selectESignRelatedVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertESignRelated" parameterType="ESignRelated" useGeneratedKeys="true" keyProperty="id">
+        insert into e_sign_related
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="signId != null">sign_id,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="channelSignId != null">channel_sign_id,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="info != null">info,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="signId != null">#{signId},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="channelSignId != null">#{channelSignId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="info != null">#{info},</if>
+         </trim>
+    </insert>
+
+    <update id="updateESignRelated" parameterType="ESignRelated">
+        update e_sign_related
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="signId != null">sign_id = #{signId},</if>
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="channelSignId != null">channel_sign_id = #{channelSignId},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="info != null">info = #{info},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteESignRelatedById" parameterType="Long">
+        delete from e_sign_related where id = #{id}
+    </delete>
+
+    <delete id="deleteESignRelatedByIds" parameterType="String">
+        delete from e_sign_related where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改模板信息')" />
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.all.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+</head>
+<style>
+    .layui-form-label {width:110px;padding:4px}
+    .layui-form-item .layui-form-checkbox[lay-skin="primary"]{margin-top:0;}
+    .layui-form-switch {width:54px;margin-top:0px;}
+    .row{padding: 24px; box-sizing: content-box;}
+    .col-md-bg{background-color: #ffffff;}
+    .model-body{display: flex; padding: 15px 10%;}
+    .ibox-content{width:60%;}
+    .review-body{width:40%; display: flex; justify-content: center;}
+    .review-bg{width: 300px;height: 650px;background: url("/img/phone_mms.png") no-repeat center center; background-size: 100%;}
+    .review-content{margin-top: 120px;height: 450px;width: 260px; overflow-y: auto; padding-left: 20px;padding-right: 7px; }
+    .review-item{display: flex;flex-flow: column;  }
+    .span-txt{background-color: #efefef;padding: 10px;width: 100%; box-sizing: border-box; border-radius: 10px; margin-bottom: 10px;}
+    .review-item>img,video{width:100%; border-radius: 10px;margin-bottom: 10px;border: 1px solid #f8f8f8;}
+    ::-webkit-scrollbar {
+        width: 10px!important;
+        height: 10px!important;
+        -webkit-appearance: none;
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        height: 5px;
+        border: 1px solid transparent;
+        border-top: 0;
+        border-bottom: 0;
+        border-radius: 6px;
+        background-color: #ccc;
+        background-clip: padding-box;
+    }
+    .add-model{height: 56px;width: 100%; display: flex;align-items: center; font-size: 20px; border-bottom: 1px solid #efefef;padding-left: 32px; box-sizing: border-box;}
+    .frame-item{display: flex; flex-flow: column; }
+    .layui-btn-warm{background-color: #ffffff !important; display: flex; flex-flow: column; width: 192px; height: 110px; border: #cccccc 1px dashed; justify-content: center;}
+    .upload-txt{display: flex;align-items: center; width: 100%; color: #8a8a8a; font-size: 14px;justify-content: center;}
+    .upload-remark{font-size: 14px;color: #cccccc; }
+    .layui-btn{line-height: unset !important; white-space: unset !important;}
+    .margin-div{margin-bottom: 80px; }
+    .textarea-remark{width: 400px !important; height: 70px !important; min-height:unset !important; }
+    .select-w{width: 104px !important;}
+    .btn-body{margin-top: 70px !important; margin-left: 10px !important;}
+    .save-btn{background-color: #2A82FF !important;}
+    .back-btn{background-color: white !important;color: #000000; border: 1px solid #cccccc;}
+    .frame-title{width: 100%; height: 32px; display: flex; margin-top: 30px;}
+    .frame-title-c{margin-left: 71px;border-bottom: 1px solid #cccccc; width: 100%;height: 32px; padding-left: 46px; display: flex;}
+    .btn-Unchecked{width: 64px; height: 32px; display: flex; justify-content: center;align-items: center; margin-right: 8px; cursor: pointer;}
+    .btn-Unchecked>font{ font-size: 14px;}
+
+    .btn-select{width: 64px; height: 32px;bottom: 0px;background-color: white; display: flex; justify-content: space-around;align-items: center;  margin-right: 8px; }
+    .btn-select-img{width: 14px; height: 14px; cursor: pointer;}
+
+    .border-thrid{border-top: 1px solid #cccccc; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc;}
+    .btn-add{width: 32px; height: 32px; display: flex;justify-content: center;align-items: center; cursor: pointer;}
+    .btn-add>img{width: 22px; height: 22px;}
+
+    .layui-form-select dl{width: 104px !important; min-width: unset !important;}
+    .layui-input{width:104px !important;}
+    .layui-form-select .layui-edge{right: 50% !important;}
+    .bdisplay{display: none;}
+
+</style>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-12 col-md-bg">
+                <div class="ibox float-e-margins model-body">
+                    <div class="ibox-content">
+                        <form class="form-horizontal m" id="form-model-edit" th:object="${modelInfo}">
+                            <input name="id" th:field="*{id}" type="hidden">
+                            <input name="modelId" id="modelId" th:field="*{modelId}" type="hidden">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">客户：</label>
+                                <div class="form-control-static" th:text="*{companyName}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">账户：</label>
+                                <div class="form-control-static" th:text="*{appName}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">签名id：</label>
+                                <div class="form-control-static" th:text="*{signId}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">模板id：</label>
+                                <div class="form-control-static"  th:text="*{modelId}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">模板标题：</label>
+                                <div class="form-control-static" th:text="*{title}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label is-required">变量标志：</label>
+                                <div class="form-control-static" id="variate"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">来源：</label>
+                                <div class="form-control-static" id="source"></div>
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="col-sm-3 control-label">状态描述：</label>
+                                <div class="col-sm-8">
+                                    <input name="info" th:field="*{info}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">推送地址：</label>
+                                <div class="col-sm-8">
+                                    <input name="backUrl" th:field="*{backUrl}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">操作员id：</label>
+                                <div class="col-sm-8">
+                                    <input name="userId" th:field="*{userId}" class="form-control" type="text">
+                                </div>
+                            </div>-->
+                        </form>
+                    </div>
+
+                    <div class="review-body">
+                        <div class="review-bg">
+                            <div class="review-content">
+
+
+                                <div class="review-item" th:if="${data != null && #maps.size(data) > 0}" th:each=" item,zhenStat : ${data}" th:id="'review-zhen-'+${zhenStat.index+1}">
+                                    <th:block th:each=" itemValue : ${item.value}">
+                                        <span class="span-txt"  th:if="${itemValue.type == '1'}" th:text="${itemValue.content}"></span>
+                                        <img th:if="${itemValue.type == '2'}" th:src="${itemValue.content}" />
+                                        <video controls th:if="${itemValue.type == '3'}"><source th:src="${itemValue.content}" id="video_source">您的浏览器不支持 video 标签。</video>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn save-btn" type="button" onclick="javascript:checkSuccess();">审核通过</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn save-btn" type="button" onclick="javascript:checkFailed();">审核拒绝</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn save-btn" type="button" onclick="javascript:submitHandler();">提交通道</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn back-btn" type="button" onclick="javascript:$.modal.closeTab();">返回</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            var variate = [[${modelInfo.variate}]];
+	    	$("#variate").text(variateName(variate));
+	    	var source = [[${modelInfo.source}]];
+	    	$("#source").text(sourceName(source));
+        });
+
+        function variateName(variate){
+            var result='变量模板';//1-变量模板2-普通模板
+            if(variate==2){
+                result='普通模板';
+            }
+            return result;
+        }
+        function sourceName(source){
+            var result='API';//1-API 2-管理端 3-客户端
+            switch(source){
+                case 2:
+                    result = '管理端';
+                    break;
+                case 3:
+                    result = '客户端';
+                    break;
+            }
+            return result;
+        }
+
+        //审核成功
+        function checkSuccess(){
+            var modelId = $("#modelId").val();
+            var id=$("#id").val();
+            var url = "/model/model/checkSuccess/"+modelId+"/"+id;
+            $.modal.open("审核成功", url);
+        }
+        //审核失败
+        function checkFailed(){
+            var modelId = $("#modelId").val();
+            var id=$("#id").val();
+            var url = "/model/model/checkFailed/"+modelId+"/"+id;
+            $.modal.open("审核失败", url);
+        }
+        //提交通道
+        function submitHandler() {
+            var modelId = $("#modelId").val();
+            var id=$("#id").val();
+            var url = "/model/model/checkChannel/"+modelId+"/"+id;
+            $.modal.open("提交通道", url);
+            console.log("modelId: "+modelId);
+            console.log("id: "+id);
+            //parent.location.reload();
+            //$.modal.closeTab();
+        }
+
+    </script>
+</body>
+</html>

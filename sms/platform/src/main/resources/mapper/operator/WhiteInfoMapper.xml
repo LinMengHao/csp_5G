@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.WhiteInfoMapper">
+    
+    <resultMap type="WhiteInfo" id="WhiteInfoResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectWhiteInfoVo">
+        select id, company_id, mobile, remark, update_time, create_time from e_white_info
+    </sql>
+
+    <select id="selectWhiteInfoList" parameterType="WhiteInfo" resultMap="WhiteInfoResult">
+        <include refid="selectWhiteInfoVo"/>
+        <where>  
+            <if test="companyId != null "> and company_id = #{companyId}</if>
+            <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+        </where>
+    </select>
+    
+    <select id="selectWhiteInfoById" parameterType="Long" resultMap="WhiteInfoResult">
+        <include refid="selectWhiteInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWhiteInfo" parameterType="WhiteInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into e_white_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">company_id,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="remark != null">remark,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">#{companyId},</if>
+            <if test="mobile != null">#{mobile},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+    <insert id="insertWhiteInfos" parameterType="java.util.List">
+        insert into e_white_info(company_id,mobile,remark,update_time,create_time)
+        values
+        <foreach collection="list" separator="," item="item">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.companyId},#{item.mobile},#{item.remark},#{item.updateTime},#{item.createTime}
+            </trim>
+        </foreach>
+
+    </insert>
+    <update id="updateWhiteInfo" parameterType="WhiteInfo">
+        update e_white_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="mobile != null">mobile = #{mobile},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWhiteInfoById" parameterType="Long">
+        delete from e_white_info where id = #{id}
+    </delete>
+
+    <delete id="deleteWhiteInfoByIds" parameterType="String">
+        delete from e_white_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectWhiteInfoListByIds" parameterType="String" resultMap="WhiteInfoResult">
+        <include refid="selectWhiteInfoVo"/>
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('全局黑名单列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <input type="text" name="mobile" placeholder="黑名单号码"/>
+                            </li>
+                            <li>
+                                <select name="ruleLevel" >
+                                    <option value="0">黑名单等级</option>
+                                    <option value="1">高危</option>
+                                    <option value="2">中危</option>
+                                    <option value="3">低危</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select name="source" >
+                                    <option value="">黑名单来源</option>
+                                    <option value="miit">工信部</option>
+                                    <option value="12321">12321</option>
+                                    <option value="operator">运营商</option>
+                                    <option value="JSMX">江苏梦翔</option>
+                                    <option value="ZJLJ">浙江棱镜</option>
+                                    <option value="DYDX">东云短信</option>
+                                    <option value="DYYY">东云语音</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="operator:blackInfo:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="operator:blackInfo:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="operator:blackInfo:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="operator:blackInfo:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('operator:blackInfo:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('operator:blackInfo:remove')}]];
+        var prefix = ctx + "operator/blackInfo";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "全局黑名单",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'mobile',
+                    title: '号码'
+                },
+                {
+                    field: 'ruleLevel',
+                    title: '黑名单等级',
+		        	formatter: function(value, row, index) {
+		        	    var name = "<span class='badge badge-primary'>低危</span>";
+		        	    if (row.ruleLevel == 1) {
+		        	        name = "<span class='badge badge-danger'>高危</span>";
+		        	    }else if (row.ruleLevel == 2) {
+		        	        name = "<span class='badge badge-warning'>中危</span>";
+		        	    }
+		            	return name;
+		            }
+                },
+                {
+                    field: 'source',
+                    title: '黑名单来源',
+		        	formatter: function(value, row, index) {
+		        	    var name = "其他";
+		        	    if (row.source == 'miit') {
+		        	        name = "工信部";
+		        	    }else if (row.source == '12321') {
+		        	        name = "12321";
+		        	    }else if (row.source == 'operator') {
+		        	        name = "运营商";
+		        	    }else if (row.source == 'JSMX') {
+		        	        name = "江苏梦翔";
+		        	    }else if (row.source == 'ZJLJ') {
+		        	        name = "浙江棱镜";
+		        	    }else if (row.source == 'DYDX') {
+		        	        name = "东云短信";
+		        	    }else if (row.source == 'DYYY') {
+		        	        name = "东云语音";
+		        	    }
+		            	return name;
+		            }
+                },
+                {
+                    field: 'remark',
+                    title: '备注'
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+		            sortable: true
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.BlackInfoMapper">
+    
+    <resultMap type="BlackInfo" id="BlackInfoResult">
+        <result property="id"    column="id"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="ruleLevel"    column="rule_level"    />
+        <result property="source"    column="source"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectBlackInfoVo">
+        select id, mobile, rule_level, source, remark, update_time, create_time from e_black_info
+    </sql>
+
+    <select id="selectBlackInfoList" parameterType="BlackInfo" resultMap="BlackInfoResult">
+        <include refid="selectBlackInfoVo"/>
+        <where>  
+            <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+            <if test="ruleLevel != null and ruleLevel !=0 "> and rule_level = #{ruleLevel}</if>
+            <if test="source != null  and source != ''"> and source = #{source}</if>
+        </where>
+    </select>
+    
+    <select id="selectBlackInfoById" parameterType="Long" resultMap="BlackInfoResult">
+        <include refid="selectBlackInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBlackInfo" parameterType="BlackInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into e_black_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobile != null">mobile,</if>
+            <if test="ruleLevel != null">rule_level,</if>
+            <if test="source != null">source,</if>
+            <if test="remark != null">remark,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobile != null">#{mobile},</if>
+            <if test="ruleLevel != null">#{ruleLevel},</if>
+            <if test="source != null">#{source},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <insert id="insertBlackInfos" parameterType="java.util.List">
+        insert into e_black_info(mobile,rule_level,source,remark,update_time,create_time)
+        values
+        <foreach collection="list" separator="," item="item">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.mobile},#{item.ruleLevel},#{item.source},#{item.remark},#{item.updateTime},#{item.createTime}
+            </trim>
+        </foreach>
+
+    </insert>
+
+    <update id="updateBlackInfo" parameterType="BlackInfo">
+        update e_black_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mobile != null">mobile = #{mobile},</if>
+            <if test="ruleLevel != null">rule_level = #{ruleLevel},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBlackInfoById" parameterType="Long">
+        delete from e_black_info where id = #{id}
+    </delete>
+
+    <delete id="deleteBlackInfoByIds" parameterType="String">
+        delete from e_black_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectBlackInfoListByIds" parameterType="String" resultMap="BlackInfoResult">
+        <include refid="selectBlackInfoVo"/>
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

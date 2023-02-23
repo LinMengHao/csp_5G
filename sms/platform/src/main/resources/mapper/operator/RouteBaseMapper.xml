@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.RouteBaseMapper">
+    
+    <resultMap type="RouteBase" id="RouteBaseResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="toCmcc"    column="to_cmcc"    />
+        <result property="toUnicom"    column="to_unicom"    />
+        <result property="toTelecom"    column="to_telecom"    />
+        <result property="toInternational"    column="to_international"    />
+        <result property="signName"    column="sign_name"    />
+        <result property="province"    column="province"    />
+        <result property="priority"    column="priority"    />
+        <result property="disprate"    column="disprate"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="channelLimit"    column="channel_limit"    />
+        <result property="channelCaller"    column="channel_caller"    />
+        <result property="status"    column="status"    />
+        <result property="info"    column="info"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectRouteBaseVo">
+        select id, company_id, app_id, to_cmcc, to_unicom, to_telecom, to_international, sign_name, province, priority, disprate, channel_id, channel_limit, channel_caller, status, info, update_time, create_time from e_route_base
+    </sql>
+
+    <select id="selectRouteBaseList" parameterType="RouteBase" resultMap="RouteBaseResult">
+        <include refid="selectRouteBaseVo"/>
+        <where>  
+            <if test="companyId != null and companyId != 0 "> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="toCmcc != null  and toCmcc != ''"> and to_cmcc = #{toCmcc}</if>
+            <if test="toUnicom != null  and toUnicom != ''"> and to_unicom = #{toUnicom}</if>
+            <if test="toTelecom != null  and toTelecom != ''"> and to_telecom = #{toTelecom}</if>
+            <if test="toInternational != null  and toInternational != ''"> and to_international = #{toInternational}</if>
+            <if test="signName != null  and signName != ''"> and sign_name like concat('%', #{signName}, '%')</if>
+            <if test="province != null  and province != ''"> and province = #{province}</if>
+            <if test="priority != null "> and priority = #{priority}</if>
+            <if test="disprate != null "> and disprate = #{disprate}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="channelLimit != null "> and channel_limit = #{channelLimit}</if>
+            <if test="channelCaller != null  and channelCaller != ''"> and channel_caller = #{channelCaller}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="info != null  and info != ''"> and info = #{info}</if>
+        </where>
+    </select>
+    
+    <select id="selectRouteBaseById" parameterType="Long" resultMap="RouteBaseResult">
+        <include refid="selectRouteBaseVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertRouteBase" parameterType="RouteBase" useGeneratedKeys="true" keyProperty="id">
+        insert into e_route_base
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">company_id,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="toCmcc != null and toCmcc != ''">to_cmcc,</if>
+            <if test="toUnicom != null and toUnicom != ''">to_unicom,</if>
+            <if test="toTelecom != null and toTelecom != ''">to_telecom,</if>
+            <if test="toInternational != null and toInternational != ''">to_international,</if>
+            <if test="signName != null">sign_name,</if>
+            <if test="province != null">province,</if>
+            <if test="priority != null">priority,</if>
+            <if test="disprate != null">disprate,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="channelLimit != null">channel_limit,</if>
+            <if test="channelCaller != null">channel_caller,</if>
+            <if test="status != null">status,</if>
+            <if test="info != null">info,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">#{companyId},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="toCmcc != null and toCmcc != ''">#{toCmcc},</if>
+            <if test="toUnicom != null and toUnicom != ''">#{toUnicom},</if>
+            <if test="toTelecom != null and toTelecom != ''">#{toTelecom},</if>
+            <if test="toInternational != null and toInternational != ''">#{toInternational},</if>
+            <if test="signName != null">#{signName},</if>
+            <if test="province != null">#{province},</if>
+            <if test="priority != null">#{priority},</if>
+            <if test="disprate != null">#{disprate},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="channelLimit != null">#{channelLimit},</if>
+            <if test="channelCaller != null">#{channelCaller},</if>
+            <if test="status != null">#{status},</if>
+            <if test="info != null">#{info},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRouteBase" parameterType="RouteBase">
+        update e_route_base
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="appId != null">app_id = #{appId},</if>
+            <if test="toCmcc != null and toCmcc != ''">to_cmcc = #{toCmcc},</if>
+            <if test="toUnicom != null and toUnicom != ''">to_unicom = #{toUnicom},</if>
+            <if test="toTelecom != null and toTelecom != ''">to_telecom = #{toTelecom},</if>
+            <if test="toInternational != null and toInternational != ''">to_international = #{toInternational},</if>
+            <if test="signName != null">sign_name = #{signName},</if>
+            <if test="province != null">province = #{province},</if>
+            <if test="priority != null">priority = #{priority},</if>
+            <if test="disprate != null">disprate = #{disprate},</if>
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="channelLimit != null">channel_limit = #{channelLimit},</if>
+            <if test="channelCaller != null">channel_caller = #{channelCaller},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRouteBaseById" parameterType="Long">
+        delete from e_route_base where id = #{id}
+    </delete>
+
+    <delete id="deleteRouteBaseByIds" parameterType="String">
+        delete from e_route_base where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

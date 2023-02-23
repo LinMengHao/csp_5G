@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('充值记录详细')" />
+	<th:block th:include="include :: jsonview-css" />
+</head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m-t" id="signupForm">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">客户：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.companyName}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">账号：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.appName}">
+			</div>
+		</div>
+		<!--<div class="form-group">
+			<label class="col-sm-2 control-label">销售：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.salesId}">
+			</div>
+		</div>-->
+		<div class="form-group">
+			<label class="col-sm-2 control-label">充值前余额：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.balance}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">充值类型：</label>
+			<div class="form-control-static" id="changeType"></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">单价(分)：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.price}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">充值条数：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.changeNum}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">交易方式：</label>
+			<div class="form-control-static" id="changeWay"></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">操作员：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.userName}"></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">备注：</label>
+			<div class="form-control-static" th:text="${rechargeCustomer.remark}"></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">充值时间：</label>
+			<div class="form-control-static" id="createTime" th:text="${#dates.format(rechargeCustomer.createTime, 'yyyy-MM-dd HH:mm:ss')}">
+			</div>
+		</div>
+	</form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: jsonview-js" />
+    <script th:inline="javascript">
+	    $(function() {
+	    	var changeType = [[${rechargeCustomer.changeType}]];
+	    	$("#changeType").text(changeTypeName(changeType));
+
+	    	var changeWay = [[${rechargeCustomer.changeWay}]];
+	    	$("#changeWay").text(changeWayName(changeWay));
+
+	    	//var createTime = [[${rechargeCustomer.createTime}]];
+	    	//$("#createTime").text(parseTime(createTime, '{y}-{m}-{d} {h}:{i}:{s}'));
+	    });
+	    function changeTypeName(changeType){
+            var result='充值';//1-充值2-失败回补3-核减4-退款5-扣罚
+            switch(changeType){
+                case '2':
+                    result = '失败回补';
+                    break;
+                case '3':
+                    result = '核减';
+                    break;
+                case '4':
+                    result = '退款';
+                    break;
+                case '5':
+                    result = '扣罚';
+                    break;
+            }
+            return result;
+        }
+        function changeWayName(changeWay){
+            var result='对公账户';//交易方式1-对公账户2-银行转账3-支付宝4-微信5-现金
+            switch(changeWay){
+                case '2':
+                    result = '银行转账';
+                    break;
+                case '3':
+                    result = '支付宝';
+                    break;
+                case '4':
+                    result = '微信';
+                    break;
+                case '5':
+                    result = '现金';
+                    break;
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>

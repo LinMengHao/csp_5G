@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改黑名单组')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-blackGroup-edit" th:object="${blackGroup}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <h4 class="form-header h4">分组信息</h4>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">分组名称：</label>
+                        <div class="col-sm-8">
+                            <input id="title" name="title" placeholder="请输入分组名称" th:field="*{title}" class="form-control" type="text" maxlength="50" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">状态：</label>
+                        <div class="col-sm-8">
+                            <label class="toggle-switch switch-solid">
+                                <input type="checkbox" id="status" th:checked="${blackGroup.status == 1 ? true : false}">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">备注：</label>
+                        <div class="col-xs-10">
+                            <input id="remark" name="remark" placeholder="请输入备注信息" th:field="*{remark}" class="form-control" type="text" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="form-header h4">智能管控</h4>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">验重周期：</label>
+                        <div class="input-group m-b">
+                            <input id="repeatDay" name="repeatDay" th:field="*{repeatDay}" class="form-control" type="number" value="7" min="0" max="7">
+                            <span class="input-group-addon">天</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">重复数：</label>
+                        <div class="input-group m-b">
+                            <input id="repeatCount" name="repeatCount" th:field="*{repeatCount}" class="form-control" type="number" value="1000" min="0">
+                            <span class="input-group-addon">条</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">触黑梯度：</label>
+                        <div class="input-group m-b">
+                            <input id="blackCount" name="blackCount" th:field="*{blackCount}" class="form-control" type="number" value="10000" min="0">
+                            <span class="input-group-addon">条</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">触黑率：</label>
+                        <div class="input-group m-b">
+                            <input id="blackRate" name="blackRate" th:field="*{blackRate}" class="form-control" type="number" value="20.00" step="0.01" min="0" max="100">
+                            <span class="input-group-addon">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="form-header h4">渠道数据</h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-white btn-sm" onclick="addRow()"><i class="fa fa-plus"> 增加</i></button>
+                    <button type="button" class="btn btn-white btn-sm" onclick="sub.delRow()"><i class="fa fa-minus"> 删除</i></button>
+                    <div class="col-sm-12 select-table table-striped">
+                        <table id="bootstrap-table"></table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:src="@{/js/jquery.tmpl.js}"></script>
+    <script th:inline="javascript">
+        var prefix = ctx + "operator/blackGroup";
+        $(function() {
+	    	// 初始化数据, 可以由后台传过来
+	    	var data = [[${blackGroup.channelList}]];
+		    var options = {
+		    	data: data,
+                pagination: false,
+		        showSearch: false,
+                showRefresh: false,
+                showToggle: false,
+                showColumns: false,
+                sidePagination: "client",
+		        columns: [{
+		            checkbox: true
+		        },
+		        {
+		        	field: 'index',
+		        	align: 'center',
+		        	title: "序号",
+                    formatter: function (value, row, index) {
+                    	var columnIndex = $.common.sprintf("<input type='hidden' name='index' value='%s'>", $.table.serialNumber(index));
+                    	var columnId = $.common.sprintf("<input type='hidden' name='channelList[%s].id' value='%s'>", index, row.id);
+                    	return columnIndex + $.table.serialNumber(index) + columnId;
+                    }
+                },
+                {
+		            field: 'channel',
+		            align: 'center',
+		            title: '渠道',
+		            formatter: function(value, row, index) {
+		        		var data = [{ index: index, channel: value }];
+		                return $("#channelTpl").tmpl(data).html();
+                    }
+		        },
+                {
+		            field: 'riskHigh',
+		            align: 'center',
+		            title: '高危',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskHigh' value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 2);
+		        		if(value=='1'){
+		        		    html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskHigh' checked value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 1);
+		        		}
+		        		return html;
+                    }
+		        },
+		        {
+		            field: 'riskMedium',
+		            align: 'center',
+		            title: '中危',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskMedium' value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 2);
+		        		if(value=='1'){
+		        		    html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskMedium' checked value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 1);
+		        		}
+		        		return html;
+                    }
+		        },
+		        {
+		            field: 'riskLow',
+		            align: 'center',
+		            title: '低危',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskLow' value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 2);
+		        		if(value=='1'){
+		        		    html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskLow' checked value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 1);
+		        		}
+		        		return html;
+                    }
+		        },
+		        {
+		            field: 'riskPrivate',
+		            align: 'center',
+		            title: '私有库',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskPrivate' value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 2);
+		        		if(value=='1'){
+		        		    html = $.common.sprintf("<input class='form-control' type='checkbox' name='channelList[%s].riskPrivate' checked value='%s' onclick='checkboxOnclick(this)' style='height: 20px;width: 20px;'>", index, 1);
+		        		}
+		        		return html;
+                    }
+		        },
+		        {
+		            field: 'priority',
+		            align: 'center',
+		            title: '优先级',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='number' name='channelList[%s].priority' value='%s'>", index, value);
+		        		return html;
+                    }
+		        },
+		        {
+		            field: 'filterRate',
+		            align: 'center',
+		            title: '比例',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='number' step='0.01' name='channelList[%s].filterRate' value='%s'>", index, value);
+		        		return html;
+                    }
+		        },
+		        {
+		            field: 'remark',
+		            align: 'center',
+		            title: '备注',
+		            formatter: function(value, row, index) {
+		            	var html = $.common.sprintf("<input class='form-control' type='text' name='channelList[%s].remark' value='%s'>", index, value);
+		        		return html;
+                    }
+		        },
+		        {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                    	var value = $.common.isNotEmpty(row.index) ? row.index : $.table.serialNumber(index);
+                        return '<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="sub.delRowByIndex(\'' + value + '\')"><i class="fa fa-remove"></i>删除</a>';
+                    }
+                }]
+		    };
+		    $.table.init(options);
+		});
+
+        $("#form-blackGroup-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+            var data = $("#form-blackGroup-edit").serializeArray();
+                var status = $("input[id='status']").is(':checked') == true ? '1' : '2';
+                data.push({"name": "status", "value": status});
+                //alert(JSON.stringify(data))
+                //$.operate.save(prefix + "/edit", $('#form-blackGroup-edit').serialize());
+                $.operate.save(prefix + "/edit", data);
+            }
+        }
+        function addRow() {
+        	var count = $("#" + table.options.id).bootstrapTable('getData').length;
+        	var row = {
+                index: $.table.serialNumber(count),
+            	channel: "",
+            	riskHigh: "",
+            	riskMedium: "",
+            	riskLow: "",
+            	riskPrivate: "",
+            	priority: "100",
+            	filterRate: "1.00",
+            	remark: "",
+            }
+        	sub.addRow(row);
+        }
+        function checkboxOnclick(checkbox){
+            if(checkbox.checked){
+                checkbox.value=1;
+            }else{
+                checkbox.value=2;
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- 黑名单渠道 -->
+<script id="channelTpl" type="text/x-jquery-tmpl">
+<div>
+<select class='form-control' name='channelList[${index}].channel' style='width:93px;'>
+    <option value="local" {{if channel==="local"}}selected{{/if}}>自有黑名单</option>
+    <option value="JSMX" {{if channel==="JSMX"}}selected{{/if}}>江苏梦翔</option>
+    <option value="ZJLJ" {{if channel==="ZJLJ"}}selected{{/if}}>浙江棱镜</option>
+    <option value="DYDX" {{if channel==="DYDX"}}selected{{/if}}>东云短信</option>
+    <option value="DYYY" {{if channel==="DYYY"}}selected{{/if}}>东云语音</option>
+</select>
+</div>
+</script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('发件箱列表')" />
+</head>
+<style type="text/css">
+    .libtn{text-align: right; justify-content: flex-end;}
+    .btn-primary{background-color: #2A82FF !important; }
+    .btn-warning{background-color: #ffffff !important; color: #363636 !important; border: #e1e1e1 1px solid !important;}
+    .search-collapse, .select-table{ background-color: unset !important;}
+    .fixed-table-toolbar{background-color: #ffffff !important; border-radius: 10px; padding:0 12px ; box-sizing: border-box; margin-bottom: 12px;}
+</style>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>消息id：</label>
+                            <input type="text" name="msgId" onblur="validateBlur()"/>
+                        </li>
+                        <li>
+                            <label>账户名称：</label>
+                            <input type="text" name="appId" onblur="validateBlur()"/>
+                        </li>
+                        <li>
+                            <label>文件名称：</label>
+                            <input type="text" name="fileName" onblur="validateBlur()"/>
+                        </li>
+
+<!--                        <li>-->
+<!--                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>-->
+<!--                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>-->
+<!--                        </li>-->
+                        <li  class="libtn">
+                            <a class="btn btn-primary btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mmskhd:outbox:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('mmskhd:outbox:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('mmskhd:outbox:remove')}]];
+    var prefix = ctx + "mmskhd/outbox";
+
+    $(function() {
+        var options = {
+            url: prefix + "/list",
+            exportUrl: prefix + "/export",
+            modalName: "发件箱",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },
+                {
+                    field: 'msgId',
+                    title: '消息id'
+                },
+                {
+                    field: 'appId',
+                    title: '账户名称'
+                },
+                {
+                    field: 'fileName',
+                    title: '文件名称'
+                },
+                {
+                    field: 'remarks',
+                    title: '提交备注'
+                },
+                {
+                    field: 'sendNum',
+                    title: '发送数'
+                },
+                {
+                    field: 'sendSuccNum',
+                    title: '成功数'
+                },
+                {
+                    field: 'sendFailNum',
+                    title: '失败数'
+                },
+                {
+                    field: 'subject',
+                    title: '彩信主题'
+                },
+                {
+                    field: 'savePath',
+                    title: '附件保存路径'
+                },
+                {
+                    field: 'dateTime',
+                    title: '提交时间'
+                },
+                {
+                    field: 'status',
+                    title: '状态'
+                },
+               ]
+        };
+        $.table.init(options);
+    });
+
+    function validateBlur() {
+        var msgId = $("input[name='msgId']").val();
+        var appId = $("input[name='appId']").val();
+        var fileName = $("input[name='fileName']").val();
+
+
+
+
+
+        if(msgId.length > 20){
+            $.modal.alert("msgId过长");
+            return false;
+        }
+        if( fileName.length >10){
+            $.modal.alert("文件名称过长");
+            return false;
+        }
+        if( appId.length > 8){
+            $.modal.alert("账户名称过长");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</body>
+</html>

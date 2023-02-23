@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.model.mapper.EModelInfoMapper">
+    
+    <resultMap type="EModelInfo" id="EModelInfoResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="signId"    column="sign_id"    />
+        <result property="modelId"    column="model_id"    />
+        <result property="title"    column="title"    />
+        <result property="variate"    column="variate"    />
+        <result property="status"    column="status"    />
+        <result property="info"    column="info"    />
+        <result property="source"    column="source"    />
+        <result property="backUrl"    column="back_url"    />
+        <result property="userId"    column="user_id"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="appExt"    column="app_ext"    />
+        <result property="modelExt"    column="model_ext"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="pid"    column="pid"    />
+        <result property="pModelId"    column="p_model_id"    />
+        <result property="idea"    column="idea"    />
+        <result property="channelModelId"    column="channel_model_id"    />
+        <result property="toCmcc"    column="to_cmcc"    />
+        <result property="toUnicom"    column="to_unicom"    />
+        <result property="toTelecom"    column="to_telecom"    />
+        <result property="toInternational"    column="to_international"    />
+        <result property="parentName" column="parent_name" />
+    </resultMap>
+
+    <sql id="selectEModelInfoVo">
+        select id, company_id, app_id, sign_id, model_id, title, variate, status, info, source, back_url, user_id, update_time, create_time, app_ext, model_ext, channel_id, pid, p_model_id, idea, channel_model_id,to_cmcc,to_unicom,to_telecom,to_international from e_model_info_new
+    </sql>
+
+    <select id="selectEModelInfoList" parameterType="EModelInfo" resultMap="EModelInfoResult">
+        <include refid="selectEModelInfoVo"/>
+        <where>  
+            <if test="companyId != null "> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="title != null  and title != ''"> and title like "%"#{title}"%"</if>
+            <if test="variate != null and variate != 0" > and variate = #{variate}</if>
+            <if test="status != null and status != 0"> and status = #{status}</if>
+            <if test="info != null  and info != ''"> and info  like "%"#{info}"%"</if>
+            <if test="source != null and source != 0"> and source = #{source}</if>
+            <if test="backUrl != null  and backUrl != ''"> and back_url = #{backUrl}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="appExt != null "> and app_ext = #{appExt}</if>
+            <if test="modelExt != null "> and model_ext = #{modelExt}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="pid != null  and pid != ''"> and pid = #{pid}</if>
+            <if test="pModelId != null  and pModelId != ''"> and p_model_id = #{pModelId}</if>
+            <if test="idea != null  and idea != ''"> and idea = #{idea}</if>
+            <if test="channelModelId != null  and channelModelId != ''"> and channel_model_id = #{channelModelId}</if>
+            <if test="toCmcc != null  and toCmcc != 0"> and to_cmcc = #{toCmcc}</if>
+            <if test="toUnicom != null  and toUnicom != 0"> and to_unicom = #{toUnicom}</if>
+            <if test="toTelecom != null  and toTelecom != 0"> and to_telecom = #{toTelecom}</if>
+            <if test="toInternational != null  and toInternational != 0"> and to_international = #{toInternational}</if>
+        </where>
+        ORDER BY update_time  DESC
+    </select>
+
+    <select id="selectPEModelInfoList" parameterType="EModelInfo" resultMap="EModelInfoResult">
+        <include refid="selectEModelInfoVo"/>
+        <where>
+            <if test="companyId != null "> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="title != null  and title != ''"> and title like "%"#{title}"%"</if>
+            <if test="variate != null and variate != 0" > and variate = #{variate}</if>
+            <if test="status != null and status != 0"> and status = #{status}</if>
+            <if test="info != null  and info != ''"> and info  like "%"#{info}"%"</if>
+            <if test="source != null and source != 0"> and source = #{source}</if>
+            <if test="backUrl != null  and backUrl != ''"> and back_url = #{backUrl}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="appExt != null "> and app_ext = #{appExt}</if>
+            <if test="modelExt != null "> and model_ext = #{modelExt}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="pid != null  and pid != ''"> and pid = #{pid}</if>
+            <if test="pModelId != null  and pModelId != ''"> and p_model_id = #{pModelId}</if>
+            <if test="idea != null  and idea != ''"> and idea = #{idea}</if>
+            <if test="channelModelId != null  and channelModelId != ''"> and channel_model_id = #{channelModelId}</if>
+            <if test="toCmcc != null  and toCmcc != 0"> and to_cmcc = #{toCmcc}</if>
+            <if test="toUnicom != null  and toUnicom != 0"> and to_unicom = #{toUnicom}</if>
+            <if test="toTelecom != null  and toTelecom != 0"> and to_telecom = #{toTelecom}</if>
+            <if test="toInternational != null  and toInternational != 0"> and to_international = #{toInternational}</if>
+            and pid IS NULL or pid = ''
+        </where>
+        ORDER BY update_time  DESC
+    </select>
+
+
+    <select id="selectSonModelInfoList" parameterType="EModelInfo" resultMap="EModelInfoResult">
+        <include refid="selectEModelInfoVo"/>
+        <where>
+            <if test="companyId != null "> and company_id = #{companyId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="title != null  and title != ''"> and title like "%"#{title}"%"</if>
+            <if test="variate != null and variate != 0" > and variate = #{variate}</if>
+            <if test="status != null and status != 0"> and status = #{status}</if>
+            <if test="info != null  and info != ''"> and info  like "%"#{info}"%"</if>
+            <if test="source != null and source != 0"> and source = #{source}</if>
+            <if test="backUrl != null  and backUrl != ''"> and back_url = #{backUrl}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="appExt != null "> and app_ext = #{appExt}</if>
+            <if test="modelExt != null "> and model_ext = #{modelExt}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="pid != null  and pid != ''"> and pid = #{pid}</if>
+            <if test="pModelId != null  and pModelId != ''"> and p_model_id = #{pModelId}</if>
+            <if test="idea != null  and idea != ''"> and idea = #{idea}</if>
+            <if test="channelModelId != null  and channelModelId != ''"> and channel_model_id = #{channelModelId}</if>
+            <if test="toCmcc != null  and toCmcc != 0"> and to_cmcc = #{toCmcc}</if>
+            <if test="toUnicom != null  and toUnicom != 0"> and to_unicom = #{toUnicom}</if>
+            <if test="toTelecom != null  and toTelecom != 0"> and to_telecom = #{toTelecom}</if>
+            <if test="toInternational != null  and toInternational != 0"> and to_international = #{toInternational}</if>
+            and pid IS NOT NULL or pid != ''
+        </where>
+        ORDER BY update_time  DESC
+    </select>
+
+    
+    <select id="selectEModelInfoById" parameterType="Long" resultMap="EModelInfoResult">
+        select t.id, t.company_id, t.app_id, t.sign_id, t.model_id, t.title, t.variate, t.status, t.info, t.source, t.back_url, t.user_id, t.update_time, t.create_time, t.app_ext, t.model_ext, t.channel_id, t.pid, t.p_model_id, t.idea, t.channel_model_id,t.to_cmcc,t.to_unicom,t.to_telecom,t.to_international, p.model_id as parent_name
+        from e_model_info_new t
+        left join e_model_info_new p on p.id = t.pid
+        where t.id = #{id}
+    </select>
+    <select id="selectEModelInfoByModelId" parameterType="String" resultMap="EModelInfoResult">
+        select t.id, t.company_id, t.app_id, t.sign_id, t.model_id, t.title, t.variate, t.status, t.info, t.source, t.back_url, t.user_id, t.update_time, t.create_time, t.app_ext, t.model_ext, t.channel_id, t.pid, t.p_model_id, t.idea, t.channel_model_id, t.to_cmcc,t.to_unicom,t.to_telecom,t.to_international,p.model_id as parent_name
+        from e_model_info_new t
+                 left join e_model_info p on p.id = t.pid
+        where t.model_id = #{modelId}
+    </select>
+        
+    <insert id="insertEModelInfo" parameterType="EModelInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into e_model_info_new
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyId != null and companyId != 0">company_id,</if>
+            <if test="appId != null and appId != 0">app_id,</if>
+            <if test="signId != null and signId != ''">sign_id,</if>
+            <if test="modelId != null and modelId != ''">model_id,</if>
+            <if test="title != null and title != ''">title,</if>
+            <if test="variate != null and variate != 0">variate,</if>
+            <if test="status != null and status != 0">status,</if>
+            <if test="info != null and info != ''">info,</if>
+            <if test="source != null and source != 0">source,</if>
+            <if test="backUrl != null and backUrl != ''">back_url,</if>
+            <if test="userId != null and userId != 0">user_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="appExt != null and appExt != 0">app_ext,</if>
+            <if test="modelExt != null and modelExt != 0">model_ext,</if>
+            <if test="channelId != null and channelId != 0">channel_id,</if>
+            <if test="pid != null and pid != ''">pid,</if>
+            <if test="pModelId != null and pModelId !=''">p_model_id,</if>
+            <if test="idea != null and idea !=''">idea,</if>
+            <if test="channelModelId != null and channelModelId !=''">channel_model_id,</if>
+            <if test="toCmcc != null  and toCmcc != 0">to_cmcc, </if>
+            <if test="toUnicom != null  and toUnicom != 0"> to_unicom ,</if>
+            <if test="toTelecom != null  and toTelecom != 0"> to_telecom ,</if>
+            <if test="toInternational != null  and toInternational != 0">  to_international ,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyId != null and companyId != 0">#{companyId},</if>
+            <if test="appId != null and appId != 0">#{appId},</if>
+            <if test="signId != null and signId != ''">#{signId},</if>
+            <if test="modelId != null and modelId != ''">#{modelId},</if>
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="variate != null and variate != 0">#{variate},</if>
+            <if test="status != null and status != 0">#{status},</if>
+            <if test="info != null and info != ''">#{info},</if>
+            <if test="source != null and source != 0">#{source},</if>
+            <if test="backUrl != null and backUrl != ''">#{backUrl},</if>
+            <if test="userId != null and userId != 0">#{userId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="appExt != null and appExt != 0">#{appExt},</if>
+            <if test="modelExt != null and modelExt != 0">#{modelExt},</if>
+            <if test="channelId != null and channelId != 0">#{channelId},</if>
+            <if test="pid != null and pid != ''">#{pid},</if>
+            <if test="pModelId != null and pModelId !=''">#{pModelId},</if>
+            <if test="idea != null and idea !=''">#{idea},</if>
+            <if test="channelModelId != null and channelModelId !=''">#{channelModelId},</if>
+            <if test="toCmcc != null  and toCmcc != 0"> #{toCmcc},</if>
+            <if test="toUnicom != null  and toUnicom != 0"> #{toUnicom},</if>
+            <if test="toTelecom != null  and toTelecom != 0"> #{toTelecom},</if>
+            <if test="toInternational != null  and toInternational != 0"> #{toInternational},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEModelInfo" parameterType="EModelInfo">
+        update e_model_info_new
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null and companyId != 0">company_id = #{companyId},</if>
+            <if test="appId != null and appId != 0">app_id = #{appId},</if>
+            <if test="signId != null and signId != ''">sign_id = #{signId},</if>
+            <if test="modelId != null and modelId != ''">model_id = #{modelId},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="variate != null and variate != 0">variate = #{variate},</if>
+            <if test="status != null and status != 0">status = #{status},</if>
+            <if test="info != null and info != ''">info = #{info},</if>
+            <if test="source != null and source != 0">source = #{source},</if>
+            <if test="backUrl != null and backUrl != ''">back_url = #{backUrl},</if>
+            <if test="userId != null and userId != 0">user_id = #{userId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="appExt != null and appExt != 0">app_ext = #{appExt},</if>
+            <if test="modelExt != null and modelExt != 0">model_ext = #{modelExt},</if>
+            <if test="channelId != null and channelId != 0">channel_id = #{channelId},</if>
+            <if test="pid != null and pid != ''">pid = #{pid},</if>
+            <if test="pModelId != null and pModelId !=''">p_model_id = #{pModelId},</if>
+            <if test="idea != null and idea !=''">idea = #{idea},</if>
+            <if test="channelModelId != null and channelModelId !=''">channel_model_id = #{channelModelId},</if>
+            <if test="toCmcc != null  and toCmcc != 0">  to_cmcc = #{toCmcc},</if>
+            <if test="toUnicom != null  and toUnicom != 0">  to_unicom = #{toUnicom},</if>
+            <if test="toTelecom != null  and toTelecom != 0">  to_telecom = #{toTelecom},</if>
+            <if test="toInternational != null  and toInternational != 0">  to_international = #{toInternational},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEModelInfoById" parameterType="Long">
+        delete from e_model_info_new where id = #{id}
+    </delete>
+
+    <delete id="deleteEModelInfoByIds" parameterType="String">
+        delete from e_model_info_new where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectMaxId" parameterType="String" resultType="java.lang.Integer">
+        select max(${field}) from ${tableName}
+    </select>
+
+    <update id="updateModelInfoByModelId" parameterType="EModelInfo">
+        update e_model_info_new
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null and companyId!=0">company_id = #{companyId},</if>
+            <if test="appId != null and appId!=0">app_id = #{appId},</if>
+            <if test="signId != null and signId != ''">sign_id = #{signId},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="variate != null and variate!=0">variate = #{variate},</if>
+            <if test="status != null and status!=0">status = #{status},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="backUrl != null">back_url = #{backUrl},</if>
+            <if test="userId != null and userId!=0">user_id = #{userId},</if>
+            <if test="appExt != null and appExt!=0">app_ext = #{appExt},</if>
+            <if test="modelExt != null and modelExt!=0">model_ext = #{modelExt},</if>
+            <if test="channelId != null and channelId!=0">channel_id = #{channelId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="toCmcc != null  and toCmcc != 0">  to_cmcc = #{toCmcc},</if>
+            <if test="toUnicom != null  and toUnicom != 0">  to_unicom = #{toUnicom},</if>
+            <if test="toTelecom != null  and toTelecom != 0">  to_telecom = #{toTelecom},</if>
+            <if test="toInternational != null  and toInternational != 0">  to_international = #{toInternational},</if>
+        </trim>
+        where model_id = #{modelId}
+    </update>
+</mapper>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>融合通讯</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/xadmin.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script src="/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
+</head>
+<style>
+    .layui-form-label {width:110px;padding:4px}
+    .layui-form-item .layui-form-checkbox[lay-skin="primary"]{margin-top:0;}
+    .layui-form-switch {width:54px;margin-top:0px;}
+    .row{padding: 24px; box-sizing: content-box;}
+    .col-md-bg{background-color: #ffffff;}
+    .model-body{display: flex; padding: 15px 10%;}
+    .ibox-content{width:60%;}
+    .review-body{width:40%; display: flex; justify-content: center;}
+    .review-bg{width: 300px;height: 650px;background: url("/img/phone_mms.png") no-repeat center center; background-size: 100%;}
+    .review-content{margin-top: 120px;height: 450px;width: 260px; overflow-y: auto; padding-left: 20px;padding-right: 7px; }
+    .review-item{display: flex;flex-flow: column;  }
+    .span-txt{background-color: #efefef;padding: 10px;width: 100%; box-sizing: border-box; border-radius: 10px; margin-bottom: 10px;}
+    .review-item>img,video{width:100%; border-radius: 10px;margin-bottom: 10px;border: 1px solid #f8f8f8;}
+    ::-webkit-scrollbar {
+        width: 10px!important;
+        height: 10px!important;
+        -webkit-appearance: none;
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        height: 5px;
+        border: 1px solid transparent;
+        border-top: 0;
+        border-bottom: 0;
+        border-radius: 6px;
+        background-color: #ccc;
+        background-clip: padding-box;
+    }
+    .add-model{height: 56px;width: 100%; display: flex;align-items: center; font-size: 20px; border-bottom: 1px solid #efefef;padding-left: 32px; box-sizing: border-box;}
+    .frame-item{display: flex; flex-flow: column; }
+    .layui-btn-warm{background-color: #ffffff !important; display: flex; flex-flow: column; width: 192px; height: 110px; border: #cccccc 1px dashed; justify-content: center;}
+    .upload-txt{display: flex;align-items: center; width: 100%; color: #8a8a8a; font-size: 14px;justify-content: center;}
+    .upload-remark{font-size: 14px;color: #cccccc; }
+    .layui-btn{line-height: unset !important; white-space: unset !important;}
+    .margin-div{margin-bottom: 10px; }
+    .textarea-remark{width: 400px !important; height: 70px !important; min-height:unset !important; }
+    .select-w{width: 104px !important;}
+    .btn-body{margin-top: 70px !important; margin-left: 10px !important;}
+    .save-btn{background-color: #2A82FF !important;}
+    .back-btn{background-color: white !important;color: #000000; border: 1px solid #cccccc;}
+    .frame-title{width: 100%; height: 32px; display: flex; margin-top: 30px;}
+    .frame-title-c{margin-left: 71px;border-bottom: 1px solid #cccccc; width: 100%;height: 32px; padding-left: 46px; display: flex;}
+    .btn-Unchecked{width: 64px; height: 32px; display: flex; justify-content: center;align-items: center; margin-right: 8px; cursor: pointer;}
+    .btn-Unchecked>font{ font-size: 14px;}
+
+    .btn-select{width: 64px; height: 32px;bottom: 0px;background-color: white; display: flex; justify-content: space-around;align-items: center;  margin-right: 8px; }
+    .btn-select-img{width: 14px; height: 14px; cursor: pointer;}
+
+    .border-thrid{border-top: 1px solid #cccccc; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc;}
+    .btn-add{width: 32px; height: 32px; display: flex;justify-content: center;align-items: center; cursor: pointer;}
+    .btn-add>img{width: 22px; height: 22px;}
+
+    .layui-form-select dl{width: 104px !important; min-width: unset !important;}
+    .layui-input{width:104px !important;}
+    .layui-form-select .layui-edge{right: 50% !important;}
+    .bdisplay{display: none;}
+
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated">
+    <style>
+        input[type=file]{display: inline;}
+    </style>
+    <div class="row">
+        <div class="col-md-12 col-md-bg">
+            <div class="add-model">添加模板</div>
+            <div class="ibox float-e-margins model-body">
+                <div class="ibox-content">
+                    <form class="layui-form" action="" autocomplete="off"  enctype="multipart/form-data" method="post" id="myform" onsubmit="return do_submit();">
+                        <br><br><br>
+                        <!--<div style="position: fixed;top: 30px;right: 100px;">
+                            <a class="layui-btn layui-btn-warm layui-btn-radius" href="javascript:void(0);" onclick="add_zhen([]);" style="float: right;">添加帧</a>
+                        </div>-->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">账号：</label>
+                            <div class="layui-input-inline" style="width:300px">
+                                <select  id="productId" name="appId" style="width: 100%; height: 31px;" required>
+                                    <option value="">请选择</option>
+                                    <option th:each="app : ${applist}"
+                                            th:value="${app.Id}"
+                                            th:text="${app.appName}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">标题：</label>
+                        <div class="layui-input-inline" style="width:300px">
+                            <input style="width: 224px !important;" type="text" name="title" id="title"  value="" lay-verify="required|title" autocomplete="off"  class="layui-input" placeholder="请输入标题"/>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">最多200个字符(一个汉字为2个字符)</div>
+                    </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">变量：</label>
+                            <div class="layui-input-inline" style="width:300px">
+                                <label class="layui-form-mid layui-word-aux"><input type="radio" checked="" value="variate" id="variate" name="variate">有变量</label>
+                                <label class="layui-form-mid layui-word-aux"><input type="radio" value="novariate" id="variate" name="variate">无变量</label>
+                            </div>
+                        </div>
+                        <div class="frame-title">
+                            <div class="frame-title-c">
+                                <div class="btn-select border-thrid zhen-item" data="1">
+                                    <font>帧1</font>
+                                    <img src="/img/del-icon.png" class="btn-select-img" onclick="delete_zhen(this)" />
+                                </div>
+                                <div class="btn-add border-thrid" onclick="add_zhen([])"><img src="/img/add-icon.png"> </div>
+                            </div>
+                        </div>
+
+
+                        <div id="content2">
+
+                            <div class="layui-form-item zhen-content" id="layui-form-item-1">
+                                <div style="clear: both;padding-top:20px;">
+                                    <label class="layui-form-label">附件：</label>
+
+                                    <div class="frame-item">
+                                        <div class="layui-input-inline margin-div">
+                                            <button type="button" class="layui-btn layui-btn-warm" id="upload_btn_1">
+                                                <div class="upload-txt"><img src="/img/upload-icon.png" width="16" height="16" /><font>上传文件</font> </div>
+                                                <div class="upload-remark">支持mp3、mp4、3gp、gif、jpg、png、jpeg,不能超过1.9M</div>
+                                            </button>
+                                            <input class="layui-upload-file" type="file" accept="undefined" name="file">
+                                            <input type="hidden" name="file[1]" id="file1"><input type="hidden" name="file_size[1]" id="file_size1" value="0">
+                                        </div>
+
+                                        <div class="layui-input-inline">
+                                            <select name="listorder[file][1]" class="select-w">
+                                                <option value="0">排序</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="padding-top:20px;">
+                                    <label class="layui-form-label">文本：</label>
+
+                                    <div class="frame-item">
+                                        <div class="layui-input-inline margin-div">
+                                            <textarea class="layui-textarea textarea-remark" name="text[1]" id="text1" onblur="reviewOpt(1)" placeholder="可不填写内容"></textarea>
+                                        </div>
+                                        <div class="layui-input-inline">
+                                            <select name="listorder[text][1]" class="select-w">
+                                                <option value="0">排序</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <!--<hr class="layui-bg-orange">-->
+                        <div class="layui-form-item btn-body">
+                            <div class="layui-input-block">
+                                <button class="layui-btn save-btn" lay-submit="" lay-filter="add">保存</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="layui-btn back-btn" type="button" onclick="javascript:history.back(-1);">返回</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="index" name="index" /></form>
+                </div>
+
+                <div class="review-body">
+                    <div class="review-bg">
+                        <div class="review-content">
+                            <div class="review-item" id="review-zhen-1">
+                                <!--<span class="span-txt">按时到岗考拉单联开关离开；独立开发</span>
+                                <img src="/img/img.jpg" />-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var i = 2;
+    var upload_total_size = 0;//上传附件总大小
+    var max_upload_size = 1945;
+    var index = [1];
+    //添加帧
+
+    function add_zhen(info) {
+        var content = '';
+        content += '<div class="layui-form-item zhen-content" id="layui-form-item-'+i+'">';
+        content += '<div style="clear: both;padding-top:20px;">';
+        content += '<label class="layui-form-label">附件：</label>';
+        content += '<div class="frame-item">';
+        content += '<div class="layui-input-inline margin-div">';
+        content += '<button type="button" class="layui-btn layui-btn-warm" id="upload_btn_'+i+'">';
+        content += '<div class="upload-txt"><img src="/img/upload-icon.png" width="16" height="16" /><font>上传文件</font> </div>';
+        content += '<div class="upload-remark">支持mp3、mp4、3gp、gif、jpg、png、jpeg,不能超过1.9M</div>';
+        content += '</button>';
+        /*content += '<input class="layui-upload-file" type="file" accept="undefined" name="file">';*/
+        content += '<input type="hidden" name="file['+i+']" id="file'+i+'"><input type="hidden" name="file_size['+i+']" id="file_size'+i+'" value="0">';
+        content += '</div>';
+
+        content += '<div class="layui-input-inline">';
+        content += '<select name="listorder[file]['+i+']" class="select-w">';
+        content += '<option value="0">排序</option>';
+        content += '<option value="1">1</option>';
+        content += '<option value="2">2</option>';
+        content += '</select>';
+        content += '</div>';
+        content += '</div>';
+        content += '</div>';
+
+        content += '<div style="padding-top:20px;">';
+        content += '<label class="layui-form-label">文本：</label>';
+
+        content += '<div class="frame-item">';
+        content += '<div class="layui-input-inline margin-div">';
+        content += '<textarea class="layui-textarea textarea-remark" name="text['+i+']" id="text'+i+'" onblur="reviewOpt('+i+')" placeholder="可不填写内容"></textarea>';
+        content += '</div>';
+        content += '<div class="layui-input-inline">';
+        content += '<select name="listorder[text]['+i+']" class="select-w">';
+        content += '<option value="0">排序</option>';
+        content += '<option value="2">2</option>';
+        content += '<option value="1">1</option>';
+        content += '</select>';
+        content += '</div>';
+        content += '</div>';
+        content += '</div>';
+        content += '</div>';
+
+        $(".zhen-content").addClass("bdisplay");
+        $('#content2').append(content);
+
+
+        //增加帧的切换
+        var html = '';
+        html += '<div class="btn-select border-thrid zhen-item" data="'+i+'">';
+        html += '<font>帧'+i+'</font>';
+        html += '<img src="/img/del-icon.png" class="btn-select-img" onclick="delete_zhen(this)" />';
+        html += '</div>';
+
+        $(".zhen-item").removeClass("btn-select");
+        $(".zhen-item").addClass("btn-Unchecked");
+        $(".zhen-item").attr("onclick","changeZhen(this)");
+        $(".btn-select-img").addClass("bdisplay");
+
+        $('.btn-add').before(html);
+
+
+        //增加预览的显示
+
+        var reviewHtml = '<div class="review-item" id="review-zhen-'+i+'"></div>';
+        $(".review-content").append(reviewHtml);
+
+        picupload('#upload_btn_' + i, i);
+        index.push(i);
+        i++;
+        form.render();
+
+        //初始化下拉点击事件
+        selectEvent();
+    }
+    
+    function changeZhen(obj) {
+        var num = $(obj).attr("data");
+        $(".zhen-content").addClass("bdisplay");
+        $("#layui-form-item-"+num).removeClass("bdisplay");
+
+        $(".zhen-item").removeClass("btn-select");
+        $(".zhen-item").addClass("btn-Unchecked");
+
+        $(".zhen-item").attr("onclick","changeZhen(this)");
+        $(".btn-select-img").addClass("bdisplay");
+
+        $(obj).removeClass("btn-Unchecked");
+        $(obj).addClass("btn-select");
+        $(obj).removeAttr("onclick");
+        //$(obj).append('<img src="/img/del-icon.png" class="btn-select-img" onclick="" />');
+        $(obj).children("img").removeClass("bdisplay");
+    }
+
+    //删除帧
+    function delete_zhen(obj) {
+        /*$('#layui-form-item-' + i).remove();
+        removeWithoutCopy(index,i);
+        return true;*/
+        var parentObj = $(obj).parent();
+        var num = parentObj.attr("data");
+
+
+        if(parentObj.siblings().length <= 1){
+            layer.msg('最后一帧不能删除');
+            return;
+        }
+
+        //前一个兄弟节点存在
+        if(parentObj.nextAll().length > 1){
+            var nextNum = parentObj.next().attr("data");
+            parentObj.next().removeClass("btn-Unchecked");
+            parentObj.next().addClass("btn-select");
+            parentObj.next().children("img").removeClass("bdisplay");
+            parentObj.next().removeAttr("onclick");
+
+            $("#layui-form-item-"+nextNum).removeClass("bdisplay");
+
+            $("#layui-form-item-"+num).remove();
+            $("#review-zhen-"+num).remove();
+            parentObj.remove();
+        }
+        else if(parentObj.prevAll().length > 0 && parentObj.nextAll().length <= 1){
+            var prevNum = parentObj.prev().attr("data");
+            parentObj.prev().removeClass("btn-Unchecked");
+            parentObj.prev().addClass("btn-select");
+            parentObj.prev().children("img").removeClass("bdisplay");
+            parentObj.prev().removeAttr("onclick");
+            $("#layui-form-item-"+prevNum).removeClass("bdisplay");
+
+            $("#layui-form-item-"+num).remove();
+            $("#review-zhen-"+num).remove();
+            parentObj.remove();
+        }
+
+        removeWithoutCopy(index,num);
+
+        return;
+    }
+
+    //预览展示
+    function reviewOpt(i) {
+        var filePath = $("#file"+i).val();
+        var fileSort = $("select[name='listorder[file]["+i+"]']").val();
+
+        var text = $("#text"+i).val();
+        var textSort = $("select[name='listorder[text]["+i+"]']").val();
+
+        var remarkTxt = "";
+        var imgTxt = "";
+
+        if(filePath != null && filePath != ''){
+            let tempPath = filePath.toLowerCase();
+            if(tempPath.indexOf("mp4") > 0 || tempPath.indexOf("mp3") > 0 ){
+                imgTxt = '<video controls><source src="'+ filePath+'" id="video_source">您的浏览器不支持 video 标签。</video>';
+            }else{
+                imgTxt = '<img src="'+filePath+'" />';
+            }
+        }
+
+        if(text != null && text != ''){
+            remarkTxt = '<span class="span-txt">'+text+'</span>';
+        }
+
+        if(Number(fileSort) <= Number(textSort) ){
+            $("#review-zhen-"+i).empty();
+            $("#review-zhen-"+i).append(imgTxt+remarkTxt);
+            return;
+        }else{
+            $("#review-zhen-"+i).empty();
+            $("#review-zhen-"+i).append(remarkTxt + imgTxt);
+            return;
+        }
+    }
+
+    function selectEvent(){
+        layui.form.on("select", function(data){
+            let name = data.elem.name;
+            let i = name.substring(name.lastIndexOf("[")+1, name.lastIndexOf("]"));
+            reviewOpt(i);
+        });
+    }
+
+    function picupload(id, i) {
+        upload.render({
+            elem: id
+            , url: 'uploadFile'
+            , multiple: false
+            , size: 1945 //最大1.9M
+            , exts: 'mp3|mp4|3gp|gif|jpg|png|jpeg'
+            , before: function (obj) {
+            }
+            , done: function (res) {
+                $('#upload_text' + i).text('已上传 ' + res['size'] + 'KB');
+                //upload_total_size += parseInt(res['size']);
+                $('#file_size' + i).val(parseInt(res['size']));
+                $('#file' + i).val(res['filepath']);
+                if (res['type'] == 2) { //图片
+                    /*$('#upload_file' + i).empty();
+                    img = '<img width="300" src="' + res['filepath'] + '"/>';
+                    $('#upload_file' + i).append(img);*/
+                } else {
+                    /*$('#upload_file' + i).empty();
+                    video = '<video width="320" height="240" controls><source src="' + res['filepath'] + '" id="video_source">您的浏览器不支持 video 标签。</video>';
+                    $('#upload_file' + i).append(video);*/
+                }
+                reviewOpt(i);
+            }
+        });
+    }
+    //表单提交
+    function do_submit() {
+        upload_total_size = 0;
+        $('input[name^=file_size]').each(function () {
+            upload_total_size += parseInt($(this).val());
+        });
+        if (upload_total_size > max_upload_size) {
+            layer.msg('附件总大小不能超过1.9M');
+            return false;
+        }
+        $("#index").val(index);
+        return true;
+    }
+    var layer;
+    var img_cnt = 0;
+    var upload;
+    var form;
+    var laydate;
+    layui.use(['form', 'laydate', 'upload'], function () {
+        layer = layui.layer, form = layui.form, laydate = layui.laydate, upload = layui.upload;
+        form.verify({
+            ext_num:function(value, item){
+                if(value.length > 0 && ! /^\d{0,5}$/.test(value)){
+                    return '扩展位不正确';
+                }
+            },
+            title:function(value,item){
+                if(strlen(value)>200){
+                    return '不能超过200个字符';
+                }
+            }
+        });
+        function strlen(str){
+            var len = 0;
+            for (var i=0; i<str.length; i++) {
+                var c = str.charCodeAt(i);
+                //单字节加1
+                if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+                    len++;
+                }
+                else {
+                    len+=2;
+                }
+            }
+            return len;
+        }
+    });
+    //页面加载完成之后添加第一帧
+    window.onload = function () {
+
+        picupload('#upload_btn_1',1);
+        selectEvent();
+
+        var attachemnt = [];
+        if(jQuery.isEmptyObject(attachemnt)){
+            //add_zhen([]);
+        }else{
+            $.each(attachemnt, function (k, v) {
+                add_zhen(v);
+            });
+        }
+        /*if(JSON.stringify(attachemnt) != "{}"){
+            $.each(attachemnt, function (k, v) {
+                add_zhen(v);
+            });
+        }else{
+            add_zhen([]);
+        }*/
+
+
+    }
+
+    //删除数组中的元素
+    function removeWithoutCopy(arr, item) {
+        for(var i = 0; i < arr.length; i++){
+            if(arr[i] == item){
+                //splice方法会改变数组长度，当减掉一个元素后，后面的元素都会前移，因此需要相应减少i的值
+                arr.splice(i,1);
+                i--;
+            }
+        }
+        return arr;
+    }
+</script>
+</html>

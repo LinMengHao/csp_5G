@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('账号统计的显示查询列表')"/>
+</head>
+<style type="text/css">
+    .libtn{text-align: right; justify-content: flex-end;}
+    .btn-primary{background-color: #2A82FF !important; }
+    .btn-warning{background-color: #ffffff !important; color: #363636 !important; border: #e1e1e1 1px solid !important;}
+    .search-collapse, .select-table{ background-color: unset !important;}
+    .fixed-table-toolbar{background-color: #ffffff !important; border-radius: 10px; padding:0 12px ; box-sizing: border-box; margin-bottom: 12px;}
+</style>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>帐户名称：</label>
+                            <input type="text" name="appName"　maxlength="８" onblur="validateBlur()"/>
+                        </li>
+<!--                        <li>-->
+<!--                            <label>通道id：</label>-->
+<!--                            <input type="text" name="channelId"　maxlength="８"/>-->
+<!--                        </li>-->
+                        <li>
+                            <label>通道：</label>
+                            <select  id="channelId" name="channelId">
+                                <option value="">请选择通道</option>
+                                <option th:each="channel : ${channellist}"
+                                        th:value="${channel.id}"
+                                        th:text="${channel.id}+':'+${channel.channelName}">
+                                </option>
+                            </select>
+                        </li>
+                        <li class="select-time">
+                            <label>创建时间： </label>
+                            <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="startTime"/>
+                            <span>-</span>
+                            <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="endTime"/>
+                        </li>
+                        <li>
+                            <label class="radio-box"> <input type="radio" id="statisticTypeNo" name="statisticType" value="no" checked="checked"/> 合计 </label>
+                            <label class="radio-box"> <input type="radio" name="statisticType" value="yes" /> 分天 </label>
+                            <!--<div class="radio-box" th:each="dict : ${@dict.getType('stat_type')}">
+                                <input type="radio" th:id="${dict.dictCode}" name="statisticType" th:value="${dict.dictValue}" th:checked="${dict.default}">
+                                <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                            </div>-->
+                        </li>
+
+<!--                        <li>-->
+<!--                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i-->
+<!--                                    class="fa fa-search"></i>&nbsp;搜索</a>-->
+<!--                            <a class="btn btn-warning btn-rounded btn-sm" onclick="resetPre()"><i-->
+<!--                                    class="fa fa-refresh"></i>&nbsp;重置</a>-->
+<!--                        </li>-->
+                        <li  class="libtn">
+                            <a class="btn btn-primary btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mmskhd:statistics:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var prefix = ctx + "mmskhd/statistics";
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            exportUrl: prefix + "/export",
+            modalName: "账号统计的显示查询",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'logDate',
+                    title: '日期',
+                },
+                {
+                    field: 'appName',
+                    title: '帐户名称',
+                },
+                {
+                    field: 'sendTotal',
+                    title: '提交总数'
+                },
+                {
+                    field: 'reportDelivrd',
+                    title: '状态成功'
+                },
+                {
+                    field: 'reportUndeliv',
+                    title: '状态失败'
+                },
+                {
+                    field: 'reportUnknown',
+                    title: '状态未知'
+                },
+                {
+                    field: 'loadDelivrd',
+                    title: '下载成功'
+                },
+                {
+                    field: 'reportBlack',
+                    title: '黑名单'
+                },
+                {
+                    field: 'successRate',
+                    title: '成功率'
+                },
+                {
+                    field: 'failureRate',
+                    title: '失败率'
+                },
+                {
+                    field: 'unknownRate',
+                    title: '未知率'
+                }]
+        };
+        $.table.init(options);
+
+    });
+    if ($("input[name='statisticType']:checked").val() == 'no'){
+        $('#bootstrap-table').bootstrapTable('hideColumn','logDate');
+    }else if($("input[name='statisticType']:checked").val() == 'yes'){
+        $('#bootstrap-table').bootstrapTable('showColumn','logDate');
+    }else{
+        $('#bootstrap-table').bootstrapTable('showColumn','logDate');
+    }
+    function resetPre() {
+        $.form.reset();
+
+    }
+
+    function validateBlur() {
+        var appName = $("input[name='appName']").val();
+        if( appName.length > 16){
+            $.modal.alert("账户名称过长");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</body>
+</html>

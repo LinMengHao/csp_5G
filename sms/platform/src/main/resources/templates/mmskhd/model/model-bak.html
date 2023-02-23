@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('模板管理列表')" />
+</head>
+<style type="text/css">
+    .agv-item1{display: flex;justify-content: space-between;}
+    .agv-item-xngw{display: flex;align-items: center;}
+    .agv-item-gwzt{display: flex;align-items: center;}
+    .agv-item-gwzt>img{cursor: pointer;}
+    /*.gwzt-status-color1{background-color: #45C359;color: #ffffff;}*/
+    .gwzt-status-color2{background-color: #4169E1;color: #ffffff;}
+    .xngw-no{width: 155px;height: 36px;border-radius: 20px; font-weight:700; font-size: 18px !important;display: flex;justify-content: center;align-items: center;color: #000000;}
+    .xngw-no-color1{background-color: #E0F4E4 ;}
+    .xngw-no-color2{background-color: #F4E0E0 ;}
+    .xngw-txt{font-size: 12px !important;border: #e1e1e1;margin-left: 10px}
+    .xngw-num{font-weight: 700 ;font-size: 18px !important;margin-left: 10px;color: #C34545;}
+    .gwzt-status{width: 60px;height: 35px;display: flex;align-items: center;justify-content: center;border-radius: 10px;  margin-right: 10px;font-weight: 700;}
+    .gwzt-status-color1{background-color: #E0F4E4;color: #45C359;}
+    .xngw-num{font-weight: 700 ;font-size: 18px !important;margin-left: 10px;color: #C34545;}
+    .agv-item{display: flex;justify-content: space-between; margin-top: 18px;height: 30px;}
+    .agv-item-xx{width: 48%;background-color: #EFF1F4;border-radius: 8px;display: flex; align-items: center; }
+    .agv-item-xx>span:first-child{width: 60px;padding-left: 10px;}
+    .agv-item-xx>span:last-child{flex-grow: 1; text-align: center;color: #212121;}
+    .agv-item-scrq{display: flex; margin-top: 10px;font-size: 12px;color: #999999;}
+    .agv-item-scrq>span:first-child{margin-right: 13px;}
+    .agv-item-scrq-x{width: 50%;}
+    .agv-item-scrq-x>span:first-child{padding-right: 11px; box-sizing: border-box;}
+    .agv-item-btm{display: flex;justify-content: space-around;align-items: center;margin-top: 18px;}
+    .agv-item-btm-d{display: flex;justify-content: center;align-items: center;flex-flow: column;}
+    .agv-item-btm-d>span:first-child{font-size: 18px;font-weight: 700;color: #000000;}
+    .agv-item-btm-d>span:last-child{font-size: 12px;color: #999999; }
+    .agv-item-btm-line{width: 1px;height: 22px;background-color: #999999;}
+    .contact-box{border-radius: 20px;position: relative}
+    .contact-box:hover{background: rgba(14, 17, 24, 0.44999998807907104);opacity:0.5}
+    .contact-box-icons{
+        position: absolute;
+        width: 85%;
+        height: 200px;
+        top:20px;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: row;
+        text-align: center;
+    }
+    .contact-box:hover .contact-box-icons{
+        display: flex;
+    }
+    .select-table{background-color:unset;}
+    .fixed-table-pagination{background-color: #ffffff;padding: 0 10px;}
+    .more-body{width: 93%;height: 93%;position: absolute;z-index: 1;background-color: #212121;opacity:0.8; top: 0;border-radius: 20px;}
+    .more-content-img{margin-top: 44px;margin-right: 30px;display: flex;justify-content: flex-end;align-items: flex-end;}
+    .more-content{width: 100%;background-color: #ffffff;border-radius: 20px;padding: 15px;box-sizing: border-box;}
+    .more-content>p{margin: 0; padding: 8px 0;display: flex;}
+    .more-content>p:first-child{border-bottom: 1px solid #e1e1e1;}
+    .more-content>p>span:first-child{width:28%;}
+    .displaydb{display: none;}
+</style>
+
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>模板id：</label>
+                            <input type="text" name="modelId"　maxlength="1６"/>
+                        </li>
+                        <li>
+                            <label>模板标题：</label>
+                            <input type="text" name="title"　maxlength="２０"/>
+                        </li>
+                        <li>
+                            <label>状态：</label>
+                            <select name="status" th:with="type=${@dict.getType('app_model_status')}">
+                                <option value="">全部</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>创建时间：</label>
+                            <input type="text" class="time-input" placeholder="请选择创建时间" name="addTime"/>
+                        </li>
+                        <li>
+                            <label>报备账号：</label>
+                            <input type="text" name="appId"　maxlength="８"/>
+                        </li>
+                        <li>
+                            <label>变量：</label>
+                            <select name="variate" th:with="type=${@dict.getType('model_variate_do')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;新增</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.addTab()" >
+                <i class="fa fa-plus"></i> 新增
+            </a>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-page-size="10"
+                   data-show-custom-view="true" data-custom-view="customViewFormatter"
+                   data-show-custom-view-button="true">
+            </table>
+        </div>
+<!--        <div class="col-sm-12 select-table table-striped">-->
+<!--            <table id="bootstrap-table"></table>-->
+<!--        </div>-->
+
+    </div>
+</div>
+
+<template id="profileTemplate">
+    <div class="col-sm-3">
+        <div class="contact-box">
+            <div class="agv-item1">
+                <div class="agv-item-xngw">
+                    <font class="xngw-no xngw-no-color1">%模板idid%</font>
+<!--                    <font class="xngw-txt">id</font>-->
+<!--                    <font class="xngw-num">%id%</font>-->
+
+                </div>
+<!--                <div class="agv-item-gwzt">-->
+<!--                    <span class="gwzt-status %statusColor%">%模板状态%</span>-->
+<!--                </div>-->
+
+<!--                <div class="agv-item-gwzt">-->
+<!--                    <img class="agv-item-gwzt-img" src="/img/avg-dian.png" height="30" width="30" onclick="clickShow('%id%')"/>-->
+<!--                </div>-->
+            </div>
+<!--            <div class="agv-item-scrq">-->
+<!--                <span>id</span>-->
+<!--                <span>%ide%</span>-->
+<!--            </div>-->
+            <div class="agv-item-scrq">
+                <span>模板标题</span>
+                <span>%模板标题%</span>
+            </div>
+            <div class="agv-item-scrq">
+                <span>账号</span>
+                <span>%账号%</span>
+            </div>
+            <div class="agv-item-scrq">
+                <span>签名</span>
+                <span>%报备签名%</span>
+            </div>
+            <div class="agv-item-scrq">
+                <span>是否有变量</span>
+                <span>%变量%</span>
+            </div>
+
+            <div class="agv-item-scrq">
+                    <span>创建时间</span>
+                    <span>%添加时间%</span>
+            </div>
+            <div class="agv-item-btm">
+                <div class="agv-item-btm-d">
+                    <span>模板id</span>
+                    <span>%模板id%</span>
+                </div>
+                <div class="agv-item-btm-line"></div>
+                <div class="agv-item-btm-d">
+<!--                    <span>模板状态</span>-->
+                    <font class="xngw-num">%模板状态1%</font>
+<!--                    <span class="gwzt-status %statusColor%">%模板状态1%</span>-->
+                </div>
+            </div>
+            <div class="contact-box-icons">
+                <img class="gwzt-img" src="/img/icon-eye.png" height="40" width="40" onclick="$.operate.detail('%ide%')"/>
+                <img class="gwzt-img" src="/img/icon-edit.png" height="40" width="40" onclick="edit('%typeStatus%','%ide%')"/>
+                <img class="gwzt-img" src="/img/icon-copy.png" height="40" width="40" onclick="$.modal.openTab('复制模板', '/mmskhd/model/copy/%ide%');"/>
+                <img class="gwzt-img" src="/img/icon-send.png" height="40" width="40" onclick="$.modal.openTab('发送', '/mmskhd/model/send/%ide%');"/>
+                <img class="gwzt-img" src="/img/icon-delete.png" height="40" width="40" onclick="$.operate.remove('%ide%')"/>`
+            </div>
+        </div>
+    </div>
+</template>
+
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: bootstrap-table-custom-view-js" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('mmskhd:model:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('mmskhd:model:remove')}]];
+    var statusDatas = [[${@dict.getType('app_model_status')}]];
+    var variateDatas = [[${@dict.getType('model_variate_do')}]];
+    var prefix = ctx + "mmskhd/model";
+    $(function() {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            detailUrl: prefix + "/detail/{id}",
+            deleteUrl: prefix + "/delete/{id}",
+            copyUrl: prefix + "/copy/{id}",
+            sendUrl: prefix + "/sned/{id}",
+            modalName: "模板管理",
+            columns: [{
+                checkbox: true
+            },
+            // },{
+            //     field: 'id',
+            //     title: 'id',
+            //     width:'6%',
+            //     formatter: function (value, row, index) {
+            //         return index + 1;
+            //     }
+            // },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },]
+        };
+        $.table.init(options);
+    });
+    function customViewFormatter (data) {
+        var template = $('#profileTemplate').html()
+        var view = ''
+
+        $.each(data, function (i, row) {
+            let reportSign = "暂无";
+            // debugger;
+            if(row.signReport!=null){
+                reportSign = row.signReport.reportSign;
+            }
+            let mmsModelstatus = '草稿';
+            let statusColor = "gwzt-status-color1";
+            let serialNumberClass = 'xngw-no-color1';
+            var typeStatus = true;//可修改
+
+            row.mmsModel.status
+            if(row.mmsModel.status!=null && row.mmsModel.status == 'success'){
+                mmsModelstatus = '审核通过';
+                statusColor = "gwzt-status-color2";
+                serialNumberClass = 'xngw-no-color2';
+                typeStatus = false;
+            }else if(row.mmsModel.status!=null && row.mmsModel.status == 'failure'){
+                mmsModelstatus = '审核失败';
+                statusColor = "gwzt-status-color2";
+                serialNumberClass = 'xngw-no-color2';
+                typeStatus = false;
+            }else if(row.mmsModel.status!=null && row.mmsModel.status == 'review'){
+                mmsModelstatus = '审核中';
+                statusColor = "gwzt-status-color2";
+                serialNumberClass = 'xngw-no-color2';
+                typeStatus = false;
+            }
+
+            let variate = '没变量';
+            if(row.variate!=null && row.variate == 'variate'){
+                variate = '有变量';
+                statusColor = "gwzt-status-color2";
+                serialNumberClass = 'xngw-no-color2';
+            }
+
+            view += template.replace('%id%', row.id)
+                .replace(new RegExp('%ide%',"gm"),row.id)
+                .replace('%模板id%', row.modelId)
+                .replace('%模板idid%', row.modelId)
+                .replace('%模板标题%', row.title)
+                .replace('%报备签名%', reportSign)
+                // .replace(new RegExp("%SerialNumber%","gm"), i+1)
+                .replace('%添加时间%', row.addTime)
+                .replace('%账号%', row.application.appName)
+                .replace('%变量%',variate)
+                .replace('%模板状态1%', mmsModelstatus)
+                .replace('%typeStatus%', typeStatus)
+            ;
+        })
+
+        return `<div class="row mx-0">${view}</div>`;
+    }
+
+    function clickShow(id) {
+        debugger;
+        $(".more-body").addClass("displaydb");
+        $("#more-body-dis_"+id).removeClass("displaydb");
+
+        $(".more-content").unbind();
+        $(".gray-bg").unbind();
+
+        $(".more-body").click(function(event){
+            $(".more-body").addClass("displaydb");
+        });
+        $(".more-content").click(function(event){
+            event.stopPropagation();
+        });
+    }
+
+    function edit(type,id) {
+        if(type == 'false'){
+            $.modal.alert("该状态不可修改");
+        }else{
+            $.operate.editTab(id);
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

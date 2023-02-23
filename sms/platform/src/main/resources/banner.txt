@@ -1,0 +1,14 @@
+Application Version: ${ruoyi.version}
+Spring Boot Version: ${spring-boot.version}
+                 _  _
+                ( \/ )
+         .---.   \  /   .-"-.
+        /   6_6   \/   / 4 4 \
+        \_  (__\       \_ v _/
+        //   \\        //   \\
+       ((     ))      ((     ))
+jgs=====""===""========""===""=======
+          |||            |||
+           |              |
+
+          TS             RY

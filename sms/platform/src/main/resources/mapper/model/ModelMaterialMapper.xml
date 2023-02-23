@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.model.mapper.ModelMaterialMapper">
+    
+    <resultMap type="ModelMaterial" id="ModelMaterialResult">
+        <result property="id"    column="id"    />
+        <result property="modelId"    column="model_id"    />
+        <result property="mediaType"    column="media_type"    />
+        <result property="frameIndex"    column="frame_index"    />
+        <result property="frameSort"    column="frame_sort"    />
+        <result property="ext"    column="ext"    />
+        <result property="content"    column="content"    />
+        <result property="filePath"    column="file_path"    />
+        <result property="fileSize"    column="file_size"    />
+        <result property="userId"    column="user_id"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectModelMaterialVo">
+        select id, model_id, media_type, frame_index, frame_sort, ext, content,file_path, file_size, user_id, update_time, create_time from e_model_material
+    </sql>
+
+    <select id="selectModelMaterialList" parameterType="ModelMaterial" resultMap="ModelMaterialResult">
+        <include refid="selectModelMaterialVo"/>
+        <where>  
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="mediaType != null and mediaType !=0 "> and media_type = #{mediaType}</if>
+            <if test="frameIndex != null "> and frame_index = #{frameIndex}</if>
+            <if test="frameSort != null "> and frame_sort = #{frameSort}</if>
+            <if test="ext != null  and ext != ''"> and ext = #{ext}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="filePath != null  and filePath != ''"> and file_path = #{filePath}</if>
+            <if test="fileSize != null "> and file_size = #{fileSize}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+        </where>
+    </select>
+    <select id="selectModelMaterialLists" parameterType="ModelMaterial" resultMap="ModelMaterialResult">
+        <include refid="selectModelMaterialVo"/>
+        <where>
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+        </where>
+    </select>
+    
+    <select id="selectModelMaterialById" parameterType="Long" resultMap="ModelMaterialResult">
+        <include refid="selectModelMaterialVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertModelMaterial" parameterType="ModelMaterial" useGeneratedKeys="true" keyProperty="id">
+        insert into e_model_material
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="modelId != null and modelId != ''">model_id,</if>
+            <if test="mediaType != null">media_type,</if>
+            <if test="frameIndex != null">frame_index,</if>
+            <if test="frameSort != null">frame_sort,</if>
+            <if test="ext != null">ext,</if>
+            <if test="content != null">content,</if>
+            <if test="filePath != null">file_path,</if>
+            <if test="fileSize != null">file_size,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="modelId != null and modelId != ''">#{modelId},</if>
+            <if test="mediaType != null">#{mediaType},</if>
+            <if test="frameIndex != null">#{frameIndex},</if>
+            <if test="frameSort != null">#{frameSort},</if>
+            <if test="ext != null">#{ext},</if>
+            <if test="content != null">#{content},</if>
+            <if test="filePath != null">#{filePath},</if>
+            <if test="fileSize != null">#{fileSize},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+    <insert id="insertModelMaterials" parameterType="java.util.List">
+        insert into e_model_material(model_id,media_type,frame_index,frame_sort,ext,content,file_path,file_size,user_id,update_time,create_time)
+        values
+        <foreach collection="list" separator="," item="item">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.modelId},#{item.mediaType},#{item.frameIndex},#{item.frameSort},#{item.ext},#{item.content},
+                #{item.filePath},#{item.fileSize},#{item.userId},#{item.updateTime},#{item.createTime}
+            </trim>
+        </foreach>
+
+    </insert>
+    <update id="updateModelMaterial" parameterType="ModelMaterial">
+        update e_model_material
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="modelId != null and modelId != ''">model_id = #{modelId},</if>
+            <if test="mediaType != null">media_type = #{mediaType},</if>
+            <if test="frameIndex != null">frame_index = #{frameIndex},</if>
+            <if test="frameSort != null">frame_sort = #{frameSort},</if>
+            <if test="ext != null">ext = #{ext},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="filePath != null">file_path = #{filePath},</if>
+            <if test="fileSize != null">file_size = #{fileSize},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteModelMaterialById" parameterType="Long">
+        delete from e_model_material where id = #{id}
+    </delete>
+    <delete id="deleteModelMaterialByModelId" parameterType="String">
+        delete from e_model_material where model_id = #{modelId}
+    </delete>
+
+    <delete id="deleteModelMaterialByIds" parameterType="String">
+        delete from e_model_material where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.khd.mapper.MmsSenderMapper">
+    <resultMap type="MmsSender" id="MmsSenderResult">
+        <result property="batchId"    column="batch_id"    />
+        <result property="linkId"    column="link_id"    />
+        <result property="subject"    column="subject"    />
+        <result property="submitTime"    column="submit_time"    />
+        <result property="status"    column="status"    />
+        <result property="appId"    column="app_id"    />
+        <result property="signName"    column="sign_name"    />
+        <result property="info"    column="info"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="messageId"    column="message_id"    />
+        <result property="destNumber"    column="dest_number"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="reportTime"    column="report_time"    />
+        <result property="savePath"    column="save_path"    />
+        <result property="serviceCode"    column="service_code"    />
+        <result property="mm7version"    column="mm7version"    />
+        <result property="appName"    column="app_name"    />
+        <result property="channelName"    column="channel_name"    />
+        <result property="dataStatus"    column="data_status"    />
+        <result property="channelMsgId"    column="channel_msg_id"    />
+    </resultMap>
+
+    <sql id="selectMmsSenderVo">
+        select batch_id, link_id, subject, submit_time, status, app_id,sign_name,info, channel_id, message_id, dest_number, create_time, report_time, save_path, service_code, mm7version, app_name, data_status, channel_msg_id from mms_sender
+    </sql>
+    <!--<if test="logDate != null and  logDate != '' ">
+                mms_sender_${logDate} mt
+            </if>
+            <if test="timeList != null and timeList.size() >0">
+                <foreach collection="timeList" item="mms_sender" separator=" union all " open="(" close=")">
+                    SELECT
+                    *
+                    FROM ${mms_sender}
+                </foreach>
+                as mt
+            </if>-->
+    <select id="selectMmsSenderList" parameterType="MmsSender" resultMap="MmsSenderResult">
+        SELECT app.app_name,ch.channel_name ,mt.batch_id,mt.dest_number,
+        mt.subject ,mt.submit_time ,mt.status,mt.sign_name,mt.info ,mt.message_id ,mt.create_time ,
+        mt.report_time ,mt.save_path ,mt.service_code ,mt.mm7version,mt.callback,mt.channel_id
+        from
+        <if test="logDate != null and  logDate != '' ">
+            mms_sender_${logDate} mt
+        </if>
+        <if test="timeList != null and timeList.size() >0">
+            <foreach collection="timeList" item="mms_sender" separator=" union all " open="(" close=")">
+                SELECT
+                *
+                FROM ${mms_sender}
+            </foreach>
+            as mt
+        </if>
+        left join t_channel ch on
+        mt.channel_id=ch.id LEFT JOIN t_application app
+        on mt.app_name=app.app_name
+        WHERE 1=1
+        <if test="appName != null and  appName != '' ">
+            AND mt.app_name = #{appName}
+        </if>
+        <if test="batchId != null and  batchId != '' ">
+            AND mt.batch_id = #{batchId}
+        </if>
+
+        <if test="destNumber != null and destNumber!=''">
+            AND mt.dest_number=#{destNumber}
+        </if>
+        <if test="messageId != null and messageId !=''">
+            AND mt.message_id=#{messageId}
+        </if>
+        <if test="companyId != null and companyId !='' and companyId !=100">
+            AND mt.company_id=#{companyId}
+        </if>
+        <if test="status != null and status !=''">
+            AND mt.status=#{status}
+        </if>
+        <if test="signName != null and signName !=''">
+            AND mt.sign_name=#{signName}
+        </if>
+        <if test="callback != null and callback !=''">
+            AND mt.callback=#{callback}
+        </if>
+        <if test="channelId != null and channelId !=''">
+            AND mt.channel_id=#{channelId}
+        </if>
+        <if test="info != null and info !=''">
+            AND mt.info like "%"#{info}"%"
+        </if>
+        <if test="subject != null and subject !=''">
+            AND mt.subject like "%"#{subject,jdbcType=VARCHAR}"%"
+        </if>
+        <if test="startTime != null and startTime != ''">
+            AND mt.submit_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND mt.submit_time &lt;= #{endTime}
+        </if>
+        ORDER BY mt.submit_time desc
+    </select>
+    <select id="selectMmsSenderListOld" parameterType="MmsSender" resultMap="MmsSenderResult">
+        SELECT app.app_name,ch.channel_name, mt.batch_id,mt.dest_number,
+        mt.subject ,mt.submit_time ,mt.status,mt.sign_name,mt.info ,mt.message_id ,mt.create_time ,
+        mt.report_time ,mt.save_path ,mt.service_code ,mt.mm7version,mt.channel_id
+        from
+        <if test="logDate != null and  logDate != '' ">
+            mms_sender_${logDate} mt
+        </if>
+        <if test="timeList != null and timeList.size() >0">
+            <foreach collection="timeList" item="mms_sender" separator=" union all " open="(" close=")">
+                SELECT
+                ${mms_sender}.batch_id,${mms_sender}.dest_number,${mms_sender}.app_name,
+                ${mms_sender}.subject ,${mms_sender}.submit_time ,${mms_sender}.status,${mms_sender}.sign_name,${mms_sender}.info ,${mms_sender}.message_id ,${mms_sender}.create_time ,
+                ${mms_sender}.report_time ,${mms_sender}.save_path ,${mms_sender}.service_code ,${mms_sender}.mm7version,${mms_sender}.channel_id
+                FROM ${mms_sender}
+            </foreach>
+            as mt
+        </if>
+        left join t_channel ch on
+        mt.channel_id=ch.id LEFT JOIN t_application app
+        on mt.app_name=app.app_name
+        WHERE 1=1
+        <if test="appName != null and  appName != '' ">
+            AND mt.app_name = #{appName}
+        </if>
+        <if test="batchId != null and  batchId != '' ">
+            AND mt.batch_id = #{batchId}
+        </if>
+
+        <if test="destNumber != null and destNumber!=''">
+            AND mt.dest_number=#{destNumber}
+        </if>
+        <if test="messageId != null and messageId !=''">
+            AND mt.message_id=#{messageId}
+        </if>
+        <if test="companyId != null and companyId !='' and companyId !=100">
+            AND mt.company_id=#{companyId}
+        </if>
+        <if test="status != null and status !=''">
+            AND mt.status=#{status}
+        </if>
+        <if test="signName != null and signName !=''">
+            AND mt.sign_name=#{signName}
+        </if>
+<!--        <if test="callback != null and callback !=''">-->
+<!--            AND mt.callback=#{callback}-->
+<!--        </if>-->
+        <if test="channelId != null and channelId !=''">
+            AND mt.channel_id=#{channelId}
+        </if>
+        <if test="info != null and info !=''">
+            AND mt.info like "%"#{info}"%"
+        </if>
+        <if test="subject != null and subject !=''">
+            AND mt.subject like "%"#{subject,jdbcType=VARCHAR}"%"
+        </if>
+        <if test="startTime != null and startTime != ''">
+            AND mt.submit_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND mt.submit_time &lt;= #{endTime}
+        </if>
+        ORDER BY mt.submit_time desc
+    </select>
+    <select id="selectMmsSenderByLinkId" parameterType="String" resultMap="MmsSenderResult">
+        <include refid="selectMmsSenderVo"/>
+        where link_id = #{linkId}
+    </select>
+</mapper>

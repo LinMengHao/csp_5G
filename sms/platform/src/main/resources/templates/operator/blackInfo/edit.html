@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改全局黑名单')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-blackInfo-edit" th:object="${blackInfo}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">号码：</label>
+                <div class="col-sm-8">
+                    <input name="mobile" th:field="*{mobile}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">黑名单等级：</label>
+                <div class="col-sm-8">
+                    <select name="ruleLevel" th:field="*{ruleLevel}" style="width: 100%; height: 31px;">
+                        <option value="1">高危</option>
+                        <option value="2">中危</option>
+                        <option value="3">低危</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">黑名单来源：</label>
+                <div class="col-sm-8">
+                    <select name="source" th:field="*{source}" style="width: 100%; height: 31px;">
+                        <option value="miit">工信部</option>
+                        <option value="12321">12321</option>
+                        <option value="operator">运营商</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">备注：</label>
+                <div class="col-sm-8">
+                    <input name="remark" th:field="*{remark}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "operator/blackInfo";
+        $("#form-blackInfo-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-blackInfo-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增账户管理')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<style>
+    .left{
+        width: 260px;
+        height: 531px;
+        margin-left: 70px;
+        padding-top: 80px;
+        background:url('/img/phone_mms.png') no-repeat center center;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        -o-background-size:cover;
+        background-size:cover
+    }
+    .left-content{
+        width: 248px;
+        height: 394px;
+        padding-left: 18px;
+        padding-right: 7px;
+        margin-top: 15px;
+        overflow-y: auto;
+        /* background-color: #e1e1e1;*/
+        border-radius: 4px;
+    }
+    .layui-input-block{
+        margin-top: 50px;
+        margin-left: 145px;
+    }
+    .layui-btn-submit, .layui-btn-back{
+        width: 65px;
+        height: 32px;
+        border-radius: 2px;
+    }
+    .layui-btn-submit{
+        border: 1px solid #2A82FF;
+        background-color: #2A82FF;
+        color: #fff;
+    }
+    .layui-btn-back{
+        border: 1px solid #FFFFFF;
+    }
+    .review-item{display: flex;flex-flow: column;  }
+    .span-txt{background-color: #efefef;padding: 10px;width: 100%; box-sizing: border-box; border-radius: 10px; margin-bottom: 10px;}
+    .review-item>img,video{width:100%; border-radius: 10px;margin-bottom: 10px;border: 1px solid #f8f8f8;}
+    .displayb{display: none;}
+</style>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-mms-send">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">下发账号：</label>
+                <div class="col-sm-9">
+                    <select  id="appId" name="appId" style="width: 100%; height: 31px;" onchange="appChange()" required>
+                        <option value="">请选择下发账号</option>
+                        <option th:each="app : ${applist}"
+                                th:value="${app.id}"
+                                th:text="${app.appName}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">模板id ：</label>
+                <div class="col-sm-9">
+                    <select name="modelId" id="modelId" style="width: 100%; height: 31px;" onchange="modelChange()" required>
+                        <option value="">请选择模板</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group" id="optionsRadiosArea">
+                <label class="col-sm-3 control-label"></label>
+                <div class="col-sm-9">
+                    <a class="btn btn-info" onclick="$.table.importExcel()">
+                        <i class="fa fa-upload"></i> 上传
+                    </a>
+<!--                    <textarea rows="2" cols="60" id="param1" name="param1" placeholder="变量之间用英文逗号隔开"></textarea>-->
+                </div>
+            </div>
+
+<!--            <div class="layui-form-item">-->
+<!--                <div class="layui-input-block">-->
+<!--                    <button type="button" class="layui-btn layui-btn-submit" onclick="submitHandler()">发送</button> &nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--&lt;!&ndash;                    <button type="button" class="layui-btn layui-btn-back" onclick="javascript:history.back(-1);">返回</button>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
+        <div class="col-md-6">
+            <div class="left">
+                <div class="left-content"></div>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: datetimepicker-js" />
+<script th:inline="javascript">
+    var prefix = ctx + "mmskhd/staticBatchSender";
+    $(function() {
+        var options = {
+            exportUrl: prefix + "/export",
+            importUrl: prefix + "/importData",
+            importTemplateUrl: prefix + "/importTemplate",
+            modalName: "批量发送",
+
+
+        };
+        $.table.init(options);
+    });
+
+    $(document).ready(function(e) {
+        $("#optionsRadios2").change(function(e) {
+            $("#optionsRadiosArea").toggle();
+        });
+    });
+
+    function appChange(){
+        let appId = $("#appId").val();
+        $.get("/mmskhd/model/selectByAppID",{appId: appId},function(result){
+            if (result.code == 0 && result.data != null){
+                //alert(result.data.productName);
+                var html = '<option value="">请选择模板</option>';
+
+                $.each(result.data,function (key,value) {
+                    html += '<option value="'+value.id+'">'+value.modelId+'</option>';
+                })
+
+                $("#modelId").empty();
+                $("#modelId").append(html);
+            }else {
+                $.modal.msgError('获取数据失败！');
+            }
+
+        })
+    }
+
+
+    function modelChange(){
+        let modelId = $("#modelId").val();
+        if(modelId == null || modelId == ""){
+            $.modal.msgError('请选择模板！');
+            return;
+        }
+        $.get("/mmskhd/model/selectTModelById",{id: modelId},function(result){
+            if (result.data.file != null){
+                var html = '';
+
+                $.each(result.data.file,function (key,valueFile) {
+                    html += ' <div class="review-item">';
+                        $.each(valueFile,function (key,value) {
+                            if(value.type == 1){
+                                html += '<span class="span-txt"> '+value.content+'</span>';
+                            }
+                            if(value.type == 2){
+                                html += '<img src="'+value.content+'">';
+                            }
+                            if(value.type == 3){
+                                html += '<video controls><source src="'+value.content+'" id="video_source">您的浏览器不支持 video 标签。</video>';
+                            }
+                        });
+                    html += '</div>';
+                })
+
+                $(".left-content").empty();
+                $(".left-content").append(html);
+            }else {
+                $.modal.msgError('获取数据失败！');
+            }
+
+        })
+    }
+
+     function optionsRadios(str) {
+        if(str == 'variate'){
+            $("#optionsRadiosArea").removeClass("displayb");
+        }else{
+            $("#optionsRadiosArea").addClass("displayb");
+        }
+    }
+
+    function submitHandler() {
+
+        var appId = $("#appId").val();
+        if(appId == null || appId == ''){
+            $.modal.alert("账号不能为空!");
+            return;
+        }
+        var modelId = $("#modelId").val();
+        if(modelId == null || modelId == ''){
+            $.modal.alert("模板id不能为空!");
+            return;
+        }
+
+        var variate = $("input[name='variate']:checked").val();
+        var param1 = "";
+        if(variate == 'variate'){
+            var modelId = $("#modelId").val();
+            param1 = $("#param1").val();
+            if(param1 == null || param1 == ''){
+                $.modal.alert("变量不能为空!");
+                return;
+            }
+        }
+        var title = $("#title").val();
+        if(title == null || title == ''){
+            $.modal.alert("手机号不能为空!");
+            return;
+        }
+
+        if ($.validate.form()) {
+            $.post(prefix + "/signature",{
+                appId:appId,
+                modelId:modelId,
+                param1:param1,
+                title:title
+            },function (result) {
+                if(result.data.code == 'T'){
+                    $.modal.alert("下发成功");
+                    location.reload();
+                }else{
+                    $.modal.alert("下发失败，错误码"+result.data.code);
+                }
+            })
+
+        }
+    }
+
+</script>
+</body>
+<!-- 导入区域 -->
+<script id="importTpl" type="text/template">
+    <form enctype="multipart/form-data" class="mt20 mb10">
+        <div class="col-xs-offset-1">
+            <input type="file" id="file" name="file"/>
+            <div class="mt10 pt5">
+                &nbsp;<a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> 下载模板</a>
+            </div>
+            <font color="red" class="pull-left mt10">
+                提示：仅允许导入“xls”或“xlsx”格式文件！
+            </font>
+        </div>
+    </form>
+</script>
+</html>

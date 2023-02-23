@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.BlackCompanyMapper">
+    
+    <resultMap type="BlackCompany" id="BlackCompanyResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectBlackCompanyVo">
+        select id, company_id, mobile, remark, update_time, create_time from e_black_company
+    </sql>
+
+    <select id="selectBlackCompanyList" parameterType="BlackCompany" resultMap="BlackCompanyResult">
+        <include refid="selectBlackCompanyVo"/>
+        <where>  
+            <if test="companyId != null and companyId !=0 "> and company_id = #{companyId}</if>
+            <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+        </where>
+    </select>
+    
+    <select id="selectBlackCompanyById" parameterType="Long" resultMap="BlackCompanyResult">
+        <include refid="selectBlackCompanyVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBlackCompany" parameterType="BlackCompany" useGeneratedKeys="true" keyProperty="id">
+        insert into e_black_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">company_id,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="remark != null">remark,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">#{companyId},</if>
+            <if test="mobile != null">#{mobile},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+    <insert id="insertBlackCompanys" parameterType="java.util.List">
+        insert into e_black_company(company_id,mobile,remark,update_time,create_time)
+        values
+        <foreach collection="list" separator="," item="item">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.companyId},#{item.mobile},#{item.remark},#{item.updateTime},#{item.createTime}
+            </trim>
+        </foreach>
+
+    </insert>
+    <update id="updateBlackCompany" parameterType="BlackCompany">
+        update e_black_company
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="mobile != null">mobile = #{mobile},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBlackCompanyById" parameterType="Long">
+        delete from e_black_company where id = #{id}
+    </delete>
+
+    <delete id="deleteBlackCompanyByIds" parameterType="String">
+        delete from e_black_company where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectBlackCompanyListByIds" parameterType="String" resultMap="BlackCompanyResult">
+        <include refid="selectBlackCompanyVo"/>
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

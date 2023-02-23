@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.khd.mapper.TOutboxMapper">
+    
+    <resultMap type="TOutbox" id="TOutboxResult">
+        <result property="id"    column="id"    />
+        <result property="msgId"    column="msg_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="fileName"    column="file_name"    />
+        <result property="remarks"    column="remarks"    />
+        <result property="sendNum"    column="send_num"    />
+        <result property="sendSuccNum"    column="send_succ_num"    />
+        <result property="sendFailNum"    column="send_fail_num"    />
+        <result property="subject"    column="subject"    />
+        <result property="savePath"    column="save_path"    />
+        <result property="dateTime"    column="date_time"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectTOutboxVo">
+        select id, msg_id, app_id, file_name, remarks, send_num, send_succ_num, send_fail_num, subject, save_path, date_time, status from t_outbox
+    </sql>
+
+    <select id="selectTOutboxList" parameterType="TOutbox" resultMap="TOutboxResult">
+        <include refid="selectTOutboxVo"/>
+        <where>  
+            <if test="msgId != null  and msgId != ''"> and msg_id = #{msgId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="fileName != null  and fileName != ''"> and file_name like concat('%', #{fileName}, '%')</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+            <if test="sendNum != null "> and send_num = #{sendNum}</if>
+            <if test="sendSuccNum != null "> and send_succ_num = #{sendSuccNum}</if>
+            <if test="sendFailNum != null "> and send_fail_num = #{sendFailNum}</if>
+            <if test="subject != null  and subject != ''"> and subject = #{subject}</if>
+            <if test="savePath != null  and savePath != ''"> and save_path = #{savePath}</if>
+            <if test="dateTime != null "> and date_time = #{dateTime}</if>
+            <if test="status != null  and status != '' "> and status = #{status}</if>
+            <if test="companyId != null and companyId !='' and companyId !=100">and company_id=#{companyId}</if>
+        </where>
+    </select>
+    
+    <select id="selectTOutboxById" parameterType="Long" resultMap="TOutboxResult">
+        <include refid="selectTOutboxVo"/>
+        where id = #{id}
+    </select>
+        
+
+
+</mapper>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增全局黑名单')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-blackInfo-add">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">号码：</label>
+                <div class="col-xs-8">
+                    <textarea name="mobile" maxlength="5000" placeholder="多个手机号用半角逗号分隔或者每行一个" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">黑名单等级：</label>
+                <div class="col-sm-8">
+                    <select name="ruleLevel" style="width: 100%; height: 31px;">
+                        <option value="1">高危</option>
+                        <option value="2">中危</option>
+                        <option value="3">低危</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">黑名单来源：</label>
+                <div class="col-sm-8">
+                    <select name="source" style="width: 100%; height: 31px;">
+                        <option value="miit">工信部</option>
+                        <option value="12321">12321</option>
+                        <option value="operator">运营商</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">备注：</label>
+                <div class="col-sm-8">
+                    <input name="remark" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "operator/blackInfo"
+        $("#form-blackInfo-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-blackInfo-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

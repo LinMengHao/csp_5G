@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.ModelRelatedMapper">
+    
+    <resultMap type="ModelRelated" id="ModelRelatedResult">
+        <result property="id"    column="id"    />
+        <result property="modelId"    column="model_id"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="channelModelId"    column="channel_model_id"    />
+        <result property="limitCount"    column="limit_count"    />
+        <result property="status"    column="status"    />
+        <result property="paramExt"    column="param_ext"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectModelRelatedVo">
+        select id, model_id, channel_id, channel_model_id, limit_count, status, param_ext, update_time, create_time from e_model_related
+    </sql>
+
+    <select id="selectModelRelatedList" parameterType="ModelRelated" resultMap="ModelRelatedResult">
+        <include refid="selectModelRelatedVo"/>
+        <where>  
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="channelModelId != null  and channelModelId != ''"> and channel_model_id = #{channelModelId}</if>
+            <if test="limitCount != null "> and limit_count = #{limitCount}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="paramExt != null  and paramExt != ''"> and param_ext = #{paramExt}</if>
+        </where>
+    </select>
+    
+    <select id="selectModelRelatedById" parameterType="Long" resultMap="ModelRelatedResult">
+        <include refid="selectModelRelatedVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertModelRelated" parameterType="ModelRelated" useGeneratedKeys="true" keyProperty="id">
+        insert into e_model_related
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="modelId != null and modelId != ''">model_id,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="channelModelId != null and channelModelId != ''">channel_model_id,</if>
+            <if test="limitCount != null">limit_count,</if>
+            <if test="status != null">status,</if>
+            <if test="paramExt != null">param_ext,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="modelId != null and modelId != ''">#{modelId},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="channelModelId != null and channelModelId != ''">#{channelModelId},</if>
+            <if test="limitCount != null">#{limitCount},</if>
+            <if test="status != null">#{status},</if>
+            <if test="paramExt != null">#{paramExt},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateModelRelated" parameterType="ModelRelated">
+        update e_model_related
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="modelId != null and modelId != ''">model_id = #{modelId},</if>
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="channelModelId != null and channelModelId != ''">channel_model_id = #{channelModelId},</if>
+            <if test="limitCount != null">limit_count = #{limitCount},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="paramExt != null">param_ext = #{paramExt},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="updateModelRelatedByQuery" parameterType="ModelRelated">
+        update e_model_related
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="limitCount != null">limit_count = #{limitCount},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="paramExt != null">param_ext = #{paramExt},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where model_id = #{id} and channel_id = #{channelId} and channel_model_id = #{channelModelId}
+    </update>
+
+    <delete id="deleteModelRelatedById" parameterType="Long">
+        delete from e_model_related where id = #{id}
+    </delete>
+
+    <delete id="deleteModelRelatedByIds" parameterType="String">
+        delete from e_model_related where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改路由信息')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-base-edit" th:object="${eRouteBase}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <input type="hidden" id="companyId" name="companyId" th:field="*{companyId}"/>
+            <input type="hidden" id="appIdEdit" name="appIdEdit" th:field="*{appId}"/>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">客户：</label>
+                <div class="col-sm-8">
+                    <input name="companyName" onclick="selectDeptTree()" id="treeName" type="text" placeholder="请选择客户" th:field="*{companyName}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">账户：</label>
+                <div class="col-sm-8">
+                    <select name="appId" id="appId" style="width: 100%; height: 31px;" required>
+                        <option value="">请选择账户</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">运营商：</label>
+                <div class="col-sm-8">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="yes" id="toCmcc" th:checked="${eRouteBase.toCmcc=='yes'}">移动</label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="yes" id="toUnicom" th:checked="${eRouteBase.toUnicom=='yes'}">联通</label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="yes" id="toTelecom" th:checked="${eRouteBase.toTelecom=='yes'}">电信</label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="no" id="toInternational" th:checked="${eRouteBase.toInternational=='yes'}">国际</label>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">签名：</label>
+                <div class="col-sm-8">
+                    <input name="signName" placeholder="多个以半角逗号分隔" th:field="*{signName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">省份：</label>
+                <div class="col-sm-8">
+                    <input name="province" placeholder="多个以半角逗号分隔" th:field="*{province}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">优先级：</label>
+                <div class="col-sm-8">
+                    <input name="priority" th:field="*{priority}" class="form-control" type="number">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">分发比例：</label>
+                <div class="col-sm-8">
+                    <input name="disprate" th:field="*{disprate}" class="form-control" type="number">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">通道：</label>
+                <div class="col-sm-8">
+                    <select  id="channelId" name="channelId" style="width: 100%; height: 31px;">
+                        <option value="">请选择通道</option>
+                        <option th:each="channel : ${channellist}"
+                                th:value="${channel.id}" th:field="*{channelId}"
+                                th:text="${channel.id}+':'+${channel.channelName}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">通道日限：</label>
+                <div class="col-sm-8">
+                    <input name="channelLimit" placeholder="0表示不限制" th:field="*{channelLimit}" class="form-control" type="number">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">通道接入码：</label>
+                <div class="col-sm-8">
+                    <input name="channelCaller" th:field="*{channelCaller}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">状态：</label>
+                <div class="col-sm-8">
+                    <label class="toggle-switch switch-solid">
+                        <input type="checkbox" id="status" th:checked="${eRouteBase.status == 1 ? true : false}">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">描述：</label>
+                <div class="col-sm-8">
+                    <input name="info" th:field="*{info}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "operator/routeBase";
+        $("#form-base-edit").validate({
+            focusCleanup: true
+        });
+        $(function() {
+            spChange($("#companyId").val(),$("#appIdEdit").val());
+        });
+        function submitHandler() {
+            if ($.validate.form()) {
+                var data = $("#form-base-edit").serializeArray();
+                var status = $("input[id='status']").is(':checked') == true ? 1 : 2;
+                data.push({"name": "status", "value": status});
+	        	data.push({"name": "toCmcc", "value": $('#toCmcc').is(':checked')?"yes":"no"});
+	        	data.push({"name": "toUnicom", "value": $('#toUnicom').prop('checked')?"yes":"no"});
+	        	data.push({"name": "toTelecom", "value": $('#toTelecom').prop('checked')?"yes":"no"});
+	        	data.push({"name": "toInternational", "value": $('#toInternational').get(0).checked?"yes":"no"});
+	        	var appId = $("#appId").val();
+	        	$.each(data, function() {
+                    if(this.name=='appId'){
+                        this.value = appId;
+                    }
+                });
+                //$.operate.save(prefix + "/edit", $('#form-base-edit').serialize());
+                $.operate.save(prefix + "/edit", data);
+            }
+        }
+        /* 新增-选择公司树 */
+        function selectDeptTree() {
+        	var treeId = $("#treeId").val();
+        	var companyId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+        	var url = ctx + "system/dept/selectDeptTree/" + companyId;
+			var options = {
+				title: '选择商户',
+				width: "380",
+				url: url,
+				callBack: doSubmit
+			};
+			$.modal.openOptions(options);
+		}
+
+		function doSubmit(index, layero){
+			//var tree = layero.find("iframe")[0].contentWindow.$._tree;
+			var body = $.modal.getChildFrame(index);
+   			$("#treeId").val(body.find('#treeId').val());
+   			$("#companyId").val(body.find('#treeId').val());
+   			$("#treeName").val(body.find('#treeName').val());
+   			spChange(body.find('#treeId').val());
+   			$.modal.close(index);
+		}
+
+		function spChange(companyId,appId){
+            $.get(prefix+"/selectByCompanyID",{companyId: companyId},function(result){
+                if (result.code == 0 && result.data != null){
+                    var html = '<option value="">请选择账户</option>';
+
+                    $.each(result.data,function (key,value) {
+                        if(appId==value.id){
+                            html += '<option value="'+value.id+'" selected>'+value.id+':'+value.appName+'</option>';
+                        }else{
+                            html += '<option value="'+value.id+'">'+value.id+':'+value.appName+'</option>';
+                        }
+                    })
+
+                    $("#appId").empty();
+                    $("#appId").append(html);
+                }else {
+                    $.modal.msgError('获取数据失败！');
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

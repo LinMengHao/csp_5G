@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace一定要对应接口的全类名 -->
+<mapper namespace="com.xzkj.platform.khd.mapper.StatisticsMapper">
+    <resultMap type="com.xzkj.platform.khd.domain.Statistics" id="statisticsMapper">
+        <id column="id" property="id" />
+        <result column="log_date" property="logDate"/>
+        <result column="app_name" property="appName" />
+        <result column="app_id" property="appId" />
+        <result column="send_total" property="sendTotal" />
+        <result column="report_delivrd" property="reportDelivrd" />
+        <result column="report_undeliv" property="reportUndeliv" />
+        <result column="report_black" property="reportBlack" />
+        <result column="report_unknown" property="reportUnknown" />
+        <result column="load_delivrd" property="loadDelivrd" />
+    </resultMap>
+
+    <select id="findStatisticsList" resultMap="statisticsMapper" parameterType="map">
+        SELECT
+        <if test="statisticType == 'yes'">
+            log_date,
+        </if>
+        <if test="companyId != null and companyId !='' and companyId !=100">
+            and d.company_id=#{companyId}
+        </if>
+        app_id,a.app_name,
+        COALESCE(sum(send_total),0) send_total,
+        COALESCE(sum(report_delivrd),0) report_delivrd,
+        COALESCE(sum(report_undeliv),0) report_undeliv,
+        COALESCE(sum(report_black),0) report_black,
+        COALESCE(sum(report_unknown),0) report_unknown,
+        COALESCE(sum(load_delivrd),0) load_delivrd
+        FROM
+        data_statistic_app_channel d
+        LEFT JOIN t_application a
+        ON d.app_id=a.id
+        WHERE 1=1
+        <if test="appId != null and  appId != '' ">
+            AND app_id = #{appId}
+        </if>
+        <if test="channelId != null and  channelId != '' ">
+            AND channel_id = #{channelId}
+        </if>
+        <if test="appName != null and  appName != '' ">
+            AND a.app_name = #{appName}
+        </if>
+        <if test="startTime !=null and startTime !=''">
+            AND log_date &gt;= #{startTime}
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            AND log_date &lt;= #{endTime}
+        </if>
+        <if test="companyId != null and companyId !='' and companyId !=100">
+            and d.company_id=#{companyId}
+        </if>
+        GROUP BY d.app_id
+        <if test="statisticType != 'no'">
+            ,d.log_date
+        </if>
+    </select>
+
+    <select id="findStatisticsListM" resultMap="statisticsMapper" parameterType="map">
+        SELECT
+        COALESCE(sum(send_total),0) send_total,
+        COALESCE(sum(report_delivrd),0) report_delivrd,
+        COALESCE(sum(report_undeliv),0) report_undeliv,
+        COALESCE(sum(report_black),0) report_black,
+        COALESCE(sum(report_unknown),0) report_unknown
+        FROM
+        data_statistic_app_channel d
+        WHERE 1=1
+        <if test="companyId != null and companyId !='' and companyId !=100">
+            and d.company_id=#{companyId}
+        </if>
+         and log_date like concat(#{date}, '%')
+    </select>
+
+</mapper>

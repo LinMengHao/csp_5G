@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('模板签名信息e_model_sign列表')" />
+</head>
+<body class="gray-bg">
+<div class="ui-layout-center">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <input type="text" id="companyId" name="companyId" style="display: none;" value="0"/>
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <input name="companyName" onclick="selectDeptTree()" id="treeName" type="text" placeholder="请选择客户"/>
+                            </li>
+                            <li>
+                                <select name="appId" id="appId" >
+                                    <option value="">请选择账户</option>
+                                </select>
+                            </li>
+                            <li>
+                               <!-- <label>签名id：</label>-->
+                                <input type="text" name="signId" placeholder="签名id"/>
+                            </li>
+                            <li>
+                                <input type="text" name="info" placeholder="描述"/>
+                            </li>
+
+<!--                            <li>-->
+<!--                                <select id="variate" name="variate">-->
+<!--                                    <option value="0">变量标志</option>-->
+<!--                                    <option value="1">变量模板</option>-->
+<!--                                    <option value="2">普通模板</option>-->
+<!--                                </select>-->
+<!--                            </li>-->
+                            <li>
+                                <select id="status" name="status">
+                                    <option value="0">审核状态</option>
+                                    <option value="1">平台审核成功</option>
+                                    <option value="2">平台审核拒绝</option>
+                                    <option value="3"> 待审核 </option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="model:sign:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.editTab()" shiro:hasPermission="model:sign:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="model:sign:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning single disabled" onclick="$.operate.checkTab()" shiro:hasPermission="model:sign:check">
+                    <i class="fa fa-share-alt-square"></i> 审核
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('model:sign:edit')}]];
+        var checkFlag = [[${@permission.hasPermi('model:sign:check')}]];
+        var removeFlag = [[${@permission.hasPermi('model:sign:remove')}]];
+        var copyFlag = [[${@permission.hasPermi('model:sign:add')}]];
+        var prefix = ctx + "model/sign";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                checkUrl: prefix + "/check/{id}",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "模板信息",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: '主键id',
+                    visible: false
+                },
+                {
+                    field: 'companyId',
+                    title: '客户',
+                    formatter: function(value, row, index) {
+		            	if(row.companyName.length>8){
+                          return '<div title="'+row.companyName+'">'+row.companyId+':'+row.companyName.substring(0,6)+'...</div>';
+                        }else{
+                          return row.companyId+":"+row.companyName;
+                        }
+		            },
+		            sortable: true
+                },
+                {
+                    field: 'appId',
+                    title: '账号',
+                    formatter: function(value, row, index) {
+		            	return row.appName;
+		            },
+		            sortable: true
+                },
+                {
+                    field: 'signId',
+                    title: '签名id',
+		            sortable: true
+                },
+                {
+                    field: 'reportSignContent',
+                    title: '报备签名内容',
+		            sortable: true
+                },
+
+                // {
+                //     field: 'title',
+                //     title: '模板标题',
+                //     formatter: function(value, row, index) {
+		        //     	if(row.title.length>8){
+                //           return '<div title="'+row.title+'">'+row.title.substring(0,7)+'...</div>';
+                //         }else{
+                //           return row.title;
+                //         }
+		        //     },
+                // },
+                    {
+                        field: 'ecName',
+                        title: '实际发送企业',
+                        sortable: true
+                    },
+                    {
+                        field: 'serviceCode',
+                        title: '服务代码',
+                        sortable: true
+                    },
+                    {
+                        field: 'industry',
+                        title: '行业分类',
+                        formatter: function(value, row, index) {
+                            return industryName(row.industry);
+                        }
+                    },
+                    {
+                        field: 'rcsIndustry',
+                        title: '信安行业属性',
+                        sortable: true
+                    },
+                // {
+                //     field: 'variate',
+                //     title: '变量标志',
+		        // 	formatter: function(value, row, index) {
+		        // 	    var name = "变量模板";
+		        // 	    if (row.variate == 2) {
+		        // 	        name = "普通模板";
+		        // 	    }
+		        //     	return name;
+		        //     }
+                // },
+                {
+                    field: 'status',
+                    title: '审核状态',
+		        	formatter: function(value, row, index) {
+		        	    return statusName(row.status);
+		            }
+                },
+                // {
+                //     field: 'info',
+                //     title: '描述'
+                // },
+                // {
+                //     field: 'source',
+                //     title: '来源',
+		        // 	formatter: function(value, row, index) {
+		        // 	    var name = "API";
+		        // 	    if (row.source == 2) {
+		        // 	        name = "管理端";
+		        // 	    }else if (row.source == 3) {
+		        // 	        name = "客户端";
+		        // 	    }
+		        //     	return name;
+		        //     }
+                // },
+                //     {
+                //         field: 'channelId',
+                //         title: '审核通道id',
+                //     },
+                //     {
+                //         field: 'appExt',
+                //         title: '所属账号拓展码',
+                //         sortable: true
+                //     },
+                //     {
+                //         field: 'modelExt',
+                //         title: '模版申请拓展码',
+                //         sortable: true
+                //     },
+                    // {
+                    //     field: 'inDate',
+                    //     title: '有效期（天）',
+                    //     formatter: function(value, row, index) {
+                    //         return InDate(row.inDate);
+                    //     }
+                    // },
+                // {
+                //     field: 'userId',
+                //     title: '操作员',
+                //     formatter: function(value, row, index) {
+		        //     	return row.userName;
+		        //     },
+                // },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+		            sortable: true
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editTab(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-warning btn-xs ' + checkFlag + '" href="javascript:void(0)" onclick="$.operate.checkTab(\'' + row.id + '\')"><i class="fa fa-share-alt-square"></i>审核</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        if (!(row.pid!=null&&row.pid!='')){
+                            actions.push('<a class="btn btn-danger btn-xs ' + copyFlag + '" href="javascript:void(0)" onclick="save(\'' + row.id + '\')"><i class="fa fa-edit"></i>复制</a>');
+                        }
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+            spChange(0);
+        });
+        // 提交数据
+        function save(id) {
+            var config = {
+                url: prefix + "/copy",
+                type: "post",
+                dataType: "json",
+                data: {"id": id},
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function(result) {
+                    if (typeof callback == "function") {
+                        callback(result);
+                    }
+                    $.operate.successCallback(result);
+                }
+            };
+            $.ajax(config)
+        }
+
+        function statusName(status){
+            var result='审核成功';//1-审核成功2-审核拒绝3-待审核4-审核中
+            switch(status){
+                case 2:
+                    result = '审核拒绝';
+                    break;
+                case 3:
+                    result = '待审核';
+                    break;
+            }
+            return result;
+        }
+
+        function industryName(status){
+            var result='审核成功';//1-审核成功2-审核拒绝3-待审核4-审核中
+            switch(status){
+                case 1:
+                    result = '党政军';
+                    break;
+                case 2:
+                    result = '民生';
+                    break;
+                case 3:
+                    result = '医疗器械,药店';
+                    break;
+                case 4:
+                    result = '电商';
+                    break;
+                case 5:
+                    result = '沿街商铺（中小)';
+                    break;
+                case 6:
+                    result = '教育培训';
+                    break;
+                case 7:
+                    result = '房地产';
+                    break;
+                case 8:
+                    result = '游戏';
+                    break;
+                case 9:
+                    result = '金融';
+                    break;
+                case 10:
+                    result = '物流';
+                    break;
+                case 11:
+                    result = '微商（个人）';
+                    break;
+                case 12:
+                    result = '企业（大型）';
+                    break;
+                case 13:
+                    result = '其他';
+                    break;
+            }
+            return result;
+        }
+
+
+        /* 新增-选择公司树 */
+        function selectDeptTree() {
+        	var treeId = $("#treeId").val();
+        	var companyId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+        	var url = ctx + "system/dept/selectDeptTree/" + companyId;
+			var options = {
+				title: '选择商户',
+				width: "380",
+				url: url,
+				callBack: doSubmit
+			};
+			$.modal.openOptions(options);
+		}
+
+		function doSubmit(index, layero){
+			//var tree = layero.find("iframe")[0].contentWindow.$._tree;
+			var body = $.modal.getChildFrame(index);
+   			$("#treeId").val(body.find('#treeId').val());
+   			$("#companyId").val(body.find('#treeId').val());
+   			$("#treeName").val(body.find('#treeName').val());
+   			spChange(body.find('#treeId').val());
+   			$.modal.close(index);
+		}
+
+		function spChange(companyId){
+            $.get(ctx + "operator/routeBase/selectByCompanyID",{companyId: companyId},function(result){
+                if (result.code == 0 && result.data != null){
+                    var html = '<option value="">请选择账户</option>';
+
+                    $.each(result.data,function (key,value) {
+                        html += '<option value="'+value.id+'">'+value.id+':'+value.appName+'</option>';
+                    })
+
+                    $("#appId").empty();
+                    $("#appId").append(html);
+                }else {
+                    $.modal.msgError('获取数据失败！');
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

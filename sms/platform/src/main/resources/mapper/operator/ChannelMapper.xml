@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.ChannelMapper">
+    
+    <resultMap type="Channel" id="ChannelResult">
+        <result property="id"    column="id"    />
+        <result property="channelName"    column="channel_name"    />
+        <result property="status"    column="status"    />
+        <result property="toCmcc"    column="to_cmcc"    />
+        <result property="toUnicom"    column="to_unicom"    />
+        <result property="toTelecom"    column="to_telecom"    />
+        <result property="svcAddr"    column="svc_addr"    />
+        <result property="svcPort"    column="svc_port"    />
+        <result property="account"    column="account"    />
+        <result property="password"    column="password"    />
+        <result property="serviceCode"    column="service_code"    />
+        <result property="enterpriseCode"    column="enterprise_code"    />
+        <result property="variant"    column="variant"    />
+        <result property="sourceMent"    column="source_ment"    />
+        <result property="haveReport"    column="have_report"    />
+        <result property="haveMo"    column="have_mo"    />
+        <result property="extras"    column="extras"    />
+        <result property="linkMax"    column="link_max"    />
+        <result property="linkSpeed"    column="link_speed"    />
+        <result property="channelPrice"    column="channel_price"    />
+        <result property="model"    column="model"    />
+        <result property="modelUpload"    column="model_upload"    />
+        <result property="token"    column="token"    />
+        <result property="signTable"    column="sign_table"    />
+        <result property="channelFlag"    column="channel_flag"    />
+        <result property="modelAdress"    column="model_adress"    />
+        <result property="modelAccess"    column="model_access"    />
+        <result property="pullAdress"    column="pull_adress"    />
+        <result property="modelAction"    column="model_action"    />
+        <result property="sendLimit"    column="send_limit"    />
+        <result property="timeoutCount"    column="timeout_count"    />
+        <result property="ignoreProvince"    column="ignore_province"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectChannelVo">
+        select id, channel_name, status, to_cmcc, to_unicom, to_telecom, svc_addr, svc_port, account, password, service_code, enterprise_code, variant, source_ment, have_report, have_mo, extras, link_max, link_speed, channel_price, model, model_upload, token, sign_table, channel_flag, model_adress, model_access, pull_adress, model_action, send_limit, timeout_count, ignore_province,update_time,create_time from t_channel
+    </sql>
+
+    <select id="selectChannelListPage" parameterType="Channel" resultMap="ChannelResult">
+        <include refid="selectChannelVo"/>
+        <where>  
+            <if test="channelName != null  and channelName != ''"> and channel_name like concat('%', #{channelName}, '%')</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="toCmcc != null  and toCmcc != ''"> and to_cmcc = #{toCmcc}</if>
+            <if test="toUnicom != null  and toUnicom != ''"> and to_unicom = #{toUnicom}</if>
+            <if test="toTelecom != null  and toTelecom != ''"> and to_telecom = #{toTelecom}</if>
+            <if test="svcAddr != null  and svcAddr != ''"> and svc_addr = #{svcAddr}</if>
+            <if test="svcPort != null "> and svc_port = #{svcPort}</if>
+            <if test="account != null  and account != ''"> and account = #{account}</if>
+            <if test="password != null  and password != ''"> and password = #{password}</if>
+            <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+            <if test="enterpriseCode != null  and enterpriseCode != ''"> and enterprise_code = #{enterpriseCode}</if>
+            <if test="variant != null  and variant != ''"> and variant = #{variant}</if>
+            <if test="sourceMent != null  and sourceMent != ''"> and source_ment = #{sourceMent}</if>
+            <if test="haveReport != null  and haveReport != ''"> and have_report = #{haveReport}</if>
+            <if test="haveMo != null  and haveMo != ''"> and have_mo = #{haveMo}</if>
+            <if test="extras != null  and extras != ''"> and extras = #{extras}</if>
+            <if test="linkMax != null "> and link_max = #{linkMax}</if>
+            <if test="linkSpeed != null "> and link_speed = #{linkSpeed}</if>
+            <if test="channelPrice != null "> and channel_price = #{channelPrice}</if>
+            <if test="model != null  and model != ''"> and model = #{model}</if>
+            <if test="modelUpload != null  and modelUpload != ''"> and model_upload = #{modelUpload}</if>
+            <if test="token != null  and token != ''"> and token = #{token}</if>
+            <if test="signTable != null  and signTable != ''"> and sign_table = #{signTable}</if>
+            <if test="channelFlag != null  and channelFlag != ''"> and channel_flag = #{channelFlag}</if>
+            <if test="modelAdress != null  and modelAdress != ''"> and model_adress = #{modelAdress}</if>
+            <if test="modelAccess != null  and modelAccess != ''"> and model_access = #{modelAccess}</if>
+            <if test="pullAdress != null  and pullAdress != ''"> and pull_adress = #{pullAdress}</if>
+            <if test="modelAction != null  and modelAction != ''"> and model_action = #{modelAction}</if>
+            <if test="sendLimit != null "> and send_limit = #{sendLimit}</if>
+            <if test="timeoutCount != null  and timeoutCount != ''"> and timeout_count = #{timeoutCount}</if>
+            <if test="ignoreProvince != null  and ignoreProvince != ''"> and ignore_province = #{ignoreProvince}</if>
+        </where>
+    </select>
+    <select id="selectChannelList" parameterType="Long" resultMap="ChannelResult">
+        <include refid="selectChannelVo"/>
+        <where>
+            status='normal'
+            <if test="companyId != null and companyId !='' and companyId !=0">
+            </if>
+        </where>
+    </select>
+
+    <select id="selectChannelById" parameterType="Long" resultMap="ChannelResult">
+        <include refid="selectChannelVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertChannel" parameterType="Channel" useGeneratedKeys="true" keyProperty="id">
+        insert into t_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="channelName != null and channelName != ''">channel_name,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="toCmcc != null and toCmcc != ''">to_cmcc,</if>
+            <if test="toUnicom != null and toUnicom != ''">to_unicom,</if>
+            <if test="toTelecom != null and toTelecom != ''">to_telecom,</if>
+            <if test="svcAddr != null and svcAddr != ''">svc_addr,</if>
+            <if test="svcPort != null">svc_port,</if>
+            <if test="account != null and account != ''">account,</if>
+            <if test="password != null and password != ''">password,</if>
+            <if test="serviceCode != null">service_code,</if>
+            <if test="enterpriseCode != null">enterprise_code,</if>
+            <if test="variant != null and variant != ''">variant,</if>
+            <if test="sourceMent != null and sourceMent != ''">source_ment,</if>
+            <if test="haveReport != null and haveReport != ''">have_report,</if>
+            <if test="haveMo != null and haveMo != ''">have_mo,</if>
+            <if test="extras != null">extras,</if>
+            <if test="linkMax != null">link_max,</if>
+            <if test="linkSpeed != null">link_speed,</if>
+            <if test="channelPrice != null">channel_price,</if>
+            <if test="model != null">model,</if>
+            <if test="modelUpload != null">model_upload,</if>
+            <if test="token != null">token,</if>
+            <if test="signTable != null">sign_table,</if>
+            <if test="channelFlag != null">channel_flag,</if>
+            <if test="modelAdress != null">model_adress,</if>
+            <if test="modelAccess != null">model_access,</if>
+            <if test="pullAdress != null">pull_adress,</if>
+            <if test="modelAction != null">model_action,</if>
+            <if test="sendLimit != null">send_limit,</if>
+            <if test="timeoutCount != null">timeout_count,</if>
+            <if test="ignoreProvince != null">ignore_province,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="channelName != null and channelName != ''">#{channelName},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="toCmcc != null and toCmcc != ''">#{toCmcc},</if>
+            <if test="toUnicom != null and toUnicom != ''">#{toUnicom},</if>
+            <if test="toTelecom != null and toTelecom != ''">#{toTelecom},</if>
+            <if test="svcAddr != null and svcAddr != ''">#{svcAddr},</if>
+            <if test="svcPort != null">#{svcPort},</if>
+            <if test="account != null and account != ''">#{account},</if>
+            <if test="password != null and password != ''">#{password},</if>
+            <if test="serviceCode != null">#{serviceCode},</if>
+            <if test="enterpriseCode != null">#{enterpriseCode},</if>
+            <if test="variant != null and variant != ''">#{variant},</if>
+            <if test="sourceMent != null and sourceMent != ''">#{sourceMent},</if>
+            <if test="haveReport != null and haveReport != ''">#{haveReport},</if>
+            <if test="haveMo != null and haveMo != ''">#{haveMo},</if>
+            <if test="extras != null">#{extras},</if>
+            <if test="linkMax != null">#{linkMax},</if>
+            <if test="linkSpeed != null">#{linkSpeed},</if>
+            <if test="channelPrice != null">#{channelPrice},</if>
+            <if test="model != null">#{model},</if>
+            <if test="modelUpload != null">#{modelUpload},</if>
+            <if test="token != null">#{token},</if>
+            <if test="signTable != null">#{signTable},</if>
+            <if test="channelFlag != null">#{channelFlag},</if>
+            <if test="modelAdress != null">#{modelAdress},</if>
+            <if test="modelAccess != null">#{modelAccess},</if>
+            <if test="pullAdress != null">#{pullAdress},</if>
+            <if test="modelAction != null">#{modelAction},</if>
+            <if test="sendLimit != null">#{sendLimit},</if>
+            <if test="timeoutCount != null">#{timeoutCount},</if>
+            <if test="ignoreProvince != null">#{ignoreProvince},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateChannel" parameterType="Channel">
+        update t_channel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="channelName != null and channelName != ''">channel_name = #{channelName},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="toCmcc != null and toCmcc != ''">to_cmcc = #{toCmcc},</if>
+            <if test="toUnicom != null and toUnicom != ''">to_unicom = #{toUnicom},</if>
+            <if test="toTelecom != null and toTelecom != ''">to_telecom = #{toTelecom},</if>
+            <if test="svcAddr != null and svcAddr != ''">svc_addr = #{svcAddr},</if>
+            <if test="svcPort != null">svc_port = #{svcPort},</if>
+            <if test="account != null and account != ''">account = #{account},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+            <if test="serviceCode != null">service_code = #{serviceCode},</if>
+            <if test="enterpriseCode != null">enterprise_code = #{enterpriseCode},</if>
+            <if test="variant != null and variant != ''">variant = #{variant},</if>
+            <if test="sourceMent != null and sourceMent != ''">source_ment = #{sourceMent},</if>
+            <if test="haveReport != null and haveReport != ''">have_report = #{haveReport},</if>
+            <if test="haveMo != null and haveMo != ''">have_mo = #{haveMo},</if>
+            <if test="extras != null">extras = #{extras},</if>
+            <if test="linkMax != null">link_max = #{linkMax},</if>
+            <if test="linkSpeed != null">link_speed = #{linkSpeed},</if>
+            <if test="channelPrice != null">channel_price = #{channelPrice},</if>
+            <if test="model != null">model = #{model},</if>
+            <if test="modelUpload != null">model_upload = #{modelUpload},</if>
+            <if test="token != null">token = #{token},</if>
+            <if test="signTable != null">sign_table = #{signTable},</if>
+            <if test="channelFlag != null">channel_flag = #{channelFlag},</if>
+            <if test="modelAdress != null">model_adress = #{modelAdress},</if>
+            <if test="modelAccess != null">model_access = #{modelAccess},</if>
+            <if test="pullAdress != null">pull_adress = #{pullAdress},</if>
+            <if test="modelAction != null">model_action = #{modelAction},</if>
+            <if test="sendLimit != null">send_limit = #{sendLimit},</if>
+            <if test="timeoutCount != null">timeout_count = #{timeoutCount},</if>
+            <if test="ignoreProvince != null">ignore_province = #{ignoreProvince},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteChannelById" parameterType="Long">
+        delete from t_channel where id = #{id}
+    </delete>
+
+    <delete id="deleteChannelByIds" parameterType="String">
+        delete from t_channel where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

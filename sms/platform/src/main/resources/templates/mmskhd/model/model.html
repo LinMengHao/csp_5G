@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('模板管理列表')" />
+</head>
+
+<style type="text/css">
+    .agv-item1{display: flex;justify-content: space-between;}
+    .agv-item-xngw{display: flex;align-items: center;}
+    .agv-item-gwzt{display: flex;align-items: center;}
+    .agv-item-gwzt>img{cursor: pointer;}
+    .xngw-no{width: 36px;height: 36px;border-radius: 20px; font-weight:700; font-size: 18px !important;display: flex;justify-content: center;align-items: center;color: #000000;}
+    .xngw-no-color1{background-color: #E0F4E4 ;}
+    .xngw-no-color2{background-color: #F4E0E0 ;}
+    .xngw-txt{font-size: 12px !important;border: #e1e1e1;margin-left: 10px}
+    .xngw-num{font-weight: 700 ;font-size: 18px !important;margin-left: 10px;color: #C34545;}
+    .gwzt-status{width: 60px;height: 35px;display: flex;align-items: center;justify-content: center;border-radius: 10px;  margin-right: 10px;font-weight: 700;}
+    .gwzt-status-color1{background-color: #E0F4E4;color: #45C359;}
+    .agv-item{display: flex;justify-content: space-between; margin-top: 18px;height: 30px;}
+    .agv-item-xx{width: 48%;background-color: #EFF1F4;border-radius: 8px;display: flex; align-items: center; }
+    .agv-item-xx>span:first-child{width: 60px;padding-left: 10px;}
+    .agv-item-xx>span:last-child{flex-grow: 1; text-align: center;color: #212121;}
+    .agv-item-scrq{display: flex; margin-top: 10px;font-size: 12px;color: #999999;}
+    .agv-item-scrq>span:first-child{margin-right: 13px;}
+    .agv-item-scrq-x{width: 50%;}
+    .agv-item-scrq-x>span:first-child{padding-right: 11px; box-sizing: border-box;}
+    .agv-item-btm{display: flex;justify-content: space-around;align-items: center;margin-top: 18px;}
+    .agv-item-btm-d{display: flex;justify-content: center;align-items: center;flex-flow: column;}
+    .agv-item-btm-d>span:first-child{font-size: 18px;font-weight: 700;color: #000000;}
+    .agv-item-btm-d>span:last-child{font-size: 12px;color: #999999; }
+    .agv-item-btm-line{width: 1px;height: 22px;background-color: #999999;}
+
+
+
+
+    .fixed-table-pagination{background-color: #ffffff;padding: 0 10px;}
+    .more-body{width: 93%;height: 93%;position: absolute;z-index: 1;background-color: #212121;opacity:0.8; top: 0;border-radius: 20px;}
+    .more-content-img{margin-top: 44px;margin-right: 30px;display: flex;justify-content: flex-end;align-items: flex-end;}
+    .more-content{width: 100%;background-color: #ffffff;border-radius: 20px;padding: 15px;box-sizing: border-box;}
+    .more-content>p{margin: 0; padding: 8px 0;display: flex;}
+    .more-content>p:first-child{border-bottom: 1px solid #e1e1e1;}
+    .more-content>p>span:first-child{width:28%;}
+    .displaydb{display: none;}
+
+    .pull-right{position: absolute !important; right: 27px !important; }
+    .pull-left{width: 100%;}
+    .search-body{margin-top: 20px; padding-top: 20px;border-top: 1px solid #e8e8e8; width: 100%; display: flex;}
+    .search-body ul{list-style-type: none;padding: 0px;margin: 0px; width: 100%; display: flex; flex-flow: column; width: 20%;}
+    .search-body ul>li{display: flex;align-items: center; margin-bottom: 20px; width: 100%;}
+    .lilabel{width: 40%; height: 32px; display: flex; align-items: center; justify-content: flex-end; margin-bottom: unset !important;}
+    .linInp{width: 60%; height: 32px;}
+    .libtn{text-align: right; justify-content: flex-end;}
+    .btn-primary{background-color: #2A82FF !important; }
+    .btn-warning{background-color: #ffffff !important; color: #363636 !important; border: #e1e1e1 1px solid !important;}
+    .search-collapse, .select-table{ background-color: unset !important;}
+    .fixed-table-toolbar{background-color: #ffffff !important; border-radius: 10px; padding:0 12px ; box-sizing: border-box; margin-bottom: 12px;}
+
+    .box-content{width: 100%; height: 166px;}
+    .contact-box{position: relative; padding: unset !important;}
+    .box-bg1{width: 100%;height: 100%;}
+    .contact-box-icons:hover{background-color: #212121;opacity:0.4;}
+    .contact-box-icons{ top: 0px; position: absolute;width: 100%;height: 166px;display: none;justify-content: space-around;align-items: center; flex-flow: row; text-align: center;}
+    .box-content:hover .contact-box-icons{display: flex;}
+    .txt-content{margin: 8px 20px;}
+    .txt-title{font-size: 16px;color: #000000;}
+    .txt-model{ margin-top: 5px; display: flex;justify-content: space-between; align-items: center;}
+    .txt-model-l{font-size: 12px; color: #999999;}
+    .txt-model-r{font-size: 12px;color: #999999; display: flex; align-items: center;}
+    .txt-model-r>img{margin-right: 8px; height: 14px; width: 14px;}
+    .my-model{display: flex;align-items: center;}
+    .my-model-txt{font-size: 20px; color: #2A82FF; border-bottom: 2px solid #2A82FF; padding-bottom: 8px;}
+</style>
+
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+
+            <div class="my-model">
+                <span class="my-model-txt">我的模板</span>
+            </div>
+
+            <form id="formId">
+            <div class="search-body">
+                <ul>
+                    <li>
+                        <label class="lilabel">模板id：</label>
+                        <input class="linInp" type="text" name="modelId" maxlength="15" onkeyup="validateModel(this)" onpause="validateModel(this)" onblur="validateBlur()"/>
+                    </li>
+                    <li>
+                        <label class="lilabel">报备账号：</label>
+                        <input class="linInp" type="text" name="appId"/>
+                    </li>
+
+                </ul>
+                <ul>
+
+                    <li>
+                        <label class="lilabel">模板标题：</label>
+                        <input class="linInp" type="text" name="title"/>
+                    </li>
+                    <li>
+                        <label class="lilabel">是否有变量：</label>
+                        <select class="linInp" name="variate" th:with="type=${@dict.getType('model_variate_do')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li>
+                        <label class="lilabel">状态：</label>
+                        <select class="linInp" name="status" th:with="type=${@dict.getType('app_model_status')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
+                    </li>
+                    <li></li>
+
+                </ul>
+
+                <ul>
+
+                    <li>
+                        <label class="lilabel">添加时间：</label>
+                        <input type="text" class="time-input linInp" placeholder="请选择添加时间" name="addTime"/>
+                    </li>
+
+                    <li class="libtn">
+                        <a class="btn btn-primary btn-sm" onclick="searchForm()"><i class="fa fa-search"></i>&nbsp;查询</a>&nbsp;&nbsp;
+                        <a class="btn btn-warning btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>&nbsp;&nbsp;
+                        <a class="btn btn-success btn-sm" onclick="$.operate.addTab()" >
+                            <i class="fa fa-plus"></i> 新增
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+            </form>
+        </div>
+
+
+
+        <div class="col-sm-12 select-table table-striped">
+
+            <table id="bootstrap-table" data-page-size="10"
+                   data-show-custom-view="true" data-custom-view="customViewFormatter"
+                   data-show-custom-view-button="true">
+            </table>
+        </div>
+<!--        <div class="col-sm-12 select-table table-striped">-->
+<!--            <table id="bootstrap-table"></table>-->
+<!--        </div>-->
+
+    </div>
+</div>
+
+<template id="profileTemplate">
+    <div class="col-sm-3">
+        <div class="contact-box">
+            <div class="box-content">
+                <img src="/img/video-bg.png" class="box-bg1">
+                <div class="contact-box-icons">
+                    <img class="gwzt-img" src="/img/icon-eye.png" height="40" width="40" onclick="$.operate.detail('%ide%')"/>
+                    <img class="gwzt-img" src="/img/icon-edit.png" height="40" width="40" onclick="edit('%typeStatus%','%ide%')"/>
+                    <img class="gwzt-img" src="/img/icon-copy.png" height="40" width="40" onclick="$.modal.openTab('复制模板', '/mmskhd/model/copy/%ide%');"/>
+                    <img class="gwzt-img" src="/img/icon-send.png" height="40" width="40" onclick="$.modal.openTab('发送', '/mmskhd/model/send/%ide%');"/>
+                    <img class="gwzt-img" src="/img/icon-delete.png" height="40" width="40" onclick="$.operate.remove('%ide%')"/>
+                </div>
+            </div>
+
+            <div class="txt-content">
+                <div class="txt-title">%title%</div>
+                <div class="txt-model">
+                    <div class="txt-model-l">模板ID:%modelId%</div>
+                    <div class="txt-model-r">
+                        <img src="/img/check.png"/>
+                        <font>%checkTxt%</font>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="agv-item1">
+                <div class="agv-item-xngw">
+                    <font class="xngw-no xngw-no-color1">%id%</font>
+&lt;!&ndash;                    <font class="xngw-txt">id</font>&ndash;&gt;
+&lt;!&ndash;                    <font class="xngw-num">%id%</font>&ndash;&gt;
+                </div>
+
+                <div class="agv-item-gwzt">
+                    <img class="agv-item-gwzt-img" src="/img/avg-dian.png" height="30" width="30" onclick="clickShow('%id%')"/>
+                </div>
+            </div>
+&lt;!&ndash;            <div class="agv-item-scrq">&ndash;&gt;
+&lt;!&ndash;                <span>id</span>&ndash;&gt;
+&lt;!&ndash;                <span>%ide%</span>&ndash;&gt;
+&lt;!&ndash;            </div>&ndash;&gt;
+            <div class="agv-item-scrq">
+                <span>模板标题</span>
+                <span>%模板标题%</span>
+            </div>
+            <div class="agv-item-scrq">
+                <span>账号</span>
+                <span>%账号%</span>
+            </div>
+            <div class="agv-item-scrq">
+                <span>签名</span>
+                <span>%报备签名%</span>
+            </div>
+            <div class="agv-item-scrq">
+                <span>是否有变量</span>
+                <span>%变量%</span>
+            </div>
+
+            <div class="agv-item-scrq">
+                    <span>添加时间</span>
+                    <span>%添加时间%</span>
+            </div>
+            <div class="agv-item-btm">
+                <div class="agv-item-btm-d">
+                    <span>模板id</span>
+                    <span>%模板id%</span>
+                </div>
+                <div class="agv-item-btm-line"></div>
+                <div class="agv-item-btm-d">
+                    <span>模板状态</span>
+                    <span>%模板状态%</span>
+                </div>
+            </div>-->
+
+        </div>
+    </div>
+</template>
+
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: bootstrap-table-custom-view-js" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('mmskhd:model:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('mmskhd:model:remove')}]];
+    var statusDatas = [[${@dict.getType('app_model_status')}]];
+    var variateDatas = [[${@dict.getType('model_variate_do')}]];
+    var prefix = ctx + "mmskhd/model";
+    $(function() {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            detailUrl: prefix + "/detail/{id}",
+            modalName: "模板管理",
+            columns: [{
+                checkbox: true
+            },
+            // },{
+            //     field: 'id',
+            //     title: 'id',
+            //     width:'6%',
+            //     formatter: function (value, row, index) {
+            //         return index + 1;
+            //     }
+            // },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },]
+        };
+        $.table.init(options);
+    });
+    function customViewFormatter (data) {
+        var template = $('#profileTemplate').html()
+        var view = ''
+        $.each(data, function (i, row) {
+            // let reportSign = "暂无";
+            // debugger;
+            // if(row.signReport!=null){
+            //     reportSign = row.signReport.reportSign;
+            // }
+            var checkStatus = "review";
+            var checkTxt = "草稿";
+            var typeStatus = true;//可修改
+
+            if(row.mmsModel.status!=null && row.mmsModel.status == 'success'){
+                checkStatus = "success";
+                checkTxt = "审核成功";
+                typeStatus = false;
+            }
+            else if(row.mmsModel.status!=null && row.mmsModel.status == 'faild'){
+                checkStatus = "fail";
+                checkTxt = "审核失败";
+                typeStatus = false;
+            }
+            else if(row.mmsModel.status!=null && row.mmsModel.status == 'audit'){
+                checkStatus = "check";
+                checkTxt = "正在审核";
+                typeStatus = false;
+            }
+
+            view += template.replace('%id%', row.id)
+                .replace(new RegExp('%ide%',"gm"),row.id)
+                .replace('%modelId%', row.modelId)
+                .replace('%title%', row.title)
+                // .replace('%报备签名%', reportSign)
+                // .replace(new RegExp("%SerialNumber%","gm"), i+1)
+                // .replace('%添加时间%', row.addTime)
+                // .replace('%账号%', row.application.appName)
+                // .replace('%变量%', row.variate)
+                .replace('%checkStatus%', checkStatus)
+                .replace('%checkTxt%', checkTxt)
+                .replace('%typeStatus%', typeStatus)
+            ;
+        })
+
+        return `<div class="row mx-0">${view}</div>`;
+    }
+
+    function clickShow(id) {
+        debugger;
+        $(".more-body").addClass("displaydb");
+        $("#more-body-dis_"+id).removeClass("displaydb");
+
+        $(".more-content").unbind();
+        $(".gray-bg").unbind();
+
+        $(".more-body").click(function(event){
+            $(".more-body").addClass("displaydb");
+        });
+        $(".more-content").click(function(event){
+            event.stopPropagation();
+        });
+    }
+
+    function edit(type,id) {
+        if(type == 'false'){
+            $.modal.alert("该状态不可修改");
+        }else{
+            $.operate.editTab(id);
+        }
+    }
+
+    function  validateModel(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
+    }
+    function validateBlur() {
+        var modelId = $("input[name='modelId']").val();
+        var patt1=new RegExp("^[0-9]*$");
+        if(modelId !=null && modelId != '' && (modelId.length != 15 || !patt1.test(modelId))){
+            $.modal.alert("模板ID为15位的数字");
+            return false;
+        }
+        return true;
+    }
+    function  searchForm() {
+        if(validateBlur()){
+            $.table.search();
+        }
+    }
+
+</script>
+</body>
+</html>

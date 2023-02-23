@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.BlackGroupMapper">
+    
+    <resultMap type="BlackGroup" id="BlackGroupResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="channelTotal"    column="channel_total"    />
+        <result property="status"    column="status"    />
+        <result property="repeatDay"    column="repeat_day"    />
+        <result property="repeatCount"    column="repeat_count"    />
+        <result property="blackCount"    column="black_count"    />
+        <result property="blackRate"    column="black_rate"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectBlackGroupVo">
+        select id, title, channel_total, status,repeat_day,repeat_count,black_count,black_rate, remark, update_time, create_time from e_black_group
+    </sql>
+
+    <select id="selectBlackGroupList" parameterType="BlackGroup" resultMap="BlackGroupResult">
+        <include refid="selectBlackGroupVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title like concat('%', #{title}, '%')</if>
+            <if test="remark != null "> and remark = #{remark}</if>
+            <if test="status != null and status !=0 "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectBlackGroupById" parameterType="Long" resultMap="BlackGroupResult">
+        <include refid="selectBlackGroupVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBlackGroup" parameterType="BlackGroup" useGeneratedKeys="true" keyProperty="id">
+        insert into e_black_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="channelTotal != null">channel_total,</if>
+            <if test="status != null">status,</if>
+            <if test="repeatDay != null">repeat_day,</if>
+            <if test="repeatCount != null">repeat_count,</if>
+            <if test="blackCount != null">black_count,</if>
+            <if test="blackRate != null">black_rate,</if>
+            <if test="remark != null">remark,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="channelTotal != null">#{channelTotal},</if>
+            <if test="status != null">#{status},</if>
+            <if test="repeatDay != null">#{repeatDay},</if>
+            <if test="repeatCount != null">#{repeatCount},</if>
+            <if test="blackCount != null">#{blackCount},</if>
+            <if test="blackRate != null">#{blackRate},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBlackGroup" parameterType="BlackGroup">
+        update e_black_group
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="channelTotal != null">channel_total = #{channelTotal},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="repeatDay != null">repeat_day = #{repeatDay},</if>
+            <if test="repeatCount != null">repeat_count = #{repeatCount},</if>
+            <if test="blackCount != null">black_count = #{blackCount},</if>
+            <if test="blackRate != null">black_rate = #{blackRate},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBlackGroupById" parameterType="Long">
+        delete from e_black_group where id = #{id}
+    </delete>
+
+    <delete id="deleteBlackGroupByIds" parameterType="String">
+        delete from e_black_group where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

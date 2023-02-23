@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.sign.mapper.ModelSignMapper">
+
+    <resultMap type="ModelSign" id="ModelSignResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="signId"    column="sign_id"    />
+        <result property="ecProvince"    column="ec_province"    />
+        <result property="ecCity"    column="ec_city"    />
+        <result property="serviceCode"    column="service_code"    />
+        <result property="reportSignContent"    column="report_sign_content"    />
+        <result property="info"    column="info"    />
+        <result property="ecName"    column="ec_name"    />
+        <result property="backUrl"    column="back_url"    />
+        <result property="userId"    column="user_id"    />
+        <result property="rcsIndustry"    column="rcsIndustry"    />
+        <result property="industry"    column="industry"    />
+        <result property="customerType"    column="customer_type"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="operatorType"    column="operator_type"    />
+        <result property="upLoadFile"    column="upLoad_file"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectModelSignVo">
+        select id, company_id, app_id, sign_id, ec_province, ec_city,status, service_code, report_sign_content, info, ec_name, back_url, user_id, update_time, create_time, rcsIndustry, industry, customer_type,operator_type,upLoad_file from e_model_sign
+    </sql>
+
+    <select id="selectModelSignList" parameterType="ModelSign" resultMap="ModelSignResult">
+        <include refid="selectModelSignVo"/>
+        <where>
+            <if test="companyId != null and companyId!=0"> and company_id = #{companyId}</if>
+            <if test="appId != null and appId!=0 "> and app_id = #{appId}</if>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="status != null  and status != 0"> and status = #{status}</if>
+            <if test="reportSignContent != null  and reportSignContent != ''"> and report_sign_content = #{reportSignContent}</if>
+            <if test="info != null and info !=''"> and info like "%"#{info}"%"</if>
+        </where>
+    </select>
+</mapper>

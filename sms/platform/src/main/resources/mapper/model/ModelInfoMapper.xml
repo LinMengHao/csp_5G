@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.model.mapper.ModelInfoMapper">
+    
+    <resultMap type="ModelInfo" id="ModelInfoResult">
+        <result property="id"    column="id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="signId"    column="sign_id"    />
+        <result property="modelId"    column="model_id"    />
+        <result property="title"    column="title"    />
+        <result property="variate"    column="variate"    />
+        <result property="status"    column="status"    />
+        <result property="info"    column="info"    />
+        <result property="source"    column="source"    />
+        <result property="backUrl"    column="back_url"    />
+        <result property="userId"    column="user_id"    />
+        <result property="appExt"    column="app_ext"    />
+        <result property="modelExt"    column="model_ext"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="pid"    column="pid"    />
+        <result property="channelModelId"    column="channel_model_id"    />
+    </resultMap>
+
+    <sql id="selectModelInfoVo">
+        select id, company_id, app_id, sign_id, model_id, title, variate, status, info, source, back_url, user_id, update_time, create_time, app_ext, model_ext, channel_id,pid,channel_model_id from e_model_info
+    </sql>
+
+    <select id="selectModelInfoList" parameterType="ModelInfo" resultMap="ModelInfoResult">
+        <include refid="selectModelInfoVo"/>
+        <where>  
+            <if test="companyId != null and companyId!=0"> and company_id = #{companyId}</if>
+            <if test="appId != null and appId!=0 "> and app_id = #{appId}</if>
+            <if test="signId != null  and signId != ''"> and sign_id = #{signId}</if>
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="variate != null and variate!=0"> and variate = #{variate}</if>
+            <if test="status != null and status!=0"> and status = #{status}</if>
+            <if test="pid != null and pid!=''"> and pid = #{pid}</if>
+            <if test="info != null and info !=''"> and info like "%"#{info}"%"</if>
+        </where>
+    </select>
+    
+    <select id="selectModelInfoById" parameterType="Long" resultMap="ModelInfoResult">
+        <include refid="selectModelInfoVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectModelInfoByModelId" parameterType="String" resultMap="ModelInfoResult">
+        <include refid="selectModelInfoVo"/>
+        where model_id = #{modelId}
+    </select>
+        
+    <insert id="insertModelInfo" parameterType="ModelInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into e_model_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">company_id,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="signId != null and signId != ''">sign_id,</if>
+            <if test="modelId != null and modelId != ''">model_id,</if>
+            <if test="title != null and title != ''">title,</if>
+            <if test="variate != null">variate,</if>
+            <if test="status != null">status,</if>
+            <if test="info != null">info,</if>
+            <if test="source != null">source,</if>
+            <if test="backUrl != null">back_url,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="pid != null and pid!=''">pid,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyId != null">#{companyId},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="signId != null and signId != ''">#{signId},</if>
+            <if test="modelId != null and modelId != ''">#{modelId},</if>
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="variate != null">#{variate},</if>
+            <if test="status != null">#{status},</if>
+            <if test="info != null">#{info},</if>
+            <if test="source != null">#{source},</if>
+            <if test="backUrl != null">#{backUrl},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="pid != null and pid!=''">#{pid},</if>
+
+         </trim>
+    </insert>
+
+    <update id="updateModelInfo" parameterType="ModelInfo">
+        update e_model_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null and companyId!=0">company_id = #{companyId},</if>
+            <if test="appId != null and appId!=0">app_id = #{appId},</if>
+            <if test="signId != null and signId != ''">sign_id = #{signId},</if>
+            <if test="modelId != null and modelId != ''">model_id = #{modelId},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="variate != null and variate!=0">variate = #{variate},</if>
+            <if test="status != null and status!=0">status = #{status},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="backUrl != null">back_url = #{backUrl},</if>
+            <if test="userId != null and userId!=0">user_id = #{userId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    <update id="updateModelInfoByModelId" parameterType="ModelInfo">
+        update e_model_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyId != null and companyId!=0">company_id = #{companyId},</if>
+            <if test="appId != null and appId!=0">app_id = #{appId},</if>
+            <if test="signId != null and signId != ''">sign_id = #{signId},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="variate != null and variate!=0">variate = #{variate},</if>
+            <if test="status != null and status!=0">status = #{status},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="backUrl != null">back_url = #{backUrl},</if>
+            <if test="userId != null and userId!=0">user_id = #{userId},</if>
+            <if test="appExt != null and appExt!=0">app_ext = #{appExt},</if>
+            <if test="modelExt != null and modelExt!=0">model_ext = #{modelExt},</if>
+            <if test="channelId != null and channelId!=0">channel_id = #{channelId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where model_id = #{modelId}
+    </update>
+
+    <delete id="deleteModelInfoById" parameterType="Long">
+        delete from e_model_info where id = #{id}
+    </delete>
+
+    <delete id="deleteModelInfoByIds" parameterType="String">
+        delete from e_model_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectMaxId" parameterType="String" resultType="java.lang.Integer">
+        select max(${field}) from ${tableName}
+    </select>
+</mapper>

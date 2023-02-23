@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.khd.mapper.DataStatisticAppChannelServiceMapper">
+
+    <select id="getMonthStatistics" resultType="com.xzkj.platform.khd.domain.DataStatisticAppChannelVo" parameterType="map">
+        SELECT
+            date_format(log_date,'%Y-%m') AS logDate,
+            IFNULL(SUM(send_total),0) AS sendTotal,
+            IFNULL(SUM(report_delivrd),0) AS reportDelivrd,
+            IFNULL(SUM(report_undeliv),0) AS reportUndeliv,
+            IFNULL(SUM(report_unknown),0) AS reportUnknown
+        FROM
+            data_statistic_app_channel
+        WHERE 1 = 1
+        <if test="companyId != null and companyId !='' and companyId !=100">
+            AND company_id=#{companyId}
+        </if>
+        GROUP BY
+            date_format(log_date,'%Y-%m')
+    </select>
+
+</mapper>

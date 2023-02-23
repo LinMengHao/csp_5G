@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.operator.mapper.LimitBandMapper">
+    
+    <resultMap type="LimitBand" id="LimitBandResult">
+        <result property="id"    column="id"    />
+        <result property="limitType"    column="limit_type"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="spId"    column="sp_id"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="days"    column="days"    />
+        <result property="times"    column="times"    />
+        <result property="remark"    column="remark"    />
+        <result property="userId"    column="user_id"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectLimitBandVo">
+        select id, limit_type, company_id, app_id, sp_id, channel_id, days, times, remark, user_id, update_time, create_time from e_limit_band
+    </sql>
+
+    <select id="selectLimitBandList" parameterType="LimitBand" resultMap="LimitBandResult">
+        <include refid="selectLimitBandVo"/>
+        <where>  
+            <if test="limitType != null and limitType != 0 "> and limit_type = #{limitType}</if>
+            <if test="companyId != null and companyId != 0  "> and company_id = #{companyId}</if>
+            <if test="appId != null and appId != 0  "> and app_id = #{appId}</if>
+            <if test="spId != null and spId != 0  "> and sp_id = #{spId}</if>
+            <if test="channelId != null and channelId != 0  "> and channel_id = #{channelId}</if>
+            <if test="days != null "> and days = #{days}</if>
+            <if test="times != null "> and times = #{times}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+        </where>
+    </select>
+    
+    <select id="selectLimitBandById" parameterType="Long" resultMap="LimitBandResult">
+        <include refid="selectLimitBandVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLimitBand" parameterType="LimitBand" useGeneratedKeys="true" keyProperty="id">
+        insert into e_limit_band
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="limitType != null">limit_type,</if>
+            <if test="companyId != null">company_id,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="spId != null">sp_id,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="days != null">days,</if>
+            <if test="times != null">times,</if>
+            <if test="remark != null">remark,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="limitType != null">#{limitType},</if>
+            <if test="companyId != null">#{companyId},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="spId != null">#{spId},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="days != null">#{days},</if>
+            <if test="times != null">#{times},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLimitBand" parameterType="LimitBand">
+        update e_limit_band
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="limitType != null and limitType != 0">limit_type = #{limitType},</if>
+            <if test="companyId != null and companyId != 0">company_id = #{companyId},</if>
+            <if test="appId != null and appId != 0">app_id = #{appId},</if>
+            <if test="spId != null and spId != 0">sp_id = #{spId},</if>
+            <if test="channelId != null and channelId != 0">channel_id = #{channelId},</if>
+            <if test="days != null">days = #{days},</if>
+            <if test="times != null">times = #{times},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="userId != null and userId != 0">user_id = #{userId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLimitBandById" parameterType="Long">
+        delete from e_limit_band where id = #{id}
+    </delete>
+
+    <delete id="deleteLimitBandByIds" parameterType="String">
+        delete from e_limit_band where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

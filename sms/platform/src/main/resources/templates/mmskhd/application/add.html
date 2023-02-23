@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增账户管理')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-application-add">
+            <input type="hidden" id="treeId"/>
+            <input type="hidden" id="companyId" name="companyId"/>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">客户名称：</label>
+                <div class="col-sm-8">
+                    <input name="companyName" onclick="selectDeptTree()" id="treeName" type="text" placeholder="请选择客户" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">账户名称：</label>
+                <div class="col-sm-8">
+                    <input name="appName" class="form-control" type="text" maxlength="11"　required>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">账户密码：</label>
+                <div class="col-sm-8">
+                    <input name="password" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">账号扩展：</label>
+                <div class="col-sm-8">
+                    <input name="appExt" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">付费模式：</label>
+                <div class="col-sm-8">
+                    <label class="radio-box"> <input type="radio" name="payment" value="advance" checked="checked"/>预付</label>
+                    <label class="radio-box"> <input type="radio" name="payment" value="arrears" />后付</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">状态：</label>
+                <div class="col-sm-8">
+                    <label class="toggle-switch switch-solid">
+                        <input type="checkbox" id="status" checked>
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">产品id：</label>
+                <div class="col-sm-8">
+                    <input name="productId" class="form-control" type="text" value="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">状态报告方式：</label>
+                <div class="col-sm-8">
+                    <label class="radio-box"> <input type="radio" name="rptSyncModel" value="push" checked="checked"/>推送</label>
+                    <label class="radio-box"> <input type="radio" name="rptSyncModel" value="pull" />拉取</label>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">状态报告地址：</label>
+                <div class="col-sm-8">
+                    <input name="rptSyncAddress" class="form-control" type="text" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">模板报告地址：</label>
+                <div class="col-sm-8">
+                    <input name="rptModelAddress" class="form-control" type="text" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">签名报告地址：</label>
+                <div class="col-sm-8">
+                    <input name="rptSignAddress" class="form-control" type="text" >
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">上行方式：</label>
+                <div class="col-sm-8">
+                    <label class="radio-box"> <input type="radio" name="moSyncModel" value="push" checked="checked"/>推送</label>
+                    <label class="radio-box"> <input type="radio" name="moSyncModel" value="pull" />拉取</label>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">上行地址：</label>
+                <div class="col-sm-8">
+                    <input name="moSyncAddress" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">默认签名：</label>
+                <div class="col-sm-8">
+                    <input name="defaultSign" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">开始时间：</label>
+                <div class="col-sm-8">
+                    <input name="startTime" placeholder="取值范围0000-2400" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">结束时间：</label>
+                <div class="col-sm-8">
+                    <input name="endTime" placeholder="取值范围0000-2400" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">ip鉴权：</label>
+                <div class="col-sm-8">
+                    <input name="authIp" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">黑名单组：</label>
+                <div class="col-sm-8">
+                    <select  id="blackLevels" name="blackLevels" style="width: 100%; height: 31px;">
+                        <option value="">请选择黑名单组</option>
+                        <option th:each="black : ${blacklist}"
+                                th:value="${black.id}"
+                                th:text="${black.id}+':'+${black.title}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "mmskhd/application"
+        $("#form-application-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                var data = $("#form-application-add").serializeArray();
+                var status = $("input[id='status']").is(':checked') == true ? 'normal' : 'paused';
+                data.push({"name": "status", "value": status});
+                //$.operate.save(prefix + "/add", $('#form-application-add').serialize());
+                $.operate.save(prefix + "/add", data);
+            }
+        }
+
+        $("input[name='addTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+        /* 新增-选择公司树 */
+        function selectDeptTree() {
+        	var treeId = $("#treeId").val();
+        	var companyId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+        	var url = ctx + "system/dept/selectDeptTree/" + companyId;
+			var options = {
+				title: '选择商户',
+				width: "380",
+				url: url,
+				callBack: doSubmit
+			};
+			$.modal.openOptions(options);
+		}
+		function doSubmit(index, layero){
+			//var tree = layero.find("iframe")[0].contentWindow.$._tree;
+			var body = $.modal.getChildFrame(index);
+   			$("#treeId").val(body.find('#treeId').val());
+   			$("#companyId").val(body.find('#treeId').val());
+   			$("#treeName").val(body.find('#treeName').val());
+   			$.modal.close(index);
+		}
+    </script>
+</body>
+</html>
