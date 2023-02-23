@@ -1,12 +1,175 @@
-2023-02-17 02:39:54.556 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40api-gateway&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 03:33:38.553 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40api-gateway&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 06:10:52.315 [com.alibaba.nacos.naming.beat.sender] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/beat?beat=%7B%22cluster%22%3A%22DEFAULT%22%2C%22ip%22%3A%22172.16.10.177%22%2C%22metadata%22%3A%7B%22preserved.register.source%22%3A%22SPRING_CLOUD%22%7D%2C%22port%22%3A8888%2C%22scheduled%22%3Atrue%2C%22serviceName%22%3A%22DEFAULT_GROUP%40%40service-access%22%2C%22weight%22%3A1.0%7D&serviceName=DEFAULT_GROUP%40%40service-access&encoding=UTF-8&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594 from 82.157.251.233
-2023-02-17 07:24:17.902 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40api-gateway&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 08:25:37.934 [ThreadPoolTaskScheduler-1] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/service/list?pageSize=2147483647&groupName=DEFAULT_GROUP&encoding=UTF-8&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&pageNo=1 from 82.157.251.233
-2023-02-17 08:25:53.082 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40api-gateway&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 08:28:14.603 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40service-access&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 09:23:42.211 [com.alibaba.nacos.naming.beat.sender] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/beat?beat=%7B%22cluster%22%3A%22DEFAULT%22%2C%22ip%22%3A%22172.16.10.177%22%2C%22metadata%22%3A%7B%22preserved.register.source%22%3A%22SPRING_CLOUD%22%7D%2C%22port%22%3A8888%2C%22scheduled%22%3Atrue%2C%22serviceName%22%3A%22DEFAULT_GROUP%40%40service-access%22%2C%22weight%22%3A1.0%7D&serviceName=DEFAULT_GROUP%40%40service-access&encoding=UTF-8&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594 from 82.157.251.233
-2023-02-17 10:04:47.773 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40service-sms&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 14:06:22.847 [com.alibaba.nacos.naming.beat.sender] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/beat?beat=%7B%22cluster%22%3A%22DEFAULT%22%2C%22ip%22%3A%22172.16.10.177%22%2C%22metadata%22%3A%7B%22preserved.register.source%22%3A%22SPRING_CLOUD%22%7D%2C%22port%22%3A8888%2C%22scheduled%22%3Atrue%2C%22serviceName%22%3A%22DEFAULT_GROUP%40%40service-access%22%2C%22weight%22%3A1.0%7D&serviceName=DEFAULT_GROUP%40%40service-access&encoding=UTF-8&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594 from 82.157.251.233
-2023-02-17 15:36:32.268 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40service-access&udpPort=56825&encoding=UTF-8 from 82.157.251.233
-2023-02-17 16:25:08.477 [com.alibaba.nacos.client.naming.updater] WARN  com.alibaba.nacos.client.naming - failed to request http://82.157.251.233:8848/nacos/v1/ns/instance/list?healthyOnly=false&namespaceId=fa299816-d6a4-4061-9ee2-7f67aa5f6594&clientIP=172.16.10.177&serviceName=DEFAULT_GROUP%40%40service-access&udpPort=56825&encoding=UTF-8 from 82.157.251.233
+2023-02-23 17:08:12.290 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:08:16.936 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'redisUtilConfig': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.redis.database' in value "${spring.redis.database}"
+2023-02-23 17:09:45.094 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:09:49.754 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'redisUtilConfig': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.redis.timeout' in value "${spring.redis.timeout}"
+2023-02-23 17:11:22.741 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:11:27.104 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'keys': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'YD.YY.PUBLICKEY' in value "${YD.YY.PUBLICKEY}"
+2023-02-23 17:13:13.462 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:13:20.084 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'phoneRecordController': Unsatisfied dependency expressed through field 'redisUtil'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'baseRedisUtil' defined in class path resource [com/xzkj/flowStore/config/RedisUtilConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.xzkj.flowStore.utils.RedisUtil]: Factory method 'baseRedisUtil' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'baseRedisTemplate' defined in class path resource [com/xzkj/flowStore/config/RedisUtilConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.redis.core.RedisTemplate]: Factory method 'baseRedisTemplate' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'baseRedisConnectionFactory' defined in class path resource [com/xzkj/flowStore/config/RedisUtilConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.redis.connection.RedisConnectionFactory]: Factory method 'baseRedisConnectionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: redis/clients/jedis/util/SafeEncoder
+2023-02-23 17:18:35.975 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:18:42.500 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'phoneRecordController': Unsatisfied dependency expressed through field 'redisUtil'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.xzkj.flowStore.utils.RedisUtil' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2023-02-23 17:20:12.863 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:20:20.909 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 17:20:21.068 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 17:20:21.079 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 17:20:22.151 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 17:20:22.308 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 17:22:40.502 [File Watcher] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.flowStore.mapper]' package. Please check your configuration.
+2023-02-23 17:22:40.775 [File Watcher] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:22:57.809 [SpringContextShutdownHook] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.flowStore.mapper]' package. Please check your configuration.
+2023-02-23 17:22:58.232 [SpringContextShutdownHook] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:22:58.366 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677144178366, current=DOWN, previous=UP]
+2023-02-23 17:23:27.679 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 17:23:36.080 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 17:23:36.327 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 17:23:36.344 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 17:23:37.360 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 17:23:37.474 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 18:01:38.532 [http-nio-9002-exec-12] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.xzkj.flowStore.utils.MsgBean com.xzkj.flowStore.controller.web.UserController.wxMinUpdate(com.xzkj.flowStore.controller.web.bo.SmsCodeBo)]
+2023-02-23 18:03:26.947 [http-nio-9002-exec-13] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 18:03:27.042 [http-nio-9002-exec-13] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xzkj.flowStore.mapper]' package. Please check your configuration.
+2023-02-23 18:03:27.617 [http-nio-9002-exec-13] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.xzkj.flowStore.utils.MsgBean com.xzkj.flowStore.controller.web.UserController.wxMinUpdate(com.xzkj.flowStore.controller.web.bo.SmsCodeBo)]
+2023-02-23 18:11:36.833 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677147096832, current=DOWN, previous=UP]
+2023-02-23 18:12:11.905 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 18:12:20.590 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 18:12:20.755 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 18:12:20.768 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 18:12:21.830 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 18:12:21.968 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 18:15:38.231 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677147338231, current=DOWN, previous=UP]
+2023-02-23 18:16:14.788 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 18:16:23.073 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 18:16:23.238 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 18:16:23.250 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 18:16:24.274 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 18:16:24.428 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 18:27:20.033 [DiscoveryClient-1] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 18:27:20.033 [DiscoveryClient-0] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 18:30:20.142 [DiscoveryClient-1] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 18:30:20.142 [DiscoveryClient-0] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 18:50:09.149 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677149409148, current=DOWN, previous=UP]
+2023-02-23 18:50:59.257 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 18:51:09.914 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 18:51:10.108 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 18:51:10.123 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 18:51:11.464 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 18:51:11.590 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 19:00:31.411 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677150031411, current=DOWN, previous=UP]
+2023-02-23 19:01:20.957 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 19:01:29.514 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 19:01:29.671 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:01:29.682 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:01:30.605 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 19:01:30.712 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 19:03:29.149 [DiscoveryClient-0] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 19:03:29.150 [DiscoveryClient-1] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 19:04:53.977 [DiscoveryClient-CacheRefreshExecutor-0] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: com.fasterxml.jackson.core.JsonParseException: processing aborted
+ at [Source: (GZIPInputStream); line: 1, column: 18]
+2023-02-23 19:04:53.998 [DiscoveryClient-CacheRefreshExecutor-0] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: com.fasterxml.jackson.core.JsonParseException: processing aborted
+ at [Source: (GZIPInputStream); line: 1, column: 18]
+2023-02-23 19:15:20.748 [DiscoveryClient-1] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 19:15:20.760 [DiscoveryClient-0] WARN  com.netflix.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-23 19:16:37.145 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677150997145, current=DOWN, previous=UP]
+2023-02-23 19:17:14.815 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 19:17:23.613 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 19:17:23.787 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:17:23.800 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:17:24.871 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 19:17:25.020 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 19:20:16.179 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677151216179, current=DOWN, previous=UP]
+2023-02-23 19:20:49.765 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 19:20:58.042 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 19:20:58.239 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:20:58.276 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:20:59.314 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 19:20:59.425 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 19:25:27.726 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677151527726, current=DOWN, previous=UP]
+2023-02-23 19:25:59.389 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xiuzhi.flowStore.mapper*]' package. Please check your configuration.
+2023-02-23 19:26:08.243 [main] WARN  o.s.b.d.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+2023-02-23 19:26:08.407 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:26:08.419 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2023-02-23 19:26:09.417 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2023-02-23 19:26:09.525 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2023-02-23 19:39:52.665 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677152392665, current=DOWN, previous=UP]
+2023-02-23 19:39:56.958 [SpringContextShutdownHook] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+2023-02-23 19:39:56.963 [SpringContextShutdownHook] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)

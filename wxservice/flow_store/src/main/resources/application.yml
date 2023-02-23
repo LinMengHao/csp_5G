@@ -1,0 +1,100 @@
+server:
+  port: 9002
+  tomcat:
+    uri-encoding: utf-8
+    max-threads: 1000
+    min-spare-threads: 30
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: flow-store
+  profiles:
+      active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  datasource:
+    master:
+      url: jdbc:mysql://82.157.251.233:3306/vpn?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+      username: root
+      password: Xzkj@1225
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      url: jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+      username: root
+      password: Xzkj@1225
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 82.157.251.233
+    port: 6379
+    password: xzkj1225
+    database: 0
+    timeout: 6000 # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 8
+        max-wait: 20000
+        min-idle: 0
+#mybatis-plus:
+#  type-aliases-package: com.xzkj.flowStore.entity
+#  mapper-locations: classpath:com/xzkj/flowStore/mapper/xml/*.xml
+#  global-config:
+#    db-config:
+#      id-type: id_worker_str
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+##mybatis
+mybatis-plus:
+  mapper-locations: classpath:com/xzkj/flowStore/mapper/xml/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.xiuzhi.flowStore.entity
+  global-config:
+    # 数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #数据库大写下划线转换
+      #capital-mode: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    #刷新mapper 调试神器
+    refresh: true
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    key-generator-names: restrict
+#    use-generated-keys: true
+
+
+
+logging:
+  level:
+    root: info
+#  config: classpath:logback-spring.xml
+
+
+qiniuyun:
+  accessKey: 5XiXTzffknkO9v_WhKv9pMs7u1UcxDehIJIl0brC
+  secretKey: zrY4wZDTCf0c5atC-2GUcYLhYdBSou0VFnUlTvLR
+  bucketName: fangaofile
+
+eureka:
+  client:
+    #表示是否将自己注册进Eurekaserver默认为true。
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka

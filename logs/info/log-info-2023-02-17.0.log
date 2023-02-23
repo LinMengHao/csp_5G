@@ -1,0 +1,17 @@
+2023-02-17 19:03:54.704 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2023-02-17 19:03:54.774 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2023-02-17 19:03:55.712 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2023-02-17 19:03:55.731 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2023-02-17 19:03:56.394 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2023-02-17 19:03:56.505 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2023-02-17 19:03:57.209 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2023-02-17 19:03:57.511 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2023-02-17 19:03:57.536 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2023-02-17 19:03:57.565 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
+2023-02-17 19:03:57.583 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'sendPoolTaskExecutor'
+2023-02-17 19:03:57.584 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'asyncPoolTaskExecutor'
+2023-02-17 19:03:57.593 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2023-02-17 19:03:57.593 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2023-02-17 19:03:57.594 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2023-02-17 19:03:57.594 [SpringContextShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2023-02-17 19:03:58.036 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'TaskExecutor'

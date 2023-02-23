@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.flowStore.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xzkj.flowStore.entity.User">
+        <id column="id" property="id" />
+        <result column="nick" property="nick" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="cover" property="cover" />
+        <result column="phone" property="phone" />
+        <result column="min_open_id" property="minOpenId" />
+        <result column="min_session_key" property="minSessionKey" />
+        <result column="union_id" property="unionId" />
+        <result column="ip" property="ip" />
+        <result column="xj_user_id" property="xjUserId" />
+        <result column="state" property="state" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, nick, name,password,xj_user_id, cover,ip, phone, min_open_id,min_session_key,union_id,state, created_at, updated_at
+    </sql>
+
+</mapper>

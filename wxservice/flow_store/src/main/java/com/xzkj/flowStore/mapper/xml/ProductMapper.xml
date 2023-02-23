@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.flowStore.mapper.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xzkj.flowStore.entity.Product">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="sub_title" property="subTitle" />
+        <result column="amount" property="amount" />
+<!--        <result column="amount_desc" property="amountDesc" />-->
+        <result column="day" property="day" />
+        <result column="day_type" property="dayType" />
+        <result column="type" property="type" />
+        <result column="service" property="service" />
+        <result column="content" property="content" />
+        <result column="pic" property="pic" />
+        <result column="code" property="code" />
+        <result column="state" property="state" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, sub_title, amount, day, day_type, type, service, content, pic, code, state, created_at, updated_at
+    </sql>
+
+</mapper>

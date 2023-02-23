@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.flowStore.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xzkj.flowStore.entity.Order">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="order_name" property="orderName"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="out_order_no" property="outOrderNo"/>
+        <result column="amount" property="amount"/>
+        <result column="bill_amount" property="billAmount"/>
+        <result column="product_id" property="productId"/>
+        <result column="pay_type" property="payType"/>
+        <result column="paid_time" property="paidTime"/>
+        <result column="state" property="state"/>
+        <result column="sync_state" property="syncState"/>
+        <result column="sync_time" property="syncTime"/>
+        <result column="ip" property="ip"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, order_name, order_no, out_order_no, ip,amount, bill_amount, product_id, pay_type, paid_time, state, sync_state, sync_time, created_at, updated_at
+    </sql>
+
+</mapper>
