@@ -15,6 +15,7 @@
         <module>flow_store</module>
         <module>flow_eureka</module>
         <module>flow_payment</module>
+        <module>flow_passthrough</module>
     </modules>
 
     <properties>
