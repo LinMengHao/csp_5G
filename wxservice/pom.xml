@@ -16,6 +16,7 @@
         <module>flow_eureka</module>
         <module>flow_payment</module>
         <module>flow_passthrough</module>
+        <module>flow_gateway</module>
     </modules>
 
     <properties>

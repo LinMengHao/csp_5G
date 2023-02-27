@@ -2,6 +2,7 @@ package com.xzkj.flowPassthrough.mapper;
 
 import com.xzkj.flowPassthrough.entity.OrderPass;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface OrderPassMapper extends BaseMapper<OrderPass> {
 
+    int insertByTableName(OrderPass orderPass);
+
+    boolean updateByTableName(OrderPass orderPass);
 }

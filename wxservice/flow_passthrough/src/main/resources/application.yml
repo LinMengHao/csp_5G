@@ -14,17 +14,29 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  datasource:
-    master:
-      url: jdbc:mysql://82.157.251.233:3306/vpn?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
-      username: root
-      password: Xzkj@1225
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    slave:
-      url: jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
-      username: root
-      password: Xzkj@1225
-      driver-class-name: com.mysql.cj.jdbc.Driver
+#  redis:
+#    host: 82.157.251.233
+#    port: 6379
+#    password: xzkj1225
+#    database: 0
+#    timeout: 6000 # 连接超时时长（毫秒）
+#    jedis:
+#      pool:
+#        max-active: 20
+#        max-idle: 8
+#        max-wait: 20000
+#        min-idle: 0
+#  datasource:
+#    master:
+#      url: jdbc:mysql://82.157.251.233:3306/vpn?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+#      username: root
+#      password: Xzkj@1225
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    slave:
+#      url: jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+#      username: root
+#      password: Xzkj@1225
+#      driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
   mapper-locations: classpath:com/xzkj/flowPassthrough/mapper/xml/*.xml
@@ -56,10 +68,9 @@ mybatis-plus:
 #    use-generated-keys: true
 
 logging:
-  level:
-    root: info
+  config: classpath:log4j2.xml
 flow:
-  ip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
+  sendip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
   callip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
 http:
   socket-timeout: 100000

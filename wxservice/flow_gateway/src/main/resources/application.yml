@@ -1,0 +1,31 @@
+server:
+  port: 9120
+spring:
+  application:
+    name: flow-gateway
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: flow-passthrough_1
+          uri: lb://flow-passthrough
+          predicates:
+            - Path=/action/flow/**
+        - id: flow-payment_1
+          uri: lb://flow-payment
+          predicates:
+            - Path=/pay/flow/**
+        - id: flow-store_1
+          uri: lb://flow-store
+          predicates:
+            - Path=/store/flow/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka

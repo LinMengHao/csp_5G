@@ -27,7 +27,7 @@ import java.io.BufferedReader;
 @Slf4j
 @Component
 public class OrderFlowQueryInterceptor implements HandlerInterceptor {
-    @Value("${flow.ip}")
+    @Value("${flow.sendip}")
     private String[] ip;
     @Autowired
     AsyncUtils asyncUtils;
@@ -37,9 +37,9 @@ public class OrderFlowQueryInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("流量订购回调拦截器线程名称"+Thread.currentThread().getName());
+        log.info("流量订购查询拦截器线程名称"+Thread.currentThread().getName());
         long l = System.currentTimeMillis();
-        //获取请求url，将chabotURI从路径中提取出来
+
         String requestURL = RequestUtils.getIp(request);
         BufferedReader reader=null;
         boolean flag=false;
@@ -83,9 +83,6 @@ public class OrderFlowQueryInterceptor implements HandlerInterceptor {
                         asyncUtils.update(jsonObject1);
                     }
                 }
-
-
-
             }catch (Exception e){
                 e.printStackTrace();
             }finally {

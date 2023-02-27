@@ -93,4 +93,14 @@ private static final long serialVersionUID=1L;
      * 用户名称
      */
     private String usrName;
+
+    /**
+     * 日志时间
+     */
+    private String logDate;
+
+    /**
+     * 记录表
+     */
+    private String tableName;
 }

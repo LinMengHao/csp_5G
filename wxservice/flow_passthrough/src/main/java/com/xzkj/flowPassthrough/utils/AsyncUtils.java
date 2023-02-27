@@ -11,10 +11,16 @@ import com.xzkj.flowPassthrough.service.OrderPassService;
 import com.xzkj.flowPassthrough.service.ProductFlowService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 //异步请求管理工具
@@ -26,10 +32,25 @@ public class AsyncUtils {
     @Autowired
     ProductFlowService productFlowService;
 
+    @Autowired
+    RedisTemplate redisTemplate;
+
     @Async("sendPoolTaskExecutor")
     public void insert(JSONObject json) {
         OrderPass orderPass=JSONObject.parseObject(json.toJSONString(), OrderPass.class);
-       int i= orderPassService.insert(orderPass);
+        String day = new SimpleDateFormat("yyyyMMdd").format(new Date().getTime());
+        String tableName="order_pass_"+day;
+        //三天回调期限
+        redisTemplate.opsForValue().set(orderPass.getSaleorderno(),tableName, Duration.ofHours(72L));
+        orderPass.setLogDate(day);
+        orderPass.setCreateTime(new Date());
+        orderPass.setUpdateTime(new Date());
+        int i= orderPassService.insert(orderPass);
+        if(i>0){
+            log.info("订购单号：{}, 入库表：{} 操做成功",orderPass.getSaleorderno(),tableName);
+        }else {
+            log.info("订购单号：{}, 入库表：{} 操做失败",orderPass.getSaleorderno(),tableName);
+        }
     }
 
 
@@ -42,15 +63,39 @@ public class AsyncUtils {
         String usr_name = json.containsKey("usr_name") ? json.getString("usr_name") : "";
         String sales_returl = json.containsKey("sales_returl") ? json.getString("sales_returl") : "0";
         String uid = json.containsKey("uid") ? json.getString("uid") : "";
+        String receive_time = json.containsKey("receive_time") ? json.getString("receive_time") : "";
 
-        UpdateWrapper<OrderPass> objectUpdateWrapper = new UpdateWrapper<OrderPass>();
-        objectUpdateWrapper.eq("orderNo",orderno);
-        objectUpdateWrapper.eq("saleorderno",sale_orderno);
-        objectUpdateWrapper.eq("uid",uid);
-        objectUpdateWrapper.set("charge_state",charge_state);
-        objectUpdateWrapper.set("state_msg",state_msg);
-        objectUpdateWrapper.set("usr_name",usr_name);
-        boolean update = orderPassService.update(null, objectUpdateWrapper);
+
+        OrderPass orderPass=new OrderPass();
+        orderPass.setOrderNo(orderno);
+        orderPass.setSaleorderno(sale_orderno);
+        orderPass.setChargeState(Integer.parseInt(charge_state));
+        orderPass.setStateMsg(state_msg);
+        orderPass.setUsrName(usr_name);
+        orderPass.setUid(Long.parseLong(uid));
+        String tableName = (String)redisTemplate.opsForValue().get(sale_orderno);
+        if(!StringUtils.hasText(tableName)) {
+            if (StringUtils.hasText(receive_time)) {
+                try {
+                    Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(receive_time);
+                    String day = new SimpleDateFormat("yyyyMMdd").format(date);
+                    tableName = "order_pass_" + day;
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            //TODO 极端情况下 需要遍历所以表，修改这个订单状态
+        }
+        orderPass.setTableName(tableName);
+        orderPass.setUpdateTime(new Date());
+        boolean update = orderPassService.updateByTableName(orderPass);
+        if(update){
+            log.info("订购单号：{}, 更新库表：{} 操做成功",orderPass.getSaleorderno(),tableName);
+        }else {
+            log.info("订购单号：{}, 更新库表：{} 操做失败",orderPass.getSaleorderno(),tableName);
+        }
+
+
     }
 
     @Async("sendPoolTaskExecutor")

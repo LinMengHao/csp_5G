@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface OrderPassService extends IService<OrderPass> {
 
     int insert(OrderPass orderPass);
+
+    boolean updateByTableName(OrderPass orderPass);
 }

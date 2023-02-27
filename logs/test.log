@@ -1,0 +1,50 @@
+18:26:18.500 [main] INFO  com.xzkj.flowPassthrough.FlowPassThroughApplication - The following profiles are active: dev
+18:26:21.791 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9004"]
+18:26:21.792 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+18:26:21.793 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+18:26:21.941 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+18:26:24.026 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+18:26:24.028 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+18:26:24.035 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+18:26:24.036 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+18:26:25.765 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+18:26:25.851 [main] INFO  com.netflix.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+18:26:25.852 [main] INFO  com.netflix.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+18:26:26.133 [main] INFO  com.netflix.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+18:26:26.133 [main] INFO  com.netflix.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+18:26:26.466 [main] INFO  com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:26:26.501 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+18:26:26.501 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+18:26:26.501 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+18:26:26.502 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+18:26:26.502 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+18:26:26.502 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+18:26:26.502 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+18:26:26.927 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+18:26:26.932 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+18:26:26.937 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+18:26:26.944 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1677493586942 with initial instances count: 2
+18:26:26.953 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677493586953, current=UP, previous=STARTING]
+18:26:26.957 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-PASSTHROUGH/172.16.10.177:flow-passthrough:9004: registering service...
+18:26:26.989 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9004"]
+18:26:27.059 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-PASSTHROUGH/172.16.10.177:flow-passthrough:9004 - registration status: 204
+18:26:27.086 [main] INFO  com.xzkj.flowPassthrough.FlowPassThroughApplication - Started FlowPassThroughApplication in 10.098 seconds (JVM running for 22.632)
+18:27:05.705 [http-nio-9004-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+18:27:05.752 [http-nio-9004-exec-1] INFO  com.xzkj.flowPassthrough.interceptor.OrderFlowInterceptor - 流量订购拦截器线程名称http-nio-9004-exec-1
+18:27:05.871 [http-nio-9004-exec-1] INFO  com.xzkj.flowPassthrough.interceptor.OrderFlowInterceptor - 商户流量订购内容：{returl=http://callback.action, uid=110, pkgcode=20001, mobile=18756232770, saleorderno=1677493625546, token=489C2456929DCB724ECF6C84A58FC99B}
+18:27:06.389 [http-nio-9004-exec-1] INFO  com.xzkj.flowPassthrough.interceptor.OrderFlowInterceptor - 流量订购响应内容：{"orderNo":"O1677493626331-98","respMsg":"提交验证通过","respCode":"100000"}
+18:27:06.393 [http-nio-9004-exec-1] INFO  com.xzkj.flowPassthrough.interceptor.OrderFlowInterceptor - 流量订购入库数据：{returl=http://callback.action, uid=110, pkgcode=20001, orderNo=O1677493626331-98, mobile=18756232770, saleorderno=1677493625546, token=489C2456929DCB724ECF6C84A58FC99B, status=1, info=提交验证通过}
+18:27:06.750 [sendAsync-1] INFO  io.lettuce.core.EpollProvider - Starting without optional epoll library
+18:27:06.754 [sendAsync-1] INFO  io.lettuce.core.KqueueProvider - Starting without optional kqueue library
+18:27:07.174 [sendAsync-1] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+18:27:07.607 [sendAsync-1] INFO  com.xzkj.flowPassthrough.utils.AsyncUtils - 订购单号：1677493625546, 入库表：order_pass_20230227 操做成功
+18:28:03.896 [SpringContextShutdownHook] WARN  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677493683896, current=DOWN, previous=UP]
+18:28:03.902 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-PASSTHROUGH/172.16.10.177:flow-passthrough:9004: registering service...
+18:28:03.931 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-PASSTHROUGH/172.16.10.177:flow-passthrough:9004 - registration status: 204
+18:28:04.132 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+18:28:04.133 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+18:28:04.145 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+18:28:04.146 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+18:28:07.149 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Unregistering ...
+18:28:07.175 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-PASSTHROUGH/172.16.10.177:flow-passthrough:9004 - deregister  status: 200
+18:28:07.193 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient

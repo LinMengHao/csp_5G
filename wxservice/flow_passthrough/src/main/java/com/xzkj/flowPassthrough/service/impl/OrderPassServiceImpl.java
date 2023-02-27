@@ -21,6 +21,11 @@ public class OrderPassServiceImpl extends ServiceImpl<OrderPassMapper, OrderPass
     OrderPassMapper orderPassMapper;
     @Override
     public int insert(OrderPass orderPass) {
-        return orderPassMapper.insert(orderPass);
+        return orderPassMapper.insertByTableName(orderPass);
+    }
+
+    @Override
+    public boolean updateByTableName(OrderPass orderPass) {
+        return orderPassMapper.updateByTableName(orderPass);
     }
 }

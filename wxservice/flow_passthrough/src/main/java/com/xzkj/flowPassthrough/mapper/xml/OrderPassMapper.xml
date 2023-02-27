@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xzkj.flowPassthrough.mapper.OrderPassMapper">
+    <insert id="insertByTableName" parameterType="com.xzkj.flowPassthrough.entity.OrderPass" useGeneratedKeys="true" keyProperty="id">
+        insert into order_pass_${logDate}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null and uid != 0">uid,</if>
+            <if test="mobile != null and mobile != ''">mobile,</if>
+            <if test="pkgcode != null and pkgcode !=''">pkgcode,</if>
+            <if test="returl != null and returl !=''">returl,</if>
+            <if test="status != null">status,</if>
+            <if test="info != null">info,</if>
+            <if test="saleorderno != null and saleorderno !=''">saleorderno,</if>
+            <if test="orderNo != null and orderNo != ''">orderNo,</if>
+            <if test="chargeState != null ">charge_state,</if>
+            <if test="stateMsg != null and stateMsg != ''">state_msg,</if>
+            <if test="usrName != null and usrName != ''">usr_name,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null and uid != 0">#{uid},</if>
+            <if test="mobile != null and mobile != ''">#{mobile},</if>
+            <if test="pkgcode != null and pkgcode !=''">#{pkgcode},</if>
+            <if test="returl != null and returl !=''">#{returl},</if>
+            <if test="status != null">#{status},</if>
+            <if test="info != null">#{info},</if>
+            <if test="saleorderno != null and saleorderno !=''">#{saleorderno},</if>
+            <if test="orderNo != null and orderNo != ''">#{orderNo},</if>
+            <if test="chargeState != null ">#{chargeState},</if>
+            <if test="stateMsg != null and stateMsg != ''">#{stateMsg},</if>
+            <if test="usrName != null and usrName != ''">#{usrName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+        </trim>
+    </insert>
 
+    <update id="updateByTableName" parameterType="com.xzkj.flowPassthrough.entity.OrderPass">
+        update ${tableName}
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chargeState != null ">charge_state=#{chargeState},</if>
+            <if test="stateMsg != null and stateMsg != ''">state_msg=#{stateMsg},</if>
+            <if test="usrName != null and usrName != ''">usr_name=#{usrName},</if>
+            <if test="updateTime != null ">update_time=#{updateTime},</if>
+        </trim>
+        where uid = #{uid} and saleorderno = #{saleorderno} and orderNo = #{orderNo}
+    </update>
 </mapper>

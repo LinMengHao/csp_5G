@@ -27,7 +27,7 @@ import java.io.BufferedReader;
 @Slf4j
 @Component
 public class ProductFlowQueryInterceptor implements HandlerInterceptor {
-    @Value("${flow.ip}")
+    @Value("${flow.sendip}")
     private String[] ip;
     @Autowired
     AsyncUtils asyncUtils;

@@ -1,0 +1,38 @@
+spring:
+  redis:
+    host: 10.0.0.10
+    port: 63792
+    password: redwenxhis0323
+    database: 0
+    timeout: 6000 # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 8
+        max-wait: 20000
+        min-idle: 0
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    master:
+      url: jdbc:mysql://10.0.0.10:3306/flow?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+      username: root
+      password: xzkjQaz123wsx
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      url: jdbc:mysql://82.157.251.233:3306/lmh_one?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+      username: root
+      password: Xzkj@1225
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+flow:
+  ip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
+  callip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
+
+http:
+  socket-timeout: 100000
+  max-total: 300
+  connection-request-timeout: 30000
+  connection-timeout: 60000
+  default-max-per-route: 50
+  stale-connection-check-enable: true
+
