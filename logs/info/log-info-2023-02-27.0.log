@@ -1,0 +1,68 @@
+2023-02-27 15:04:53.610 [main] INFO  com.xzkj.flowStore.FlowStoreApplication - The following profiles are active: dev
+2023-02-27 15:04:57.187 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-02-27 15:04:57.201 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2023-02-27 15:04:57.510 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 196ms. Found 0 repository interfaces.
+2023-02-27 15:04:58.629 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8014254a-a410-312a-be4d-001e026b847f
+2023-02-27 15:04:59.170 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-02-27 15:04:59.852 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.xzkj.flowStore.config.RedisConfig$$EnhancerBySpringCGLIB$$1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-02-27 15:04:59.981 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-02-27 15:05:01.254 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9002 (http)
+2023-02-27 15:05:01.310 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9002"]
+2023-02-27 15:05:01.312 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-27 15:05:01.313 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2023-02-27 15:05:01.784 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-27 15:05:01.785 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 8121 ms
+2023-02-27 15:05:06.600 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-27 15:05:07.091 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2023-02-27 15:05:07.107 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2023-02-27 15:05:08.660 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2023-02-27 15:05:08.754 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2023-02-27 15:05:09.083 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2023-02-27 15:05:09.083 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2023-02-27 15:05:09.528 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2023-02-27 15:05:09.529 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2023-02-27 15:05:10.108 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2023-02-27 15:05:10.168 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2023-02-27 15:05:10.168 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2023-02-27 15:05:10.169 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2023-02-27 15:05:10.169 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2023-02-27 15:05:10.169 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2023-02-27 15:05:10.169 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2023-02-27 15:05:10.170 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2023-02-27 15:05:10.720 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2023-02-27 15:05:10.727 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2023-02-27 15:05:10.735 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-02-27 15:05:10.746 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1677481510741 with initial instances count: 0
+2023-02-27 15:05:10.772 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application FLOW-STORE with eureka with status UP
+2023-02-27 15:05:10.775 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1677481510775, current=UP, previous=STARTING]
+2023-02-27 15:05:10.785 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-27 15:05:10.786 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-STORE/172.16.10.177:flow-store:9002: registering service...
+2023-02-27 15:05:10.822 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+2023-02-27 15:05:10.997 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-27 15:05:11.442 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-STORE/172.16.10.177:flow-store:9002 - registration status: 204
+2023-02-27 15:05:12.032 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: wxMinUpdateUsingPOST_1
+2023-02-27 15:05:12.105 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-27 15:05:12.120 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getPolicyUsingGET_1
+2023-02-27 15:05:12.160 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_1
+2023-02-27 15:05:12.171 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_2
+2023-02-27 15:05:12.221 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_3
+2023-02-27 15:05:12.232 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getMenusUsingGET_1
+2023-02-27 15:05:12.244 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingPOST_1
+2023-02-27 15:05:12.270 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_4
+2023-02-27 15:05:12.306 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingPOST_2
+2023-02-27 15:05:12.326 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: loginUsingPOST_1
+2023-02-27 15:05:12.336 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_5
+2023-02-27 15:05:12.363 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingPOST_3
+2023-02-27 15:05:12.377 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9002"]
+2023-02-27 15:05:12.471 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9002 (http) with context path ''
+2023-02-27 15:05:12.476 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 9002
+2023-02-27 15:05:12.487 [main] INFO  com.xzkj.flowStore.FlowStoreApplication - Started FlowStoreApplication in 23.59 seconds (JVM running for 48.577)
+2023-02-27 15:05:23.170 [SpringContextShutdownHook] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Unregistering application FLOW-STORE with eureka with status DOWN
+2023-02-27 15:05:23.178 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-STORE/172.16.10.177:flow-store:9002: registering service...
+2023-02-27 15:05:23.202 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-STORE/172.16.10.177:flow-store:9002 - registration status: 204
+2023-02-27 15:05:23.240 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+2023-02-27 15:05:23.241 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+2023-02-27 15:05:23.335 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2023-02-27 15:05:26.340 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Unregistering ...
+2023-02-27 15:05:26.352 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_FLOW-STORE/172.16.10.177:flow-store:9002 - deregister  status: 200
+2023-02-27 15:05:26.379 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient

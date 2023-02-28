@@ -25,12 +25,12 @@ public class CodeGenerate {
         GlobalConfig gc = new GlobalConfig();
         //String projectPath = System.getProperty("user.dir");
         //建议直接使用项目绝对路径，以防相对路径找不到出错
-        gc.setOutputDir("/Users/yoca-391/Desktop/works/csp_5G/service/service_operator" + "/src/main/java");
+        gc.setOutputDir("/Users/yoca-391/Desktop/works/csp_5G/wxservice/flow_store" + "/src/main/java");
         gc.setAuthor("LinMengHao");//作者
         gc.setOpen(false); //生成后是否打开资源管理器
         gc.setFileOverride(false); //重新生成时文件是否覆盖
         gc.setServiceName("%sService");	//去掉Service接口的首字母I
-        gc.setIdType(IdType.ID_WORKER_STR); //主键策略（Mybatis-plus中有描述）
+        gc.setIdType(IdType.AUTO); //主键策略（Mybatis-plus中有描述）
         gc.setDateType(DateType.ONLY_DATE);//定义生成的实体类中日期类型
         gc.setSwagger2(false);//开启Swagger2模式（Swagger和项目整合用于请求测试）
 
@@ -38,7 +38,7 @@ public class CodeGenerate {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://82.157.251.233:3306/xz_operator?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8");//mysql8的写法要加时区
+        dsc.setUrl("jdbc:mysql://82.157.251.233:3306/vpn?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8");//mysql8的写法要加时区
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("Xzkj@1225");
@@ -47,7 +47,7 @@ public class CodeGenerate {
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("operatorService"); //模块名
+        pc.setModuleName("flowStore"); //模块名
         pc.setParent("com.xzkj");
         pc.setController("controller");
         pc.setEntity("entity");
@@ -58,7 +58,7 @@ public class CodeGenerate {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
         //填写表名，帮助生成实体类等mapper相应代码
-        strategy.setInclude("t_chatbot_white");
+        strategy.setInclude("flow_product");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 

@@ -10,10 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-/**
- * @author zxx
- * @date 2018/10/18 下午3:27
- */
+
 @Configuration
 @MapperScan(value = "com.xiuzhi.flowStore.mapper*")
 public class MybatisPlusConfig {

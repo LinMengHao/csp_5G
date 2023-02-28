@@ -30,8 +30,8 @@ public class Constant {
 
 
     //微信
-    public static final String WX_APP_ID = "wx7e5dabd0a3279fa4";
-    public static final String WX_APP_SECRET = "d9086ad88a06c57ad8d5230aa2f064db";
+    public static final String WX_APP_ID = "wx45a064f1e5435e85 ";
+    public static final String WX_APP_SECRET = "ec93cabb8d85f62c1c605af3cac84048";
 
 
 
