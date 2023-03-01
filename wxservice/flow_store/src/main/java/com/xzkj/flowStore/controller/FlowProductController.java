@@ -4,8 +4,13 @@ package com.xzkj.flowStore.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xzkj.flowStore.controller.web.bo.MyOrderBo;
 import com.xzkj.flowStore.entity.FlowProduct;
+import com.xzkj.flowStore.entity.Product;
 import com.xzkj.flowStore.service.FlowProductService;
 import com.xzkj.flowStore.utils.MsgBean;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +34,7 @@ public class FlowProductController {
     private FlowProductService flowProductService;
 
     @PostMapping("homelist")
+    @ResponseBody
     public MsgBean flowProductList(@RequestHeader(value = "token", required = false) String token,
                                    @RequestBody FlowProduct product){
 
@@ -55,6 +61,26 @@ public class FlowProductController {
         MsgBean msg = new MsgBean();
         msg.putData("productList",list);
         return msg;
+    }
+
+    @GetMapping("/detail")
+    @ApiOperation("商品详情")
+    @ResponseBody
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "首页商品列表", response = Product.class)})
+    public MsgBean detail(@ApiParam("token") @RequestHeader(value = "token", required = false) String token,
+                          @ApiParam("商品id") @RequestParam(value = "id",required = false)Long id
+    ) {
+
+        if (id == null || id <=0 ){
+            return MsgBean.error("商品id不正确！");
+        }
+
+        FlowProduct product = flowProductService.getById(id);
+
+        if (product == null || product.getStatus() == 2 ){
+            return MsgBean.error("商品不存在！");
+        }
+        return MsgBean.ok().putData(product);
     }
 }
 

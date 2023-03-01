@@ -89,7 +89,24 @@ private static final long serialVersionUID=1L;
      */
     private String mypkgcode;
 
+    /**
+     * 商品状态
+     */
     private Integer status;
 
+    /**
+     * 商品标题
+     */
+    private String title;
+
+    /**
+     * 商品图片
+     */
+    private String pic;
+
+    /**
+     * 详情
+     */
+    private String content;
 
 }
