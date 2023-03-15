@@ -287,6 +287,24 @@ public class EModelSignController extends BaseController
         return toAjax(eModelSignService.updateEModelSign(eModelSign));
     }
 
+
+    /**
+     * TODO
+     * 编辑策略
+     */
+    @GetMapping("/signView/{appId}")
+    public String signView(@PathVariable("appId")String appId, ModelMap mmap)
+    {
+        System.out.println("appId: "+appId);
+        long l = Long.parseLong(appId.trim());
+        EModelSign sign=new EModelSign();
+        sign.setAppId(l);
+        List<EModelSign> list=eModelSignService.selectEModelSignList(sign);
+        mmap.put("list",list);
+        return prefix+"/signView";
+    }
+
+
     @GetMapping("/checkSuccess/{id}")
     public String checkSuccess(@PathVariable("id") Long id,ModelMap mmap){
         //获取源文件基本信息

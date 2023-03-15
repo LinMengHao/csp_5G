@@ -52,6 +52,13 @@ public class TApplicationServiceImpl implements ITApplicationService
         return app;
     }
 
+    @Override
+    public TApplication selectTApplicationByIdN(Long id)
+    {
+        TApplication app = tApplicationMapper.selectTApplicationByIdN(id);
+        return app;
+    }
+
     /**
      * 查询账户管理列表
      * 
@@ -89,6 +96,11 @@ public class TApplicationServiceImpl implements ITApplicationService
     @Override
     public List<TApplication> selectTApplicationListN(Long CompanyId) {
         return tApplicationMapper.selectTApplicationListN(CompanyId);
+    }
+
+    @Override
+    public List<TApplication> selectTApplicationByAppExt(String appExt) {
+        return tApplicationMapper.selectTApplicationByAppExt(appExt);
     }
 
     /**

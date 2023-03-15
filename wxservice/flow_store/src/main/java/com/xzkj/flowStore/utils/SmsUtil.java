@@ -36,7 +36,7 @@ public class SmsUtil {
                 content = String.format("【修治】您好，您的验证码是%s，请勿告诉其他人！", code);
                 break;
             case Register:
-                content = String.format("【修治】您好，您的验证码是%s，请勿告诉其他人！", code);
+                content = String.format("【修治】您 好，您的验证码是%s，请勿告诉其他人！", code);
                 break;
         }
 

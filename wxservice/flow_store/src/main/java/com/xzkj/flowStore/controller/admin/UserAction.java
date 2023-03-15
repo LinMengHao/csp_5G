@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import com.xzkj.flowStore.controller.admin.bo.UserLoginBo;
 import com.xzkj.flowStore.controller.admin.bo.UserSearchBo;
 import com.xzkj.flowStore.controller.admin.vo.HomeStatisticsVo;
 import com.xzkj.flowStore.entity.Order;
@@ -14,14 +15,18 @@ import com.xzkj.flowStore.entity.UserRights;
 import com.xzkj.flowStore.service.OrderService;
 import com.xzkj.flowStore.service.UserRightsService;
 import com.xzkj.flowStore.service.UserService;
+import com.xzkj.flowStore.utils.MD5Util;
 import com.xzkj.flowStore.utils.MsgBean;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 @Api(tags = "004.用户")
+@CrossOrigin
 @RestController
 @RequestMapping("/admin/user")
 public class UserAction {
@@ -35,6 +40,25 @@ public class UserAction {
 
     @Autowired
     private OrderService orderService;
+
+
+    //临时登录
+    @PostMapping("/login")
+    @ResponseBody
+    public MsgBean login(@RequestBody UserLoginBo bo){
+        return MsgBean.ok(200,"登陆成功").putData("token","admin");
+    }
+    //临时获取用户信息
+    @GetMapping("/info")
+    @ResponseBody
+    public MsgBean getInfo(){
+        Map<String,String> map=new HashMap<>();
+        map.put("name","xzkj");
+        map.put("roles","{admin}");
+        map.put("avatar","https://edu-manager-lmh.oss-cn-beijing.aliyuncs.com/2023/03/06/1c536c5fd7f44e10a5fb253105d906f8BoONllM3VvBB39fee03799ec4c783767e9e3936e3fa6.jpeg");
+        return MsgBean.ok(200,"获取成功").putData(map);
+    }
+
 
 
     @PostMapping("/list")

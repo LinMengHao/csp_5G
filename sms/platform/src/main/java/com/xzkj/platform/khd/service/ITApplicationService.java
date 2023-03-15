@@ -20,6 +20,7 @@ public interface ITApplicationService
      */
     public TApplication selectTApplicationById(Long id);
 
+    public TApplication selectTApplicationByIdN(Long id);
     /**
      * 查询账户管理列表
      * 
@@ -68,4 +69,6 @@ public interface ITApplicationService
      * @return 结果
      */
     public int deleteTApplicationById(Long id);
+
+    List<TApplication> selectTApplicationByAppExt(String appExt);
 }

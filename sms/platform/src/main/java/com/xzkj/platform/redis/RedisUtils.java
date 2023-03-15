@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class RedisUtils {
+    //上行数据队列计数 key,companyId_appId,100
+    public static String HASH_APP_MO_TOTAL="hash_app_mo_total";
+    //上行数据队列 key:companyId:appId,json
+    public static String FIFO_APP_MO_LIST="fifo_app_mo_list:";
+
     //查询模版运营商侧状态
     public static String FIFO_QUERY_MODEL_LIST="mt_model_query_client";
     public static String HASH_QUERY_MODEL_TOTAL="mt_model_query_count";

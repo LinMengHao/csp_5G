@@ -25,8 +25,8 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 flow:
-  ip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
-  callip: 127.0.0.1,172.16.10.177,0:0:0:0:0:0:0:1
+  ip: 103.29.16.3,172.16.50.59
+  callip: 103.29.16.3,47.99.35.157,172.16.50.59
 
 http:
   socket-timeout: 100000

@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectMmsSenderList" parameterType="MmsSender" resultMap="MmsSenderResult">
         SELECT app.app_name,ch.channel_name ,mt.batch_id,mt.dest_number,
         mt.subject ,mt.submit_time ,mt.status,mt.sign_name,mt.info ,mt.message_id ,mt.create_time ,
-        mt.report_time ,mt.save_path ,mt.service_code ,mt.mm7version,mt.callback,mt.channel_id
+        mt.report_time ,mt.save_path ,mt.service_code ,mt.mm7version,mt.callback,mt.channel_id,mt.app_id
         from
         <if test="logDate != null and  logDate != '' ">
             mms_sender_${logDate} mt
@@ -105,7 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectMmsSenderListOld" parameterType="MmsSender" resultMap="MmsSenderResult">
         SELECT app.app_name,ch.channel_name, mt.batch_id,mt.dest_number,
         mt.subject ,mt.submit_time ,mt.status,mt.sign_name,mt.info ,mt.message_id ,mt.create_time ,
-        mt.report_time ,mt.save_path ,mt.service_code ,mt.mm7version,mt.channel_id
+        mt.report_time ,mt.save_path ,mt.service_code ,mt.mm7version,mt.channel_id,mt.app_id
         from
         <if test="logDate != null and  logDate != '' ">
             mms_sender_${logDate} mt
@@ -115,7 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 SELECT
                 ${mms_sender}.batch_id,${mms_sender}.dest_number,${mms_sender}.app_name,
                 ${mms_sender}.subject ,${mms_sender}.submit_time ,${mms_sender}.status,${mms_sender}.sign_name,${mms_sender}.info ,${mms_sender}.message_id ,${mms_sender}.create_time ,
-                ${mms_sender}.report_time ,${mms_sender}.save_path ,${mms_sender}.service_code ,${mms_sender}.mm7version,${mms_sender}.channel_id
+                ${mms_sender}.report_time ,${mms_sender}.save_path ,${mms_sender}.service_code ,${mms_sender}.mm7version,${mms_sender}.channel_id,${mms_sender}.app_id
                 FROM ${mms_sender}
             </foreach>
             as mt

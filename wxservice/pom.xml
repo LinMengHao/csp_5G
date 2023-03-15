@@ -18,6 +18,7 @@
         <module>flow_passthrough</module>
         <module>flow_gateway</module>
         <module>flow_oss</module>
+        <module>flow_acl</module>
     </modules>
 
     <properties>

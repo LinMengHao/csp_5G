@@ -162,6 +162,7 @@ public class OrderController extends BaseController {
             case 1:
                 return MsgBean.error("暂不支持！");
             case 2:
+                //微信支付
                 Map<String, String> result = WXUtil.weixinMinPay(order, getIp(request), user.getMinOpenId());
                 //生成支付订单
                 if (result != null) {

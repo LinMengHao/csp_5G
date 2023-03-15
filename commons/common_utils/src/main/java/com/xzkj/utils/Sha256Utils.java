@@ -6,9 +6,7 @@ import java.security.MessageDigest;
  * sha256加密
  */
 public class Sha256Utils {
-    public static void main(String[] args) {
 
-    }
     //字符串sha256加密
     public static String getSHA256(String s){
         MessageDigest messageDigest;

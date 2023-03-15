@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('上行列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <input type="text" id="companyId" name="companyId" style="display: none;" value="0"/>
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <input name="companyName" onclick="selectDeptTree()" id="treeName" type="text" placeholder="请选择客户"/>
+                            </li>
+                            <li>
+                                <select name="appId" id="appId" >
+                                    <option value="">请选择账户</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select  id="channelId" name="channelId" style="width: 100%; height: 31px;">
+                                    <option value="">请选择通道</option>
+                                    <option th:each="channel : ${channellist}"
+                                            th:value="${channel.id}"
+                                            th:text="${channel.id}+':'+${channel.channelName}">
+                                    </option>
+                                </select>
+                            </li>
+                            <li>
+                                <input type="text" name="mobile" placeholder="上行手机号"/>
+                            </li>
+                            <li>
+                                <input type="text" name="serviceCode" placeholder="服务码号"/>
+                            </li>
+                            <li>
+                                <input type="text" name="content" placeholder="上行内容"/>
+                            </li>
+
+                            <li>
+                                <select id="ispCode" name="ispCode">
+                                    <option value="0">来源</option>
+                                    <option value="1">移动</option>
+                                    <option value="2">电信</option>
+                                    <option value="3">联通</option>
+                                </select>
+                            </li>
+                            <li>
+                                <input type="text" id="logDate" class="time-input" placeholder="日志时间" name="logDate" />
+                            </li>
+                            <li>
+                                <input type="text" class="time-input" placeholder="请选择上行时间" name="receiveTime"/>
+                            </li>
+                            <li>
+                                <label>开始时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择" name="startTime"/>
+                            </li>
+                            <li>
+                                <label>结束时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择" name="endTime"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="mo:mo:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="mo:mo:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="mo:mo:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mo:mo:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('mo:mo:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('mo:mo:remove')}]];
+        var prefix = ctx + "mo/mo";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "上行",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },
+                {
+                    field: 'companyId',
+                    title: '公司id',
+                    align: 'left',
+                    formatter: function(value, row, index) {
+                        if(row.companyName.length>8){
+                            return '<div title="'+row.companyName+'">'+row.companyId+':'+row.companyName.substring(0,6)+'...</div>';
+                        }else{
+                            return row.companyId+":"+row.companyName;
+                        }
+                    },
+                    visible: true
+                },
+                {
+                    field: 'moId',
+                    title: '上行流水号'
+                },
+                {
+                    field: 'appId',
+                    title: '账号id',
+                    align: 'left',
+                    formatter: function(value, row, index) {
+                        return row.appName;
+                    }
+                },
+                {
+                    field: 'mobile',
+                    title: '上行手机号'
+                },
+                {
+                    field: 'serviceCode',
+                    title: '服务码号'
+                },
+                {
+                    field: 'content',
+                    title: '上行内容'
+                },
+                {
+                    field: 'channelId',
+                    title: '通道id'
+                },
+                {
+                    field: 'receiveTime',
+                    title: '上行时间',
+                    sortable: true
+                },
+                {
+                    field: 'ispCode',
+                    title: '来源',
+                    align: 'left',
+                    formatter: function(value, row, index) {
+                        var name = "来源";
+                        if (row.ispCode == 1) {
+                            name = "移动";
+                        }else if (row.ispCode == 2) {
+                            name = "电信";
+                        }else if(row.ispCode == 3){
+                            name = "联通";
+                        }else if(row.ispCode == 4){
+                            name = "其他";
+                        }
+                        return name;
+                    },
+                    visible: true
+                },
+                {
+                    field: 'sendTime',
+                    title: '下发时间',
+                    sortable: true
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    formatter: function (value,row,index){
+                        var name = "状态";
+                        if (row.status == 1) {
+                            name = "回调成功";
+                        }else if (row.status == 2) {
+                            name = "待回调";
+                        }
+                        return name;
+                    }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="push(\'' + row.id + '\')"><i class="fa fa-plus"></i>推送</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+        // 提交数据
+        function push(id) {
+            var logDate=$("#logDate").val();
+            var config = {
+                url: prefix + "/push",
+                type: "post",
+                dataType: "json",
+                data: {
+                    "id": id,
+                    "logDate": logDate
+                },
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function(result) {
+                    if (typeof callback == "function") {
+                        callback(result);
+                    }
+                    $.operate.successCallback(result);
+                }
+            };
+            $.ajax(config)
+        }
+
+        /* 新增-选择公司树 */
+        function selectDeptTree() {
+            var treeId = $("#treeId").val();
+            var companyId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+            var url = ctx + "system/dept/selectDeptTree/" + companyId;
+            var options = {
+                title: '选择商户',
+                width: "380",
+                url: url,
+                callBack: doSubmit
+            };
+            $.modal.openOptions(options);
+        }
+
+        function doSubmit(index, layero){
+            //var tree = layero.find("iframe")[0].contentWindow.$._tree;
+            var body = $.modal.getChildFrame(index);
+            $("#treeId").val(body.find('#treeId').val());
+            $("#companyId").val(body.find('#treeId').val());
+            $("#treeName").val(body.find('#treeName').val());
+            spChange(body.find('#treeId').val());
+            $.modal.close(index);
+        }
+        function spChange(companyId){
+            $.get(ctx + "operator/routeBase/selectByCompanyID",{companyId: companyId},function(result){
+                if (result.code == 0 && result.data != null){
+                    var html = '<option value="">请选择账户</option>';
+
+                    $.each(result.data,function (key,value) {
+                        html += '<option value="'+value.id+'">'+value.id+':'+value.appName+'</option>';
+                    })
+
+                    $("#appId").empty();
+                    $("#appId").append(html);
+                }else {
+                    $.modal.msgError('获取数据失败！');
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

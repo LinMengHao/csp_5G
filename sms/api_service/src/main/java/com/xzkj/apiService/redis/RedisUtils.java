@@ -51,6 +51,10 @@ public class RedisUtils {
     public static String HASH_APP_REQ_TOTAL="hash_app_req_total";
     //客户视频发送提交数据队列 key:companyId:appId,json
     public static String FIFO_APP_REQ_LIST="fifo_app_req_list:";
+    //上行数据队列计数 key,companyId_appId,100
+    public static String HASH_APP_MO_TOTAL="hash_app_mo_total";
+    //上行数据队列 key:companyId:appId,json
+    public static String FIFO_APP_MO_LIST="fifo_app_mo_list:";
     //渠道状态报告回执key：channelid
     public static String HASH_MMS_UN_MATCH="UNMATCH:";
     //客户状态报告推送队列key：appid

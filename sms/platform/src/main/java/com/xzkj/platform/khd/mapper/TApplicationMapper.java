@@ -71,4 +71,8 @@ public interface TApplicationMapper
      * @return 结果
      */
     public int deleteTApplicationByIds(String[] ids);
+
+    List<TApplication> selectTApplicationByAppExt(String appExt);
+
+    TApplication selectTApplicationByIdN(Long id);
 }

@@ -67,12 +67,19 @@ public class StatisticController extends BaseController {
         } catch (Exception e) {
             logger.error("[BINS][APP_STATISTIC] ", e);
         }
+        //总数
         Integer sendTotalSum=0;
+        //成功
         Integer delivrdSum=0;
+        //失败
         Integer unDelivrdSum=0;
+        //黑名单
         Integer blackSum=0;
+        //未知
         Integer unknownSum=0;
+        //限频
         Integer loaddelivrdSum=0;
+
         NumberFormat numberFormat=NumberFormat.getInstance();
         //百分比保留两位
         numberFormat.setMaximumFractionDigits(2);
@@ -84,15 +91,23 @@ public class StatisticController extends BaseController {
             unknownSum+=stat.getReportUnknown();
             loaddelivrdSum+=stat.getLoadDelivrd();
 
+
             //成功率
             String successRate = numberFormat.format((float) stat.getReportDelivrd() / (float) stat.getSendTotal()*100);
             //失败率
             String failureRate = numberFormat.format((float) stat.getReportUndeliv() / (float) stat.getSendTotal()*100);
             //未知率
             String unknownRate = numberFormat.format((float) stat.getReportUnknown() / (float) stat.getSendTotal()*100);
+            //触黑率
+            String backRate = numberFormat.format((float) stat.getReportBlack() / (float) stat.getSendTotal()*100);
+            //限频限次率
+            String limitRate = numberFormat.format((float) stat.getLoadDelivrd() / (float) stat.getSendTotal()*100);
+
             stat.setSuccessRate(successRate+"%");
             stat.setFailureRate(failureRate+"%");
             stat.setUnknownRate(unknownRate+"%");
+            stat.setBlackRate(backRate+"%");
+            stat.setLimitRate(limitRate+"%");
         }
         Statistics stat=new Statistics();
         stat.setAppName("总计");
@@ -109,9 +124,15 @@ public class StatisticController extends BaseController {
         String failureRate = numberFormat.format((float) unDelivrdSum / (float) sendTotalSum*100);
         //未知率
         String unknownRate = numberFormat.format((float) unknownSum / (float) sendTotalSum*100);
+        //触黑率
+        String backRate = numberFormat.format((float) blackSum / (float) stat.getSendTotal()*100);
+        //限频限次率
+        String limitRate = numberFormat.format((float) loaddelivrdSum / (float) stat.getSendTotal()*100);
         stat.setSuccessRate(successRate+"%");
         stat.setFailureRate(failureRate+"%");
         stat.setUnknownRate(unknownRate+"%");
+        stat.setBlackRate(backRate+"%");
+        stat.setLimitRate(limitRate+"%");
         if("no".equals(statistics.getStatisticType())){
             statisticsList.add(stat);
         }

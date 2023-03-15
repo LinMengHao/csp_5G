@@ -70,4 +70,6 @@ public interface EModelInfoMapper
     List<EModelInfo> selectPEModelInfoList(EModelInfo eModelInfo);
 
     List<EModelInfo> selectSonModelInfoList(EModelInfo info);
+
+    List<EModelInfo> selectByPModelId(@Param("pModelId")String modelId);
 }

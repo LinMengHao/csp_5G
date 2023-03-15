@@ -272,7 +272,7 @@ public class EModelInfoServiceImpl implements IEModelInfoService
                         file1.getParentFile().mkdirs();
                         file1.createNewFile();
                     }
-                    Files.copy(file.toPath(),new BufferedOutputStream(new FileOutputStream(file1)));
+                    Files.copy(file.toPath(),new FileOutputStream(file1));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -306,5 +306,10 @@ public class EModelInfoServiceImpl implements IEModelInfoService
     @Override
     public List<EModelInfo> selectSonModelInfoList(EModelInfo info) {
         return eModelInfoMapper.selectSonModelInfoList(info);
+    }
+
+    @Override
+    public List<EModelInfo> selectByPModelId(String modelId) {
+        return eModelInfoMapper.selectByPModelId(modelId);
     }
 }

@@ -8,8 +8,8 @@ ruoyi:
   copyrightYear: 2022
   # 实例演示开关
   demoEnabled: true
-  # 上传文件路径 /home/platform/mmsUploadPath/  D:\java\platform\mmsUploadPath\  /Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/files/
-  profile: /Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/files/
+  # 上传文件路径 /home/platform/mmsUploadPath/  D:\java\platform\mmsUploadPath\  /Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/files/ E:\csp_5G\mmsUploadPath
+  profile: /home/platform/mmsUploadPath/
   # 获取ip地址开关
   addressEnabled: false
 

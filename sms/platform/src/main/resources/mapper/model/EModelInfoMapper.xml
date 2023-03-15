@@ -137,8 +137,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectEModelInfoByModelId" parameterType="String" resultMap="EModelInfoResult">
         select t.id, t.company_id, t.app_id, t.sign_id, t.model_id, t.title, t.variate, t.status, t.info, t.source, t.back_url, t.user_id, t.update_time, t.create_time, t.app_ext, t.model_ext, t.channel_id, t.pid, t.p_model_id, t.idea, t.channel_model_id, t.to_cmcc,t.to_unicom,t.to_telecom,t.to_international,p.model_id as parent_name
         from e_model_info_new t
-                 left join e_model_info p on p.id = t.pid
+                 left join e_model_info_new p on p.id = t.pid
         where t.model_id = #{modelId}
+    </select>
+    <select id="selectByPModelId" parameterType="String" resultMap="EModelInfoResult">
+        select t.id, t.company_id, t.app_id, t.sign_id, t.model_id, t.title, t.variate, t.status, t.info, t.source, t.back_url, t.user_id, t.update_time, t.create_time, t.app_ext, t.model_ext, t.channel_id, t.pid, t.p_model_id, t.idea, t.channel_model_id, t.to_cmcc,t.to_unicom,t.to_telecom,t.to_international
+        from e_model_info_new t
+        where t.p_model_id = #{pModelId}
     </select>
         
     <insert id="insertEModelInfo" parameterType="EModelInfo" useGeneratedKeys="true" keyProperty="id">

@@ -191,7 +191,7 @@ public class HandlerXZShanghaiDianXin implements Runnable{
                 logger.info("视频短信上海电信提交结果超时：{}-{}-{}-{}:{}:{}",channelId,channelMmsId,linkId,mobile,submitJson.toJSONString(),result.toJSONString());
             }else{
                 code = result.getString("ResCode");
-                msg = result.getString("ResMsg");
+                msg = result.containsKey("ResMsg")?result.getString("ResMsg"):"参数解析错误";
                 channneMsgId = result.getString("TransID");
             }
             json.put("channneMsgId",channneMsgId);

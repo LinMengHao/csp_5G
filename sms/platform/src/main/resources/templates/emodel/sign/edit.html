@@ -44,6 +44,14 @@
                     <input name="ecCity" th:field="*{ecCity}" class="form-control" type="text">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">查询已有服务代码</label>
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary" onclick="query()">查询</button>
+                </div>
+            </div>
+
             <div class="form-group">    
                 <label class="col-sm-3 control-label">服务代码</label>
                 <div class="col-sm-8">
@@ -279,6 +287,15 @@
             $("#treeId1").val(body.find('#treeId1').val());
             $("#treeName1").val(body.find('#treeName1').val());
             $.modal.close(index);
+        }
+        function query(){
+            var appId=$("#appId").val();
+            if (typeof appId === 'undefined' || appId == null || appId === '') {
+                $.modal.msgError("请先选择账号后再查询");
+            }else {
+                var url = "/emodel/sign/signView/"+appId;
+                $.modal.open("历史服务码号", url);
+            }
         }
     </script>
 </body>

@@ -108,4 +108,6 @@ public class MmsSender extends BaseEntity
     @Excel(name = "通道id")
     private String channelId;
 
+    private Long companyId;
+
 }

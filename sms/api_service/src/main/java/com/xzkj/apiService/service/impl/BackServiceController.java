@@ -1,25 +1,32 @@
 package com.xzkj.apiService.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import com.xzkj.apiService.mapper.ServiceMapper;
 import com.xzkj.apiService.redis.RedisUtils;
 import com.xzkj.apiService.util.ConstantsReport;
 import com.xzkj.apiService.util.MD5Utils;
+import com.xzkj.apiService.util.MmsUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("backService")
 public class BackServiceController {
     public static Logger logger = LoggerFactory.getLogger("BackServiceImpl");
+    @Autowired
+    private ServiceMapper serviceMapper;
 
     @RequestMapping("/mt01")
     public String mt01(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress) {
@@ -192,5 +199,318 @@ public class BackServiceController {
         //TODO 上行逻辑...
         logger.info("流水号：{}, 手机号：{}, 内容：{}, 时间：{}, 通信号：{}",transId,phone,msg,pushTime,number);
         return ConstantsReport.report01Resp("0000","成功");
+    }
+    @RequestMapping("/mo09")
+    public String mo09(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress) {
+        JSONObject json=new JSONObject();
+        if (StringUtils.isBlank(body)) {
+            return ConstantsReport.report01Resp("9999","内容为空");
+        }
+
+        JSONObject bodyJson=null;
+        try {
+//            //ChnlNo=C0190&IPass=123456&IUser=test12&Mobile=18756232770&MsgId=20230210497027431001&RptTime=20230210121135165&Stat=DELIVRD
+//            String decode = URLDecoder.decode(body, "utf-8");
+//            String[] split = decode.split("&");
+//            bodyJson=new JSONObject();
+//            for (int i = 0; i < split.length; i++) {
+//                String[] split1 = split[i].split("=");
+//                bodyJson.put(split1[0],split1[1]);
+//            }
+            bodyJson=JSONObject.parseObject(body);
+        }catch (Exception e){
+            return ConstantsReport.report01Resp("9998","参数异常");
+        }
+        String appName=bodyJson.getString("IUser");
+        String appInfo = RedisUtils.string_get(RedisUtils.STR_KEY_APP_INFO+appName);
+        if(StringUtils.isBlank(appInfo)){
+            json.put("code", "-5002");
+            json.put("msg", "账号无效");
+            return json.toJSONString();
+        }
+        JSONObject appJson = JSONObject.parseObject(appInfo);
+        String companyId = appJson.getString("company_id");
+        String appId = appJson.getString("app_id");
+        String transId = bodyJson.containsKey("ServiceNo")?bodyJson.getString("ServiceNo"):"";
+
+
+        String phone = bodyJson.containsKey("Mobile")?bodyJson.getString("Mobile"):"";
+        String msg = bodyJson.containsKey("MsgCont")?bodyJson.getString("MsgCont"):"";
+        String pushTime = bodyJson.containsKey("MoTime")?bodyJson.getString("MoTime"):"";
+        String MsgId = bodyJson.containsKey("MsgId")?bodyJson.getString("MsgId"):"";
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMddHHmmss");
+        String receiveTime="";
+        try {
+            Date parse = sdf2.parse(pushTime);
+            receiveTime = sdf.format(parse);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        JSONObject submitJson=new JSONObject();
+        submitJson.put("acc",appName);
+        submitJson.put("serviceNo",transId);
+        submitJson.put("mob",phone);
+        submitJson.put("msg",msg);
+        submitJson.put("moTime",receiveTime);
+
+        SimpleDateFormat sdf3=new SimpleDateFormat("yyyyMM");
+        String logDate = sdf3.format(new Date());
+        String tableName="mms_mo_"+logDate;
+        String createTime = sdf.format(new Date());
+        submitJson.put("tableName",tableName);
+        String moId = MmsUtils.getMmsLinkID();
+        submitJson.put("moId",moId);
+        //保存到上行队列
+//        RedisUtils.fifo_push(RedisUtils.FIFO_APP_MO_LIST+companyId,bodyJson.toJSONString());
+//        RedisUtils.hash_incrBy(RedisUtils.HASH_APP_MO_TOTAL, companyId, 1);
+
+        String updateSql = String.format(" INSERT INTO %s"
+                        + "(mo_id,mobile,service_code,content,channel_id,receive_time,app_id,company_id,isp_code,status,create_time,update_time) "
+                        + "VALUES('%s','%s','%s','%s',%s,'%s',%s,%s,%s,%s,'%s','%s');",tableName,moId,phone,transId,msg,9,receiveTime,appId
+                ,companyId,4,2,createTime,createTime);
+        RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,updateSql);
+        RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+        logger.info("流水号：{}, 手机号：{}, 内容：{}, 时间：{}, 通信号：{}",transId,phone,msg,pushTime,MsgId);
+        return "Y";
+    }
+
+    @RequestMapping("/mo01")
+    public String mo01(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress) {
+        JSONObject json=new JSONObject();
+        if (StringUtils.isBlank(body)) {
+            return ConstantsReport.report01Resp("9999","内容为空");
+        }
+
+        JSONObject bodyJson=null;
+        try {
+            bodyJson=JSONObject.parseObject(body);
+        }catch (Exception e){
+            return ConstantsReport.report01Resp("9998","参数异常");
+        }
+
+        String serviceCode=bodyJson.getString("serviceCode");
+        String appName="";
+        String companyId="";
+        String appId="";
+        String appExt = serviceCode.substring(8, 12);
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("appExt",appExt);
+        List<Map<String, String>> appInfos = serviceMapper.selectAppByCode(map);
+        if ("106908324400021".equals(serviceCode)){
+            appName="gzyyV";
+            companyId="107";
+            appId="16";
+
+        }else {
+            if(appInfos == null||appInfos.size()==0){
+                //农业银行=106908324400021
+                json.put("code", "-5002");
+                json.put("msg", "账号不存在");
+                return json.toJSONString();
+            }else {
+                Map<String, String> appInfo = appInfos.get(0);
+                companyId = appInfo.get("company_id");
+                appName = appInfo.get("app_name");
+                appId=appInfo.get("id");
+            }
+        }
+
+        bodyJson.put("IUser",appName);
+
+        String phone = bodyJson.containsKey("mobile")?bodyJson.getString("mobile"):"";
+        String msg = bodyJson.containsKey("content")?bodyJson.getString("content"):"";
+        Long pushTime = bodyJson.containsKey("receiveTime")?bodyJson.getLong("receiveTime"):new Date().getTime();
+        String ispCode = bodyJson.containsKey("ispCode")?bodyJson.getString("ispCode"):"4";
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String receiveTime = sdf.format(new Date(pushTime));
+        JSONObject submitJson=new JSONObject();
+        submitJson.put("acc",appName);
+        submitJson.put("serviceNo",serviceCode);
+        submitJson.put("mob",phone);
+        submitJson.put("msg",msg);
+        submitJson.put("moTime",receiveTime);
+
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMM");
+        String logDate = sdf2.format(new Date());
+        String tableName="mms_mo_"+logDate;
+        String createTime = sdf.format(new Date());
+        submitJson.put("tableName",tableName);
+        String moId = MmsUtils.getMmsLinkID();
+        submitJson.put("moId",moId);
+
+
+        //保存到上行队列
+//        RedisUtils.fifo_push(RedisUtils.FIFO_APP_MO_LIST+companyId,submitJson.toJSONString());
+//        RedisUtils.hash_incrBy(RedisUtils.HASH_APP_MO_TOTAL, companyId, 1);
+        //保存到数据库
+        String updateSql = String.format(" INSERT INTO %s"
+                        + "(mo_id,mobile,service_code,content,channel_id,receive_time,app_id,company_id,isp_code,status,create_time,update_time) "
+                        + "VALUES('%s','%s','%s','%s',%s,'%s',%s,%s,%s,%s,'%s','%s');",tableName,moId,phone,serviceCode,msg,1,receiveTime,appId
+                ,companyId,ispCode,2,createTime,createTime);
+        RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,updateSql);
+        RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+
+        logger.info("流水号：{}, 手机号：{}, 内容：{}, 时间：{}, 通信号：{}",serviceCode,phone,msg,pushTime,moId);
+        return ConstantsReport.report01Resp("0","success");
+    }
+
+    @RequestMapping("/mo02ts")
+    public String mo02ts(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress) {
+        JSONObject json=new JSONObject();
+        if (StringUtils.isBlank(body)) {
+            return ConstantsReport.report01Resp("9999","内容为空");
+        }
+
+        JSONObject bodyJson=null;
+        try {
+            bodyJson=JSONObject.parseObject(body);
+        }catch (Exception e){
+            return ConstantsReport.report01Resp("9998","参数异常");
+        }
+
+        String serviceCode=bodyJson.getString("serviceCode");
+        String appName="";
+        String companyId="";
+        String appId="";
+        String appExt = serviceCode.substring(8, 12);
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("appExt",appExt);
+        List<Map<String, String>> appInfos = serviceMapper.selectAppByCode(map);
+        if ("106908324400021".equals(serviceCode)){
+            appName="gzyyV";
+            companyId="107";
+            appId="16";
+
+        }else {
+            if(appInfos == null||appInfos.size()==0){
+                //农业银行=106908324400021
+                json.put("code", "-5002");
+                json.put("msg", "账号不存在");
+                return json.toJSONString();
+            }else {
+                Map<String, String> appInfo = appInfos.get(0);
+                companyId = appInfo.get("company_id");
+                appName = appInfo.get("app_name");
+                appId=appInfo.get("id");
+            }
+        }
+
+        String phone = bodyJson.containsKey("mobile")?bodyJson.getString("mobile"):"";
+        String msg = bodyJson.containsKey("content")?bodyJson.getString("content"):"";
+        Long pushTime = bodyJson.containsKey("receiveTime")?bodyJson.getLong("receiveTime"):new Date().getTime();
+        String ispCode = bodyJson.containsKey("ispCode")?bodyJson.getString("ispCode"):"4";
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String receiveTime = sdf.format(new Date(pushTime));
+        JSONObject submitJson=new JSONObject();
+        submitJson.put("acc",appName);
+        submitJson.put("serviceNo",serviceCode);
+        submitJson.put("mob",phone);
+        submitJson.put("msg",msg);
+        submitJson.put("moTime",receiveTime);
+
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMM");
+        String logDate = sdf2.format(new Date());
+        String tableName="mms_mo_"+logDate;
+        String createTime = sdf.format(new Date());
+        submitJson.put("tableName",tableName);
+        String moId = MmsUtils.getMmsLinkID();
+        submitJson.put("moId",moId);
+
+
+        //保存到上行队列
+//        RedisUtils.fifo_push(RedisUtils.FIFO_APP_MO_LIST+companyId,submitJson.toJSONString());
+//        RedisUtils.hash_incrBy(RedisUtils.HASH_APP_MO_TOTAL, companyId, 1);
+        //保存到数据库
+        String updateSql = String.format(" INSERT INTO %s"
+                        + "(mo_id,mobile,service_code,content,channel_id,receive_time,app_id,company_id,isp_code,status,create_time,update_time) "
+                        + "VALUES('%s','%s','%s','%s',%s,'%s',%s,%s,%s,%s,'%s','%s');",tableName,moId,phone,serviceCode,msg,2,receiveTime,appId
+                ,companyId,ispCode,2,createTime,createTime);
+        RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,updateSql);
+        RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+
+        logger.info("流水号：{}, 手机号：{}, 内容：{}, 时间：{}, 通信号：{}",serviceCode,phone,msg,pushTime,moId);
+        return ConstantsReport.report01Resp("0","success");
+    }
+    //106816114400013
+    @RequestMapping("/mo06")
+    public String mo06(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress) {
+        JSONObject json=new JSONObject();
+        if (StringUtils.isBlank(body)) {
+            return ConstantsReport.report01Resp("9999","内容为空");
+        }
+
+        JSONObject bodyJson=null;
+        try {
+            bodyJson=JSONObject.parseObject(body);
+        }catch (Exception e){
+            return ConstantsReport.report01Resp("9998","参数异常");
+        }
+
+        String serviceCode=bodyJson.getString("serviceCode");
+        String appName="";
+        String companyId="";
+        String appId="";
+        String appExt = serviceCode.substring(8, 12);
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("appExt",appExt);
+        List<Map<String, String>> appInfos = serviceMapper.selectAppByCode(map);
+        if ("106816114400013".equals(serviceCode)){
+            appName="gzyyV";
+            companyId="107";
+            appId="16";
+
+        }else {
+            if(appInfos == null||appInfos.size()==0){
+                //农业银行=106908324400021
+                json.put("code", "-5002");
+                json.put("msg", "账号不存在");
+                return json.toJSONString();
+            }else {
+                Map<String, String> appInfo = appInfos.get(0);
+                companyId = appInfo.get("company_id");
+                appName = appInfo.get("app_name");
+                appId=appInfo.get("id");
+            }
+        }
+
+        String phone = bodyJson.containsKey("mobile")?bodyJson.getString("mobile"):"";
+        String msg = bodyJson.containsKey("content")?bodyJson.getString("content"):"";
+        Long pushTime = bodyJson.containsKey("receiveTime")?bodyJson.getLong("receiveTime"):new Date().getTime();
+        String ispCode = bodyJson.containsKey("ispCode")?bodyJson.getString("ispCode"):"4";
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String receiveTime = sdf.format(new Date(pushTime));
+        JSONObject submitJson=new JSONObject();
+        submitJson.put("acc",appName);
+        submitJson.put("serviceNo",serviceCode);
+        submitJson.put("mob",phone);
+        submitJson.put("msg",msg);
+        submitJson.put("moTime",receiveTime);
+
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMM");
+        String logDate = sdf2.format(new Date());
+        String tableName="mms_mo_"+logDate;
+        String createTime = sdf.format(new Date());
+        submitJson.put("tableName",tableName);
+        String moId = MmsUtils.getMmsLinkID();
+        submitJson.put("moId",moId);
+
+
+        //保存到上行队列
+//        RedisUtils.fifo_push(RedisUtils.FIFO_APP_MO_LIST+companyId,submitJson.toJSONString());
+//        RedisUtils.hash_incrBy(RedisUtils.HASH_APP_MO_TOTAL, companyId, 1);
+        //保存到数据库
+        String updateSql = String.format(" INSERT INTO %s"
+                        + "(mo_id,mobile,service_code,content,channel_id,receive_time,app_id,company_id,isp_code,status,create_time,update_time) "
+                        + "VALUES('%s','%s','%s','%s',%s,'%s',%s,%s,%s,%s,'%s','%s');",tableName,moId,phone,serviceCode,msg,6,receiveTime,appId
+                ,companyId,ispCode,2,createTime,createTime);
+        RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,updateSql);
+        RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+
+        logger.info("流水号：{}, 手机号：{}, 内容：{}, 时间：{}, 通信号：{}",serviceCode,phone,msg,pushTime,moId);
+        return ConstantsReport.report01Resp("0","success");
     }
 }

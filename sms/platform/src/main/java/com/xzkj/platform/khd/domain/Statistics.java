@@ -25,6 +25,14 @@ public class Statistics extends BaseEntity {
     @Excel(name = "未知率")
     private String unknownRate;
 
+    /** 未知率 */
+    @Excel(name = "触黑率")
+    private String blackRate;
+
+    /** 未知率 */
+    @Excel(name = "限制率")
+    private String limitRate;
+
     /** 自增id */
     @Excel(name = "自增id")
     private Integer id;

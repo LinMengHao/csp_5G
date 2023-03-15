@@ -79,6 +79,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTApplicationVo"/>
         where id = #{id}
     </select>
+    <select id="selectTApplicationByIdN" parameterType="Long" resultMap="TApplicationResult">
+        <include refid="selectTApplicationVo"/>
+        where id = #{id}
+    </select>
+    <select id="selectTApplicationByAppExt" parameterType="String" resultMap="TApplicationResult">
+        <include refid="selectTApplicationVo"/>
+        where app_ext = #{appExt}
+    </select>
         
     <insert id="insertTApplication" parameterType="TApplication" useGeneratedKeys="true" keyProperty="id">
         insert into t_application

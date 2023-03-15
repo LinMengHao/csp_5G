@@ -165,9 +165,9 @@ public class HandlerShenZhenWuLangTwo implements Runnable {
 				logger.info("视频短信物朗移动提交结果超时：{}-{}-{}-{}:{}:{}",channelId,channelMmsId,linkId,mobile,submitJson.toJSONString(),str);
 			}else{
 				JSONObject result = JSONObject.parseObject(str);
-				code = result.getString("result");
-				msg = result.getString("description");
-				channneMsgId = result.getString("taskid");
+				code = result.containsKey("result")?result.getString("result"):"-1";
+				msg = result.containsKey("description")?result.getString("description"):"解析参数错误";
+				channneMsgId = result.containsKey("taskid")?result.getString("taskid"):"";
 			}
 			json.put("channneMsgId",channneMsgId);
 			json.put("info",msg);
@@ -250,9 +250,9 @@ public class HandlerShenZhenWuLangTwo implements Runnable {
 					logger.info("视频短信物朗移动提交结果超时：{}-{}-{}:{}:{}",channelId,channelMmsId,linkId,submitJson.toJSONString(),str);
 				}else{
 					JSONObject result = JSONObject.parseObject(str);
-					code = result.getString("result");
-					msg = result.getString("description");
-					channneMsgId = result.getString("taskid");
+					code = result.containsKey("result")?result.getString("result"):"-1";
+					msg = result.containsKey("description")?result.getString("description"):"";
+					channneMsgId = result.containsKey("taskid")?result.getString("taskid"):"";
 				}
 				json.put("channneMsgId",channneMsgId);
 				json.put("info",msg);

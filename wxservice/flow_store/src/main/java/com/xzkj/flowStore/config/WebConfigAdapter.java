@@ -29,10 +29,10 @@ public class WebConfigAdapter extends WebMvcConfigurationSupport {
         registry.addInterceptor(initTokenInterceptor())
                 .addPathPatterns("/web/**")
                 .excludePathPatterns(Lists.newArrayList("/admin/**"));
-
+        //"/admin/user/login","/admin/user/info"排除临时登录
         registry.addInterceptor(initAdminInterceptor())
                 .addPathPatterns("/admin/**")
-                .excludePathPatterns(Lists.newArrayList("/web/**"));
+                .excludePathPatterns(Lists.newArrayList("/web/**","/admin/user/login","/admin/user/info"));
     }
 
     /**

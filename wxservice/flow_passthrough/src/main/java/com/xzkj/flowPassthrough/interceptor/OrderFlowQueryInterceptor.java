@@ -42,14 +42,14 @@ public class OrderFlowQueryInterceptor implements HandlerInterceptor {
 
         String requestURL = RequestUtils.getIp(request);
         BufferedReader reader=null;
-        boolean flag=false;
-        for (int i = 0; i < ip.length; i++) {
-            //判断ip
-            if(requestURL.contains(ip[i])){
-                flag=true;
-            }
-        }
-        if(flag){
+//        boolean flag=false;
+//        for (int i = 0; i < ip.length; i++) {
+//            //判断ip
+//            if(requestURL.contains(ip[i])){
+//                flag=true;
+//            }
+//        }
+//        if(flag){
             //ip校验成功，业务执行透传
             JSONObject jsonObject=null;
             try{
@@ -65,7 +65,7 @@ public class OrderFlowQueryInterceptor implements HandlerInterceptor {
                 HttpHeaders headers=new HttpHeaders();
                 headers.set("Content-Type","Application/json;charset=UTF-8");
                 HttpEntity entity=new HttpEntity(jsonObject,headers);
-                ResponseEntity<String> response1 = restTemplate.postForEntity("http://localhost:9004/flowPassthrough/order-pass/query", entity, String.class);
+                ResponseEntity<String> response1 = restTemplate.postForEntity("http://47.99.35.157:8061/action/flow/flowQuery", entity, String.class);
                 //通道响应数据
                 String body = response1.getBody();
                 log.info("流量订购状态查询响应内容：{}",body);
@@ -88,15 +88,15 @@ public class OrderFlowQueryInterceptor implements HandlerInterceptor {
             }finally {
                 reader.close();
             }
-        }else {
-            //响应 ip限制信息
-            JSONObject json=new JSONObject();
-            json.put("respCode","400004");
-            json.put("orderNo","0");
-            json.put("respMsg","IP受限");
-            response.setContentType("Application/json;charset=UTF-8");
-            response.getWriter().write(json.toJSONString());
-        }
+//        }else {
+//            //响应 ip限制信息
+//            JSONObject json=new JSONObject();
+//            json.put("respCode","400004");
+//            json.put("orderNo","0");
+//            json.put("respMsg","IP受限");
+//            response.setContentType("Application/json;charset=UTF-8");
+//            response.getWriter().write(json.toJSONString());
+//        }
 
         return false;
     }

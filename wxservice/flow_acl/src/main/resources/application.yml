@@ -1,0 +1,24 @@
+server:
+  port: 9006
+  tomcat:
+    uri-encoding: utf-8
+    max-threads: 1000
+    min-spare-threads: 30
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: flow-acl
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis-plus:
+  type-aliases-package: com.xzkj.flowacl.entity
+  mapper-locations: classpath:com/xzkj/flowacl/mapper/xml/*.xml
+  global-config:
+    db-config:
+      id-type: id_worker_str
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

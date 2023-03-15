@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -288,6 +290,18 @@ public class BackController {
         return ConstantsReport.report01Resp("0","成功");
     }
 
+    @RequestMapping("mo01")
+    @ResponseBody
+    public String mo01(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){
+        long begin = System.currentTimeMillis();
+
+        String ipAddress = PublicUtil.getClientIp(request);
+        String result = backService.mo01(body,"1",ipAddress);
+        long duration = System.currentTimeMillis()-begin;
+        logger.info("moReport01,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
+        return result;
+    }
+
     //北京移动3878--02
     @RequestMapping("mt02ts")
     @ResponseBody
@@ -543,6 +557,18 @@ public class BackController {
         return ConstantsReport.report01Resp("0","成功");
     }
 
+    @RequestMapping("mo02ts")
+    @ResponseBody
+    public String mo02ts(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){
+        long begin = System.currentTimeMillis();
+
+        String ipAddress = PublicUtil.getClientIp(request);
+        String result = backService.mo02ts(body,"2",ipAddress);
+        long duration = System.currentTimeMillis()-begin;
+        logger.info("moReport02,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
+        return result;
+    }
+
     @RequestMapping("mt03")
     @ResponseBody
     public String mt03(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){
@@ -708,7 +734,74 @@ public class BackController {
         }
         return ConstantsReport.report01Resp("0000","成功");
     }
+    @RequestMapping("sign03")
+    @ResponseBody
+    public String sign03(HttpServletRequest request, HttpServletResponse response,@RequestBody String body) {
+        JSONObject jsonObject=new JSONObject();
+        if(!StringUtils.isBlank(body)){
+            try {
+                jsonObject=JSONObject.parseObject(body);
+            }catch (Exception e){
+                return ConstantsReport.report01Resp("0","非json数据");
+            }
+            String signId = jsonObject.containsKey("signId")?jsonObject.getString("signId"):"";
+            String state = jsonObject.containsKey("state")?jsonObject.getString("state"):"";
+            String reason = jsonObject.containsKey("reason")?jsonObject.getString("reason"):"审核未知";
 
+
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = simpleDateFormat.format(new Date());
+
+            String jsonStr =  RedisUtils.hash_get(RedisUtils.HASH_SIGN_MT_CHANNEL+"3"+":"+signId,signId);
+            if(StringUtils.isBlank(jsonStr)){
+                logger.info("签名记录为空");
+                return ConstantsReport.report01Resp("0","失败");
+            }
+            JSONObject object = JSONObject.parseObject(jsonStr);
+
+            String companyId = object.containsKey("companyId")?object.getString("companyId"):"";
+            String pid = object.containsKey("pid")?object.getString("pid"):"";
+            String pSignId = object.containsKey("pSignId")?object.getString("pSignId"):"";
+            String id = object.containsKey("id")?object.getString("id"):"";
+            logger.info("companyId: {}, signId: {}, id: {}",companyId,signId,id);
+            logger.info("signReport03,signId:{},status:{},msg:{}",signId,state,reason);
+            if("80".equals(state)){
+                if(!StringUtils.isBlank(pSignId)){
+                    String s = RedisUtils.hash_get(RedisUtils.HASH_SIGN_RELATE_COUNT + pSignId + ":" + "3" + ":" + signId, "total");
+                    if(StringUtils.isBlank(s)|| !"true".equals(s)){
+                        //审核通过后创建签名映射
+                        String insertSql = String.format(" INSERT INTO e_sign_related(sign_id,channel_id,channel_sign_id,status,update_time,create_time) "
+                                + "VALUES('%s',%s,'%s',%s,'%s','%s');",pSignId,3,signId,1,date,date);
+                        RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,insertSql);
+                        RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+                        RedisUtils.hash_set(RedisUtils.HASH_SIGN_RELATE_COUNT+pSignId+":"+"3"+":"+signId,"total","true");
+                        RedisUtils.hash_setExpire(RedisUtils.HASH_SIGN_RELATE_COUNT+pSignId+":"+"3"+":"+signId,7*24*3600);
+                        logger.info("insertSql: {}",insertSql);
+                    }
+                }
+
+
+                //修改模版审核状态
+                String updateSql = String.format("update e_model_sign set status=%s,info='%s' where id=%s;",1,reason,id);
+                RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,updateSql);
+                RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+                logger.info("updateSql: {}",updateSql);
+
+                //TODO 定时任务或人工处理 回调客户
+//                object.put("status",1);
+//                object.put("info","审核成功");
+//                RedisUtils.fifo_push(RedisUtils.FIFO_MODEL_MT_CLIENT+companyId,object.toJSONString());
+//                RedisUtils.hash_incrBy(RedisUtils.HASH_MODEL_MT_COUNT, companyId+"", 1);
+            }else {
+                //修改模版审核状态
+                String updateSql = String.format("update e_model_sign set status=%s,info='%s' where id=%s;",2,reason,id);
+                RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,updateSql);
+                RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
+                logger.info("updateSql: {}",updateSql);
+            }
+        }
+        return ConstantsReport.report01Resp("0","成功");
+    }
 
     //物朗
     @RequestMapping("mt04")
@@ -1285,6 +1378,18 @@ public class BackController {
         return ConstantsReport.report01Resp("0","成功");
     }
 
+    @RequestMapping("mo06")
+    @ResponseBody
+    public String mo06(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){
+        long begin = System.currentTimeMillis();
+
+        String ipAddress = PublicUtil.getClientIp(request);
+        String result = backService.mo06(body,"6",ipAddress);
+        long duration = System.currentTimeMillis()-begin;
+        logger.info("moReport06,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
+        return result;
+    }
+
     //修治上海电信
     @RequestMapping("mt07")
     @ResponseBody
@@ -1664,6 +1769,31 @@ public class BackController {
         logger.info("mmsReport09,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
         return result;
     }
+
+    @RequestMapping("mo09")
+    @ResponseBody
+    public String mo09(HttpServletRequest request, HttpServletResponse response,
+                       String IUser,String IPass,
+                       String ServiceNo,String MsgId,
+                       String Mobile, String MsgCont,
+                       String MoTime){
+        long begin = System.currentTimeMillis();
+        JSONObject body=new JSONObject();
+
+        body.put("IUser",IUser);
+        body.put("IPass",IPass);
+        body.put("ServiceNo",ServiceNo);
+        body.put("MsgId",MsgId);
+        body.put("Mobile",Mobile);
+        body.put("MsgCont",MsgCont);
+        body.put("MoTime",MoTime);
+        String ipAddress = PublicUtil.getClientIp(request);
+        String result = backService.mo09(body.toJSONString(),"9",ipAddress);
+        long duration = System.currentTimeMillis()-begin;
+        logger.info("moReport09,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
+        return result;
+    }
+
     @RequestMapping("mo03")
     @ResponseBody
     public String mo03(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){

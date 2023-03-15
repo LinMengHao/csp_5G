@@ -129,7 +129,7 @@ public class HandlerBeiJingCmcc3 implements Runnable {
 			}else{
 				JSONObject result = JSONObject.parseObject(str);
 				code = result.getString("code");
-				msg = result.getString("msg");
+				msg = result.containsKey("msg")?result.getString("msg"):"参数解析错误";
 				channneMsgId = result.getString("messageId");
 			}
 			json.put("channneMsgId",channneMsgId);

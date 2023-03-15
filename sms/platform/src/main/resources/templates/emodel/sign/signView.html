@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('历史签名展示')" />
+    <th:block th:include="include :: bootstrap-fileinput-css"/>
+    <th:block th:include="include :: summernote-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-sign-signView">
+
+            <div class="form-group">
+                <!-- 若依重新封装了复选框样式，所以这里在label上循环所有信安行业属性  这里rcsIndustry为信安行业属性字典-->
+                <label class="col-sm-3 control-label">账号历史签名服务代码如下：</label>
+                <div class="col-sm-9">
+                    <label th:each="dict:${list}" class="check-box">
+                        <!-- 这里的 channelList 为后端传过来的字符串集合List<String> -->
+                        <input type ="checkbox" id="idea" name="idea"
+                               th:value="${dict.signId}"
+                               th:text ="${dict.serviceCode}"
+                        >
+                        <br/>
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-fileinput-js"/>
+    <th:block th:include="include :: summernote-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "emodel/sign";
+        $("#form-sign-signView").validate({
+            focusCleanup: true
+        });
+
+
+        function submitHandler() {
+            $.modal.close();
+        }
+
+    </script>
+</body>
+</html>

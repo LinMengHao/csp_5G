@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzkj.platform.mo.mapper.MoInfoMapper">
+    
+    <resultMap type="MoInfo" id="MoInfoResult">
+        <result property="id"    column="id"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="serviceCode"    column="service_code"    />
+        <result property="content"    column="content"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="receiveTime"    column="receive_time"    />
+        <result property="appId"    column="app_id"    />
+        <result property="companyId"    column="company_id"    />
+        <result property="ispCode"    column="isp_code"    />
+        <result property="sendTime"    column="send_time"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="moId"    column="mo_id"    />
+    </resultMap>
+
+    <sql id="selectMoInfoVo">
+        select id,mo_id, mobile, service_code, content, channel_id, receive_time, app_id, company_id, isp_code, send_time, status, create_time, update_time from mms_mo_demo
+    </sql>
+
+    <select id="selectMoInfoList" parameterType="MoInfo" resultMap="MoInfoResult">
+        SELECT mo.id,mo.mo_id,
+        mo.mobile ,mo.service_code ,mo.content,mo.channel_id,mo.receive_time ,mo.app_id ,mo.company_id ,
+        mo.isp_code ,mo.send_time ,mo.status ,mo.create_time,mo.update_time
+        from
+        <if test="logDate != null and  logDate != '' ">
+            mms_mo_${logDate} mo
+        </if>
+        <if test="timeList != null and timeList.size() >0">
+            <foreach collection="timeList" item="mms_mo" separator=" union all " open="(" close=")">
+                SELECT
+                *
+                FROM ${mms_mo}
+            </foreach>
+            as mo
+        </if>
+        where 1=1
+        <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+        <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+        <if test="content != null  and content != ''"> and content = #{content}</if>
+        <if test="channelId != null and channelId !=0 "> and channel_id = #{channelId}</if>
+        <if test="receiveTime != null and receiveTime !='' "> and receive_time = #{receiveTime}</if>
+        <if test="appId != null and appId !=0 "> and app_id = #{appId}</if>
+        <if test="companyId != null and companyId !=0"> and company_id = #{companyId}</if>
+        <if test="ispCode != null and ispCode !=0"> and isp_code = #{ispCode}</if>
+        <if test="sendTime != null "> and send_time = #{sendTime}</if>
+        <if test="status != null and status !=0 "> and status = #{status}</if>
+        <if test="startTime != null and startTime != ''">
+            AND receive_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND receive_time &lt;= #{endTime}
+        </if>
+        ORDER BY mo.update_time desc
+    </select>
+    
+    <select id="selectMoInfoById" parameterType="MoInfo" resultMap="MoInfoResult">
+        SELECT mo.id,mo.mo_id,
+        mo.mobile ,mo.service_code ,mo.content,mo.channel_id,mo.receive_time ,mo.app_id ,mo.company_id ,
+        mo.isp_code ,mo.send_time ,mo.status ,mo.create_time,mo.update_time
+        from
+        <if test="logDate != null and  logDate != '' ">
+            mms_mo_${logDate} mo
+        </if>
+        <if test="timeList != null and timeList.size() >0">
+            <foreach collection="timeList" item="mms_mo" separator=" union all " open="(" close=")">
+                SELECT
+                *
+                FROM ${mms_mo}
+            </foreach>
+            as mo
+        </if>
+        where id=#{id}
+        <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+        <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+        <if test="content != null  and content != ''"> and content = #{content}</if>
+        <if test="channelId != null and channelId !=0 "> and channel_id = #{channelId}</if>
+        <if test="receiveTime != null and receiveTime !='' "> and receive_time = #{receiveTime}</if>
+        <if test="appId != null and appId !=0 "> and app_id = #{appId}</if>
+        <if test="companyId != null and companyId !=0"> and company_id = #{companyId}</if>
+        <if test="ispCode != null and ispCode !=0"> and isp_code = #{ispCode}</if>
+        <if test="sendTime != null "> and send_time = #{sendTime}</if>
+        <if test="status != null and status !=0 "> and status = #{status}</if>
+        <if test="startTime != null and startTime != ''">
+            AND receive_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND receive_time &lt;= #{endTime}
+        </if>
+    </select>
+        
+    <insert id="insertMoInfo" parameterType="MoInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into mms_mo_demo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobile != null and mobile != ''">mobile,</if>
+            <if test="serviceCode != null and serviceCode != ''">service_code,</if>
+            <if test="content != null and content != ''">content,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="receiveTime != null">receive_time,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="companyId != null">company_id,</if>
+            <if test="ispCode != null">isp_code,</if>
+            <if test="sendTime != null">send_time,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobile != null and mobile != ''">#{mobile},</if>
+            <if test="serviceCode != null and serviceCode != ''">#{serviceCode},</if>
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="receiveTime != null">#{receiveTime},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="companyId != null">#{companyId},</if>
+            <if test="ispCode != null">#{ispCode},</if>
+            <if test="sendTime != null">#{sendTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMoInfo" parameterType="MoInfo">
+        update mms_mo_${logDate}
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
+            <if test="serviceCode != null and serviceCode != ''">service_code = #{serviceCode},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="receiveTime != null">receive_time = #{receiveTime},</if>
+            <if test="appId != null">app_id = #{appId},</if>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="ispCode != null">isp_code = #{ispCode},</if>
+            <if test="sendTime != null">send_time = #{sendTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    <update id="updateMoInfoByDay" parameterType="MoInfo">
+        update mms_mo_${logDate}
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
+            <if test="serviceCode != null and serviceCode != ''">service_code = #{serviceCode},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="receiveTime != null">receive_time = #{receiveTime},</if>
+            <if test="appId != null">app_id = #{appId},</if>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="ispCode != null">isp_code = #{ispCode},</if>
+            <if test="sendTime != null">send_time = #{sendTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMoInfoById" parameterType="String">
+        delete from mms_mo_demo where id = #{id}
+    </delete>
+
+    <delete id="deleteMoInfoByIds" parameterType="String">
+        delete from mms_mo_${logDate} where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

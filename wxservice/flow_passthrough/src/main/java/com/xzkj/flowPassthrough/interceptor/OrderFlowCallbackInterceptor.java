@@ -27,8 +27,8 @@ import java.io.BufferedReader;
 @Slf4j
 @Component
 public class OrderFlowCallbackInterceptor implements HandlerInterceptor {
-    @Value("${flow.callip}")
-    private String[] ip;
+//    @Value("${flow.callip}")
+//    private String[] ip;
     @Autowired
     AsyncUtils asyncUtils;
 
@@ -42,14 +42,14 @@ public class OrderFlowCallbackInterceptor implements HandlerInterceptor {
         //获取请求url，将chabotURI从路径中提取出来
         String requestURL = RequestUtils.getIp(request);
         BufferedReader reader=null;
-        boolean flag=false;
-        for (int i = 0; i < ip.length; i++) {
-            //判断ip
-            if(requestURL.contains(ip[i])){
-                flag=true;
-            }
-        }
-        if(flag){
+//        boolean flag=false;
+//        for (int i = 0; i < ip.length; i++) {
+//            //判断ip
+//            if(requestURL.contains(ip[i])){
+//                flag=true;
+//            }
+//        }
+//        if(flag){
             //ip校验成功，业务执行透传
             JSONArray jsonArray=null;
             try{
@@ -77,6 +77,9 @@ public class OrderFlowCallbackInterceptor implements HandlerInterceptor {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         asyncUtils.update(jsonObject);
                     }
+                }else {
+                    //TDOD 任何没有确认回调的，都要重复回调
+
                 }
 
 
@@ -86,15 +89,15 @@ public class OrderFlowCallbackInterceptor implements HandlerInterceptor {
             }finally {
                 reader.close();
             }
-        }else {
-            //响应 ip限制信息
-            JSONObject json=new JSONObject();
-            json.put("respCode","400004");
-            json.put("orderNo","0");
-            json.put("respMsg","IP受限");
-            response.setContentType("Application/json;charset=UTF-8");
-            response.getWriter().write(json.toJSONString());
-        }
+//        }else {
+//            //响应 ip限制信息
+//            JSONObject json=new JSONObject();
+//            json.put("respCode","400004");
+//            json.put("orderNo","0");
+//            json.put("respMsg","IP受限");
+//            response.setContentType("Application/json;charset=UTF-8");
+//            response.getWriter().write(json.toJSONString());
+//        }
 
         return false;
     }

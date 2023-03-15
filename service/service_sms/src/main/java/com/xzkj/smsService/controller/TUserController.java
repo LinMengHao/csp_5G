@@ -28,6 +28,7 @@ import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -537,6 +538,98 @@ public class TUserController {
             System.out.println("判断day2 - day1 : " + (day2-day1));
             return day2-day1;
         }
+    }
+    @Test
+    public void test17(){
+        String uid ="213";
+        String usecret="mdllces";
+        long time = new Date().getTime();
+        System.out.println("timespan: "+time);
+        String s = MD5Utils.MD5Encode(uid + usecret + time).toUpperCase();
+        System.out.println("sign: "+s);
+
+    }@Test
+    public void test18(){
+
+        String s = MD5Utils.MD5Encode("213" + "18013279908" + "30003"+"mdllces"+"s1111112"+"http://103.29.16.3:9010/action/flow/callback").toUpperCase();
+        System.out.println("token: "+s);
+
+    }
+    @Test
+    public void test19(){
+
+        String s ="106908324400027";
+        String substring = s.substring(8, 12);
+        System.out.println(substring);
+
+        Calendar calendar=Calendar.getInstance();
+        System.out.println(calendar);
+        int i = calendar.get(Calendar.MONTH);
+        System.out.println(i);
+        int i1 = calendar.get(Calendar.YEAR);
+        System.out.println(i1);
+        long time = new Date().getTime();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String receiveTime = sdf.format(new Date(time));
+        System.out.println(receiveTime);
+
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMddHHmmss");
+        try {
+            Date parse = sdf2.parse("20230310171934");
+            System.out.println(parse);
+            String format = sdf.format(parse);
+            System.out.println(format);
+
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void test20(){
+
+
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("info",null);
+        String info = jsonObject.getString("info");
+        System.out.println(info);
+        String b=jsonObject.getString("b");
+        System.out.println(b);
+        aaa("aaa",b);
+        try {
+            String encode = URLEncoder.encode(b, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    @Test
+    public void test21(){
+        String s="123456789123456";
+        String substring = s.substring(12);
+        System.out.println(substring);
+
+    }
+    @Test
+    public void test22(){
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH,12);
+        String format = new SimpleDateFormat("yyyyMM").format(cal.getTime());
+        System.out.println(format);
+    }
+    @Test
+    public void test23(){
+        File file=new File("E:\\csp_5G\\F313144221.gif");
+        try {
+            Files.copy(file.toPath(),new BufferedOutputStream(new FileOutputStream(new File("E:\\csp_5G\\img.gif"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void aaa(String a,String b){
+        String c=a+b;
+        System.out.println(c);
     }
 }
 

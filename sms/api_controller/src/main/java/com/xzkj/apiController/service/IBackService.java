@@ -36,6 +36,8 @@ public interface IBackService {
     @RequestMapping(value = "/backService/mt05", method = RequestMethod.GET)
     String mt05(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress);
 
+
+
     /**
      * 联通视频短信通道-10693878--01--用户上行
      * @return
@@ -43,4 +45,22 @@ public interface IBackService {
     @RequestMapping(value = "/backService/mo03", method = RequestMethod.GET)
     String mo03(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress);
 
+    /**
+     * 单元上行透传
+     * @param body
+     * @param channelId
+     * @param ipAddress
+     * @return
+     */
+    @RequestMapping(value = "/backService/mo09", method = RequestMethod.GET)
+    String mo09(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress);
+
+    @RequestMapping(value = "/backService/mo01", method = RequestMethod.GET)
+    String mo01(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress);
+
+    @RequestMapping(value = "/backService/mo02ts", method = RequestMethod.GET)
+    String mo02ts(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress);
+
+    @RequestMapping(value = "/backService/mo06", method = RequestMethod.GET)
+    String mo06(@RequestParam String body,@RequestParam String channelId,@RequestParam String ipAddress);
 }

@@ -27,8 +27,8 @@ import java.io.BufferedReader;
 @Slf4j
 @Component
 public class ProductFlowQueryInterceptor implements HandlerInterceptor {
-    @Value("${flow.sendip}")
-    private String[] ip;
+//    @Value("${flow.sendip}")
+//    private String[] ip;
     @Autowired
     AsyncUtils asyncUtils;
 
@@ -42,14 +42,14 @@ public class ProductFlowQueryInterceptor implements HandlerInterceptor {
         //获取请求url，将chabotURI从路径中提取出来
         String requestURL = RequestUtils.getIp(request);
         BufferedReader reader=null;
-        boolean flag=false;
-        for (int i = 0; i < ip.length; i++) {
-            //判断ip
-            if(requestURL.contains(ip[i])){
-                flag=true;
-            }
-        }
-        if(flag){
+//        boolean flag=false;
+//        for (int i = 0; i < ip.length; i++) {
+//            //判断ip
+//            if(requestURL.contains(ip[i])){
+//                flag=true;
+//            }
+//        }
+//        if(flag){
             //ip校验成功，业务执行透传
             JSONObject jsonObject=null;
             try{
@@ -61,17 +61,17 @@ public class ProductFlowQueryInterceptor implements HandlerInterceptor {
                 }
                 //商户提交数据
                 jsonObject=JSON.parseObject(str.toString());
-                log.info("流量订购状态查询内容：{}",jsonObject);
+                log.info("流量产品查询内容：{}",jsonObject);
                 HttpHeaders headers=new HttpHeaders();
                 headers.set("Content-Type","Application/json;charset=UTF-8");
                 HttpEntity entity=new HttpEntity(jsonObject,headers);
-                ResponseEntity<String> response1 = restTemplate.postForEntity("http://localhost:9004/flowPassthrough/product-flow/product", entity, String.class);
+                ResponseEntity<String> response1 = restTemplate.postForEntity("http://47.99.35.157:8061/action/flow/productQuery", entity, String.class);
                 //通道响应数据
                 String body = response1.getBody();
-                log.info("流量订购状态查询响应内容：{}",body);
+                log.info("流量产品查询响应内容：{}",body);
                 response.getWriter().write(body);
                 JSONObject bodyJson = JSONObject.parseObject(body);
-                log.info("状态查询更新数据库：{}",bodyJson);
+                log.info("流量产品更新数据库：{}",bodyJson);
                 String errorCode = bodyJson.containsKey("errorCode") ? bodyJson.getString("errorCode") : "";
                 String errorMsg = bodyJson.containsKey("errorMsg") ? bodyJson.getString("errorMsg") : "";
                 JSONArray listProduct = bodyJson.getJSONArray("listProduct");
@@ -89,15 +89,15 @@ public class ProductFlowQueryInterceptor implements HandlerInterceptor {
             }finally {
                 reader.close();
             }
-        }else {
-            //响应 ip限制信息
-            JSONObject json=new JSONObject();
-            json.put("respCode","400004");
-            json.put("orderNo","0");
-            json.put("respMsg","IP受限");
-            response.setContentType("Application/json;charset=UTF-8");
-            response.getWriter().write(json.toJSONString());
-        }
+//        }else {
+//            //响应 ip限制信息
+//            JSONObject json=new JSONObject();
+//            json.put("respCode","400004");
+//            json.put("orderNo","0");
+//            json.put("respMsg","IP受限");
+//            response.setContentType("Application/json;charset=UTF-8");
+//            response.getWriter().write(json.toJSONString());
+//        }
 
         return false;
     }

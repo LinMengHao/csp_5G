@@ -84,16 +84,6 @@ public class Base64Util {
 		}
 		return sb.toString();
 	}
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		System.out.println(Base64Util.encodeBASE64("张"));
-		System.out.println(Base64Util.decodeBASE64AsString(Base64Util
-				.encodeBASE64("张")));
-		String t1 = "0123456";
-		System.out.println(t1.substring(1, 3));
-		System.out.println(System.currentTimeMillis());
-	}
+
 
 }

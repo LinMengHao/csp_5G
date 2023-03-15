@@ -52,7 +52,7 @@ public class MybatisPlusConfig {
     @Profile({"dev","test"})//设置dev test 环境开启
     public PerformanceInterceptor performanceInterceptor(){
         PerformanceInterceptor performanceInterceptor=new PerformanceInterceptor();
-        performanceInterceptor.setMaxTime(200);//毫秒，超过此处设置得时间这sql不执行
+        performanceInterceptor.setMaxTime(2000);//毫秒，超过此处设置得时间这sql不执行
         performanceInterceptor.setFormat(true);
         return performanceInterceptor;
     }

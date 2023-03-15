@@ -1,5 +1,5 @@
 server:
-  port: 9120
+  port: 9010
 spring:
   application:
     name: flow-gateway
@@ -25,6 +25,18 @@ spring:
           uri: lb://flow-store
           predicates:
             - Path=/store/flow/**
+        - id: flow-oss_1
+          uri: lb://flow-oss
+          predicates:
+            - Path=/oss/flow/**
+        - id: flow-store_2
+          uri: lb://flow-store
+          predicates:
+            - Path=/web/**
+        - id: flow-store_3
+          uri: lb://flow-store
+          predicates:
+            - Path=/admin/**
 eureka:
   client:
     service-url:

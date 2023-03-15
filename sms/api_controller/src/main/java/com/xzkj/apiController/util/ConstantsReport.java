@@ -27,18 +27,19 @@ public class ConstantsReport {
         String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         String reportTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         //80是陕西联通的正确返回码
-        if(status.equals("0")||status.equals("80")){
+        if(status.equals("0")||status.equals("80")||status.equals("DELIVRD")||status.equals("RECEIVD")){
             status="DELIVRD";
         }
         //物朗黑名单，自动导入
         else if(status.equals("4")&&(msg.contains("black"))){
+            status=MT_RPT_UNDELIVERED;
             String insertSql = String.format("insert into e_black_info (mobile,rule_level,source,remark,update_time,create_time) values('%s',%s,'%s','%s','%s','%s');",
                     mobile,1,"other","第三方命中黑名单",nowTime,nowTime);
             System.out.println("第三方命中黑名单,码号："+mobile);
             RedisUtils.fifo_push(RedisUtils.FIFO_SQL_LIST+companyId,insertSql);
             RedisUtils.hash_incrBy(RedisUtils.HASH_SQL_COUNT, companyId+"", 1);
         }else{
-            //status="UNDELIVRD";
+            status=MT_RPT_UNDELIVERED;
             String appName=json.getString("appName");
             //客户消费数减一
             RedisUtils.hash_incrBy(RedisUtils.HASH_ACC_SEND, appName,-1);
