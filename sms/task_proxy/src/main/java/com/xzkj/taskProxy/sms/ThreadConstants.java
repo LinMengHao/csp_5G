@@ -66,6 +66,7 @@ public class ThreadConstants {
 		String channelIdPre="";
 		String routeCountKey = RedisUtils.HASH_ROUTE_DISPENSE+companyId+":"+appId+":"+today;
 		String[] routArr = route.split("\\|");
+		System.out.println("总同级路由： "+route);
 		for (String routeOne : routArr) {
 			JSONObject routejson = JSONObject.parseObject(routeOne);
 
@@ -113,11 +114,15 @@ public class ThreadConstants {
 			}
 
 			//模板映射关系
-			boolean flag=false;
+			boolean flag=true;
 			String channelModelId="";
 			String channelParam="";
+
+			//模板映射关系 模板日限
 			String channelModelKey = RedisUtils.HASH_CHANNEL_MODEL_LIMIT+today+":"+channel_id;
 			for(Map.Entry<String, String> entry:relatedMap.entrySet()){
+				System.out.println("路由: "+routeOne);
+				System.out.println("模板映射："+entry.getKey());
 				String[] keyArr = entry.getKey().split("_");
 				if(!keyArr[0].equals(channel_id)){
 					continue;
@@ -142,6 +147,7 @@ public class ThreadConstants {
 					}
 				}
 			}
+			//TODO 下发到未审核成功模板通道的问题所在，当路由规则中的某一个规则的通道id在模板映射的通道id列表中没有，则会进行几个跳过后，并未改变flag 则flag=false 导致没有跳过
 			if(flag){
 				continue;
 			}

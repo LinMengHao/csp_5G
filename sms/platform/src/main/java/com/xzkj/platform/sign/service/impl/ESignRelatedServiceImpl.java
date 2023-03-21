@@ -50,7 +50,7 @@ public class ESignRelatedServiceImpl implements IESignRelatedService
     public List<ESignRelated> selectESignRelatedList(ESignRelated eSignRelated)
     {
         List<ESignRelated> eSignRelateds = eSignRelatedMapper.selectESignRelatedList(eSignRelated);
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         Map<Long,String> map = new HashMap<Long,String>();
         for (Channel channel:channellist){
             map.put(channel.getId(),channel.getId()+":"+channel.getChannelName());

@@ -43,7 +43,7 @@ public class StatisticController extends BaseController {
     @GetMapping()
     public String statistics(ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/statistics";
     }

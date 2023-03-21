@@ -62,4 +62,6 @@ public interface IChannelService
      * @return 结果
      */
     public int deleteChannelById(Long id);
+
+    List<Channel> selectChannelListAll(long l);
 }

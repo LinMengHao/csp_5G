@@ -203,7 +203,7 @@ public class ModelInfoController extends BaseController
 
 
         //TODO 获取渠道信息列表
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         mmap.put("modelId",modelId);
         System.out.println(modelId);
@@ -252,7 +252,7 @@ public class ModelInfoController extends BaseController
 
 
         //TODO 获取渠道信息列表
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         mmap.put("modelId",modelId);
         System.out.println(modelId);
@@ -302,7 +302,7 @@ public class ModelInfoController extends BaseController
 
 
         //TODO 获取渠道信息列表
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         mmap.put("modelId",modelId);
         System.out.println(modelId);

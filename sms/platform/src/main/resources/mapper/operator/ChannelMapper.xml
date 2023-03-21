@@ -89,7 +89,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </if>
         </where>
     </select>
-
+    <select id="selectChannelListAll" parameterType="Long" resultMap="ChannelResult">
+        <include refid="selectChannelVo"/>
+        <where>
+            <if test="companyId != null and companyId !='' and companyId !=0">
+            </if>
+        </where>
+    </select>
     <select id="selectChannelById" parameterType="Long" resultMap="ChannelResult">
         <include refid="selectChannelVo"/>
         where id = #{id}

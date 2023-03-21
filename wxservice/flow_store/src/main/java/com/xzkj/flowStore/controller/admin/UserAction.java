@@ -58,6 +58,10 @@ public class UserAction {
         map.put("avatar","https://edu-manager-lmh.oss-cn-beijing.aliyuncs.com/2023/03/06/1c536c5fd7f44e10a5fb253105d906f8BoONllM3VvBB39fee03799ec4c783767e9e3936e3fa6.jpeg");
         return MsgBean.ok(200,"获取成功").putData(map);
     }
+    @PostMapping("/logout")
+    public MsgBean logout(){
+        return MsgBean.ok(200,"注销成功");
+    }
 
 
 

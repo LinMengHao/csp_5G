@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="toUnicom != null  and toUnicom != 0"> and to_unicom = #{toUnicom}</if>
             <if test="toTelecom != null  and toTelecom != 0"> and to_telecom = #{toTelecom}</if>
             <if test="toInternational != null  and toInternational != 0"> and to_international = #{toInternational}</if>
-            and pid IS NOT NULL or pid != ''
+            and pid IS NOT NULL and pid != ''
         </where>
         ORDER BY update_time  DESC
     </select>

@@ -802,7 +802,17 @@ public class BackController {
         }
         return ConstantsReport.report01Resp("0","成功");
     }
+    @RequestMapping("mo03")
+    @ResponseBody
+    public String mo03(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){
+        long begin = System.currentTimeMillis();
 
+        String ipAddress = PublicUtil.getClientIp(request);
+        String result = backService.mo03(body,"3",ipAddress);
+        long duration = System.currentTimeMillis()-begin;
+        logger.info("mmsReport03,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
+        return result;
+    }
     //物朗
     @RequestMapping("mt04")
     @ResponseBody
@@ -1794,15 +1804,5 @@ public class BackController {
         return result;
     }
 
-    @RequestMapping("mo03")
-    @ResponseBody
-    public String mo03(HttpServletRequest request, HttpServletResponse response,@RequestBody String body){
-        long begin = System.currentTimeMillis();
 
-        String ipAddress = PublicUtil.getClientIp(request);
-        String result = backService.mo03(body,"3",ipAddress);
-        long duration = System.currentTimeMillis()-begin;
-        logger.info("mmsReport03,body:{},ipAddress:{},result:{},duration:{}",body,ipAddress,result,duration);
-        return result;
-    }
 }

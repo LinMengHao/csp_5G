@@ -23,6 +23,7 @@ import com.xzkj.platform.model.service.IModelMaterialService;
 import com.xzkj.platform.operator.domain.Channel;
 import com.xzkj.platform.operator.service.IChannelService;
 import com.xzkj.platform.redis.RedisUtils;
+import com.xzkj.platform.sign.domain.EModelSign;
 import com.xzkj.platform.sign.domain.ESignRelated;
 import com.xzkj.platform.sign.service.IESignRelatedService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -365,7 +366,7 @@ public class EModelInfoController extends BaseController
 
         Map<Integer, Object> contentMap = selectModelFile(modelInfo.getModelId());
         mmap.put("data", contentMap);
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/check";
     }
@@ -381,7 +382,7 @@ public class EModelInfoController extends BaseController
         Long toInternational = modelInfo.getToInternational();
 
         //移动模版审核
-        if(toCmcc==1){
+        if(toCmcc==1 || toUnicom==1){
             //根据签名ID和通道ID查询出通道侧签名ID
             ESignRelated related=new ESignRelated();
             related.setSignId(modelInfo.getSignId());
@@ -397,7 +398,10 @@ public class EModelInfoController extends BaseController
         }
 
         //模版拓展码号
-        modelInfo.setModelExt(modelInfo.getId());
+        if(modelInfo.getModelExt()==null){
+            modelInfo.setModelExt(modelInfo.getId());
+        }
+
         Long appExt = modelInfo.getAppExt();
         String s1 = String.valueOf(appExt);
 
@@ -446,6 +450,18 @@ public class EModelInfoController extends BaseController
         }
         //将模版提交到运营商
         return toAjax(result);
+    }
+
+    @GetMapping("/selectModelByAppIdAndSignId")
+    @ResponseBody
+    public AjaxResult selectModelByAppIdAndSignId(Long appId,String signId){
+        EModelInfo modelInfo=new EModelInfo();
+        modelInfo.setAppId(appId);
+        modelInfo.setSignId(signId);
+
+        List<EModelInfo> list=eModelInfoService.selectPEModelInfoList(modelInfo);
+        return success(list);
+
     }
 
     /**

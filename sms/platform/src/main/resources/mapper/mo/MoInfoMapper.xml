@@ -46,14 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
         <if test="content != null  and content != ''"> and content = #{content}</if>
         <if test="channelId != null and channelId !=0 "> and channel_id = #{channelId}</if>
-        <if test="receiveTime != null and receiveTime !='' "> and receive_time = #{receiveTime}</if>
+        <if test="receiveTime != null ">
+         and receive_time >=#{receiveTime}
+        </if>
         <if test="appId != null and appId !=0 "> and app_id = #{appId}</if>
         <if test="companyId != null and companyId !=0"> and company_id = #{companyId}</if>
         <if test="ispCode != null and ispCode !=0"> and isp_code = #{ispCode}</if>
-        <if test="sendTime != null "> and send_time = #{sendTime}</if>
+        <if test="sendTime != null "> and send_time >= #{sendTime}</if>
         <if test="status != null and status !=0 "> and status = #{status}</if>
         <if test="startTime != null and startTime != ''">
-            AND receive_time &gt;= #{startTime}
+            AND receive_time >= #{startTime}
         </if>
         <if test="endTime != null and endTime != ''">
             AND receive_time &lt;= #{endTime}
@@ -97,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
         
     <insert id="insertMoInfo" parameterType="MoInfo" useGeneratedKeys="true" keyProperty="id">
-        insert into mms_mo_demo
+        insert into mms_mo_${logDate}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="mobile != null and mobile != ''">mobile,</if>
             <if test="serviceCode != null and serviceCode != ''">service_code,</if>
@@ -111,6 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null">status,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
+            <if test="moId != null">mo_id,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="mobile != null and mobile != ''">#{mobile},</if>
@@ -125,6 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null">#{status},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
+            <if test="moId != null">#{moId},</if>
          </trim>
     </insert>
 

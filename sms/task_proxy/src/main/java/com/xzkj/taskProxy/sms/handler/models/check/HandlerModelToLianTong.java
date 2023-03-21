@@ -166,7 +166,7 @@ public class HandlerModelToLianTong implements Runnable {
 					reqElementsJsonObject.put("title", title);
 					//内容主题
 					reqElementsJsonObject.put("signId", signId);
-					reqElementsJsonObject.put("Content",contentArr);
+					reqElementsJsonObject.put("content",contentArr);
 					logger.info("提交数据：{}",reqElementsJsonObject.toJSONString());
 					logger.info("素材multipartEntityBuilder: {}",multipartEntityBuilder.toString());
 					HttpPost httppost = new HttpPost(url);

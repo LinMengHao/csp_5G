@@ -63,7 +63,7 @@ public class MoInfoController extends BaseController
     @GetMapping()
     public String mo(ModelMap mmap)
     {
-        List<Channel> channels = channelService.selectChannelList(0L);
+        List<Channel> channels = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channels);
         return prefix + "/mo";
     }
@@ -114,8 +114,10 @@ public class MoInfoController extends BaseController
      * 新增上行
      */
     @GetMapping("/add")
-    public String add()
+    public String add(ModelMap mmap)
     {
+        List<Channel> channels = channelService.selectChannelListAll(0L);
+        mmap.put("channellist", channels);
         return prefix + "/add";
     }
 
@@ -144,6 +146,12 @@ public class MoInfoController extends BaseController
         info.setLogDate(logDate);
 
         MoInfo moInfo = moInfoService.selectMoInfoById(info);
+        Long companyId = moInfo.getCompanyId();
+        SysDept sysDept = deptService.selectDeptById(companyId);
+        moInfo.setCompanyName(sysDept.getCompanyName());
+
+        List<Channel> channels = channelService.selectChannelListAll(0L);
+        mmap.put("channellist", channels);
         mmap.put("moInfo", moInfo);
         return prefix + "/edit";
     }

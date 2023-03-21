@@ -41,12 +41,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="map.signId != null and map.signId != ''"> and sign_id = #{map.signId}</if>
         </where>
     </select>
+
     <select id="selectAppByCode" parameterType="map" resultType="java.util.Map">
         select id,app_name,company_id from t_application
         <where>
             <if test="map.appExt != null and map.appExt!=''"> and app_ext = #{map.appExt}</if>
         </where>
     </select>
+
+    <select id="selectCodeRelated" parameterType="map" resultType="java.util.Map">
+        select id, service_code, access_ext, access_virtual_ext, app_ext, model_ext, app_id, app_name, company_id, company_name, sign_id, model_id, isp_code, channel_id, status, info, create_time, update_time from e_code_related
+        <where>
+            <if test="map.serviceCode != null and map.serviceCode !='' "> and service_code = #{map.serviceCode}</if>
+        </where>
+        and status = 1
+    </select>
+
     <select id="selectMaxId" parameterType="String" resultType="java.lang.Integer">
         select max(${field}) from ${tableName}
     </select>

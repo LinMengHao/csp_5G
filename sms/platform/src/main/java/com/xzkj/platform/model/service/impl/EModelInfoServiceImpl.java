@@ -73,6 +73,9 @@ public class EModelInfoServiceImpl implements IEModelInfoService
         modelInfo.setAppName(app!=null?app.getAppName():modelInfo.getAppId()+"");
         //账号拓展码
         modelInfo.setAppExt(app!=null?Long.parseLong(app.getAppExt()):1l);
+        if(modelInfo.getModelExt()==null){
+            modelInfo.setModelExt(id);
+        }
         modelInfo.setUserName(user!=null?user.getUserName():modelInfo.getUserId()+"");
 
         return modelInfo;
@@ -237,6 +240,7 @@ public class EModelInfoServiceImpl implements IEModelInfoService
         modelInfo.setSource(2L);
         modelInfo.setStatus(3L);//新增-待审核状态
         modelInfo.setInfo("待审核");
+        modelInfo.setModelExt(null);
         // 获取当前的用户ID
         Long userId = ShiroUtils.getUserId();
         modelInfo.setUserId(userId);
@@ -312,4 +316,6 @@ public class EModelInfoServiceImpl implements IEModelInfoService
     public List<EModelInfo> selectByPModelId(String modelId) {
         return eModelInfoMapper.selectByPModelId(modelId);
     }
+
+
 }

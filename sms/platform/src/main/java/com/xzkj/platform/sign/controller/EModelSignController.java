@@ -176,7 +176,7 @@ public class EModelSignController extends BaseController
         List<String> industryList = Arrays.asList(industry.split(","));
         List<String> rcsIndustryList = Arrays.asList(rcsIndustry.split(","));
 
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
 
         mmap.put("industryList",industryList);

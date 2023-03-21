@@ -39,7 +39,7 @@ public class ModelRelatedController extends BaseController
     @RequiresPermissions("operator:related:view")
     @GetMapping()
     public String related(ModelMap mmap){
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/related";
     }
@@ -76,7 +76,7 @@ public class ModelRelatedController extends BaseController
      */
     @GetMapping("/add")
     public String add(ModelMap mmap){
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/add";
     }
@@ -124,7 +124,7 @@ public class ModelRelatedController extends BaseController
     @RequiresPermissions("operator:related:edit")
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap){
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         ModelRelated modelRelated = modelRelatedService.selectModelRelatedById(id);
         mmap.put("modelRelated", modelRelated);

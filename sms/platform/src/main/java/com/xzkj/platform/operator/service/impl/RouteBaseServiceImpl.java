@@ -63,7 +63,7 @@ public class RouteBaseServiceImpl implements IRouteBaseService
     {
         List<RouteBase> list = routeBaseMapper.selectRouteBaseList(routeBase);
         PageUtils.clearPage();
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         Map<Long,String> map = new HashMap<Long,String>();
         for (Channel channel:channellist){
             map.put(channel.getId(),channel.getId()+":"+channel.getChannelName());

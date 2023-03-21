@@ -32,7 +32,7 @@ public class WebConfigAdapter extends WebMvcConfigurationSupport {
         //"/admin/user/login","/admin/user/info"排除临时登录
         registry.addInterceptor(initAdminInterceptor())
                 .addPathPatterns("/admin/**")
-                .excludePathPatterns(Lists.newArrayList("/web/**","/admin/user/login","/admin/user/info"));
+                .excludePathPatterns(Lists.newArrayList("/web/**","/admin/user/login","/admin/user/info","/admin/user/logout"));
     }
 
     /**

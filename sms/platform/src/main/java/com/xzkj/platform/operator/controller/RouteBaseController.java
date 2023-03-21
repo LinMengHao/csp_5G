@@ -41,7 +41,7 @@ public class RouteBaseController extends BaseController
     @RequiresPermissions("operator:routeBase:view")
     @GetMapping()
     public String base(ModelMap mmap){
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/base";
     }
@@ -78,7 +78,7 @@ public class RouteBaseController extends BaseController
      */
     @GetMapping("/add")
     public String add(ModelMap mmap){
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/add";
     }
@@ -102,7 +102,7 @@ public class RouteBaseController extends BaseController
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         RouteBase eRouteBase = routeBaseService.selectRouteBaseById(id);
         mmap.put("eRouteBase", eRouteBase);

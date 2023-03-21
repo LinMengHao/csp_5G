@@ -114,4 +114,9 @@ public class ChannelServiceImpl implements IChannelService
     {
         return channelMapper.deleteChannelById(id);
     }
+
+    @Override
+    public List<Channel> selectChannelListAll(long l) {
+        return channelMapper.selectChannelListAll(l);
+    }
 }

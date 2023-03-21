@@ -127,6 +127,7 @@ public class HandlerSendPretreat implements Runnable {
 
 					String channelIdHis="";
 					//路由校验
+					System.out.println("总路由："+routes.toString());
 					for(String route:routes){
 						//按照分发比例处理优先级相同的
 						JSONObject routejson = ThreadConstants.disRoutePretreat(companyId,appId,provider,signName,province,today,route,relatedMap,param);

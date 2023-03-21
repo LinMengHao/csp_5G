@@ -293,6 +293,7 @@ public class BackServiceController {
         String appName="";
         String companyId="";
         String appId="";
+        //旧版
         String appExt = serviceCode.substring(8, 12);
         Map<String,String> map = new HashMap<String,String>();
         map.put("appExt",appExt);
@@ -304,18 +305,33 @@ public class BackServiceController {
 
         }else {
             if(appInfos == null||appInfos.size()==0){
-                //农业银行=106908324400021
-                json.put("code", "-5002");
-                json.put("msg", "账号不存在");
-                return json.toJSONString();
+
+
             }else {
                 Map<String, String> appInfo = appInfos.get(0);
-                companyId = appInfo.get("company_id");
-                appName = appInfo.get("app_name");
-                appId=appInfo.get("id");
+                companyId = String.valueOf(appInfo.get("company_id"));
+                appName = String.valueOf(appInfo.get("app_name"));
+                appId=String.valueOf(appInfo.get("id"));
             }
         }
+        //TODO 新版本 兼容旧版本，等服务码号管理运行稳定，可弃用旧版本
+        Map<String,String> csmap = new HashMap<String,String>();
+        csmap.put("serviceCode",serviceCode);
+        List<Map<String, String>> codeList= serviceMapper.selectCodeRelated(csmap);
+        if(codeList !=null && codeList.size()>0){
+            //容错，若出现服务码号关系错乱，默认取第一个，不影响系统运行
+            Map<String, String> codeMap = codeList.get(0);
+//            String status = String.valueOf(codeMap.get("status"));//状态：1-审核成功2-审核拒绝3-待审核
+            appName=String.valueOf(codeMap.get("app_name"));
+            companyId=String.valueOf(codeMap.get("company_id"));
+            appId=String.valueOf(codeMap.get("app_id"));
+        }
 
+        if(StringUtils.isBlank(companyId)&&StringUtils.isBlank(appId)&&StringUtils.isBlank(appName)){
+            json.put("code", "-5002");
+            json.put("msg", "服务码号找不到对应关系");
+            return json.toJSONString();
+        }
         bodyJson.put("IUser",appName);
 
         String phone = bodyJson.containsKey("mobile")?bodyJson.getString("mobile"):"";
@@ -374,6 +390,7 @@ public class BackServiceController {
         String appName="";
         String companyId="";
         String appId="";
+        //旧版
         String appExt = serviceCode.substring(8, 12);
         Map<String,String> map = new HashMap<String,String>();
         map.put("appExt",appExt);
@@ -385,16 +402,32 @@ public class BackServiceController {
 
         }else {
             if(appInfos == null||appInfos.size()==0){
-                //农业银行=106908324400021
-                json.put("code", "-5002");
-                json.put("msg", "账号不存在");
-                return json.toJSONString();
+
             }else {
                 Map<String, String> appInfo = appInfos.get(0);
-                companyId = appInfo.get("company_id");
-                appName = appInfo.get("app_name");
-                appId=appInfo.get("id");
+                companyId = String.valueOf(appInfo.get("company_id"));
+                appName = String.valueOf(appInfo.get("app_name"));
+                appId=String.valueOf(appInfo.get("id"));
             }
+        }
+
+        //TODO 新版本 兼容旧版本，等服务码号管理运行稳定，可弃用旧版本
+        Map<String,String> csmap = new HashMap<String,String>();
+        csmap.put("serviceCode",serviceCode);
+        List<Map<String, String>> codeList= serviceMapper.selectCodeRelated(csmap);
+        if(codeList !=null && codeList.size()>0){
+            //容错，若出现服务码号关系错乱，默认取第一个，不影响系统运行
+            Map<String, String> codeMap = codeList.get(0);
+//            String status = String.valueOf(codeMap.get("status"));//状态：1-审核成功2-审核拒绝3-待审核
+            appName=String.valueOf(codeMap.get("app_name"));
+            companyId=String.valueOf(codeMap.get("company_id"));
+            appId=String.valueOf(codeMap.get("app_id"));
+        }
+
+        if(StringUtils.isBlank(companyId)&&StringUtils.isBlank(appId)&&StringUtils.isBlank(appName)){
+            json.put("code", "-5002");
+            json.put("msg", "服务码号找不到对应关系");
+            return json.toJSONString();
         }
 
         String phone = bodyJson.containsKey("mobile")?bodyJson.getString("mobile"):"";
@@ -453,6 +486,7 @@ public class BackServiceController {
         String appName="";
         String companyId="";
         String appId="";
+        //旧版
         String appExt = serviceCode.substring(8, 12);
         Map<String,String> map = new HashMap<String,String>();
         map.put("appExt",appExt);
@@ -465,15 +499,31 @@ public class BackServiceController {
         }else {
             if(appInfos == null||appInfos.size()==0){
                 //农业银行=106908324400021
-                json.put("code", "-5002");
-                json.put("msg", "账号不存在");
-                return json.toJSONString();
+
             }else {
                 Map<String, String> appInfo = appInfos.get(0);
-                companyId = appInfo.get("company_id");
-                appName = appInfo.get("app_name");
-                appId=appInfo.get("id");
+                companyId = String.valueOf(appInfo.get("company_id"));
+                appName = String.valueOf(appInfo.get("app_name"));
+                appId=String.valueOf(appInfo.get("id"));
             }
+        }
+        //TODO 新版本 兼容旧版本，等服务码号管理运行稳定，可弃用旧版本
+        Map<String,String> csmap = new HashMap<String,String>();
+        csmap.put("serviceCode",serviceCode);
+        List<Map<String, String>> codeList= serviceMapper.selectCodeRelated(csmap);
+        if(codeList !=null && codeList.size()>0){
+            //容错，若出现服务码号关系错乱，默认取第一个，不影响系统运行
+            Map<String, String> codeMap = codeList.get(0);
+//            String status = String.valueOf(codeMap.get("status"));//状态：1-审核成功2-审核拒绝3-待审核
+            appName=String.valueOf(codeMap.get("app_name"));
+            companyId=String.valueOf(codeMap.get("company_id"));
+            appId=String.valueOf(codeMap.get("app_id"));
+        }
+
+        if(StringUtils.isBlank(companyId)&&StringUtils.isBlank(appId)&&StringUtils.isBlank(appName)){
+            json.put("code", "-5002");
+            json.put("msg", "服务码号找不到对应关系");
+            return json.toJSONString();
         }
 
         String phone = bodyJson.containsKey("mobile")?bodyJson.getString("mobile"):"";

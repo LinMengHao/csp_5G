@@ -53,7 +53,7 @@ public class ModelRelatedServiceImpl implements IModelRelatedService
     @Override
     public List<ModelRelated> selectModelRelatedList(ModelRelated modelRelated){
         List<ModelRelated> relatedList = modelRelatedMapper.selectModelRelatedList(modelRelated);
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         Map<Long,String> map = new HashMap<Long,String>();
         for (Channel channel:channellist){
             map.put(channel.getId(),channel.getId()+":"+channel.getChannelName());

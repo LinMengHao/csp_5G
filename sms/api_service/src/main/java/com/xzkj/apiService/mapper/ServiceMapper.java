@@ -55,4 +55,6 @@ public interface ServiceMapper
     List<Map<String, String>> selectSignList(@Param("map")Map<String, String> map);
 
     public List<Map<String,String>> selectAppByCode(@Param("map") Map<String,String> map);
+
+    List<Map<String, String>> selectCodeRelated(@Param("map") Map<String,String> map);
 }

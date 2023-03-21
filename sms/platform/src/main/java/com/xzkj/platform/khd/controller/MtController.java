@@ -45,7 +45,7 @@ public class MtController extends BaseController
     @GetMapping()
     public String mt(ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/mt";
     }

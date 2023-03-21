@@ -5,7 +5,7 @@ ruoyi:
   # 版本
   version: 4.7.4
   # 版权年份
-  copyrightYear: 2022
+  copyrightYear: 2023
   # 实例演示开关
   demoEnabled: true
   # 上传文件路径 /home/platform/mmsUploadPath/  D:\java\platform\mmsUploadPath\  /Users/yoca-391/Desktop/works/xiuzhiMms20221216/platform/files/ E:\csp_5G\mmsUploadPath

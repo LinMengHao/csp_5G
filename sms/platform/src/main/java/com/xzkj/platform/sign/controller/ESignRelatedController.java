@@ -40,7 +40,7 @@ public class ESignRelatedController extends BaseController
     @GetMapping()
     public String related(ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/related";
     }
@@ -78,7 +78,7 @@ public class ESignRelatedController extends BaseController
     @GetMapping("/add")
     public String add(ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/add";
     }

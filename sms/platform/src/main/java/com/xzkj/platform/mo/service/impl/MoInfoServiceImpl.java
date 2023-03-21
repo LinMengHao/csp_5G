@@ -127,7 +127,10 @@ public class MoInfoServiceImpl implements IMoInfoService
     @Override
     public int insertMoInfo(MoInfo moInfo)
     {
+        String logDate = DateUtil.convertDate1(moInfo.getReceiveTime());
+        moInfo.setLogDate(logDate);
         moInfo.setCreateTime(DateUtils.getNowDate());
+        moInfo.setMoId(String.valueOf(new Date().getTime()));
         return moInfoMapper.insertMoInfo(moInfo);
     }
 

@@ -39,7 +39,7 @@ public class LimitBandController extends BaseController
     @GetMapping()
     public String limitBand(ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/limitBand";
     }
@@ -77,7 +77,7 @@ public class LimitBandController extends BaseController
     @GetMapping("/add")
     public String add(ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         return prefix + "/add";
     }
@@ -101,7 +101,7 @@ public class LimitBandController extends BaseController
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
     {
-        List<Channel> channellist = channelService.selectChannelList(0L);
+        List<Channel> channellist = channelService.selectChannelListAll(0L);
         mmap.put("channellist", channellist);
         LimitBand limitBand = limitBandService.selectLimitBandById(id);
         mmap.put("limitBand", limitBand);

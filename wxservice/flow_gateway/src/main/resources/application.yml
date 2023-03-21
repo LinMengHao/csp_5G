@@ -37,6 +37,10 @@ spring:
           uri: lb://flow-store
           predicates:
             - Path=/admin/**
+        - id: flow-web_1
+          uri: lb://flow-web
+          predicates:
+            - Path=/flowweb/**
 eureka:
   client:
     service-url:

@@ -60,4 +60,6 @@ public interface ChannelMapper
      * @return 结果
      */
     public int deleteChannelByIds(String[] ids);
+
+    List<Channel> selectChannelListAll(long companyId);
 }
